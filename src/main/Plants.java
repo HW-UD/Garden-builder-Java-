@@ -5,8 +5,8 @@ public class Plants{
 	 String food;
 	 String bloomtime;
 	 String soilReqs;
-	 long plantLength;
-	 long plantHeight; 
+	 long plantX;
+	 long plantY; 
 	 String species;
 	 public String getLight() {
 		return light;
@@ -59,22 +59,22 @@ public class Plants{
 
 
 	public int getPlantx() {
-		return plantLength;
+		return plantX;
 	}
 
 
 	public void setPlantx(int plantx) {
-		this.plantLength = plantx;
+		this.plantX = plantx;
 	}
 
 
 	public int getPlanty() {
-		return plantHeight;
+		return plantY;
 	}
 
 
 	public void setPlanty(int planty) {
-		this.plantHeight = planty;
+		this.plantY = planty;
 	}
 
 
