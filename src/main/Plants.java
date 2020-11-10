@@ -5,8 +5,8 @@ public class Plants{
 	 String food;
 	 String bloomtime;
 	 String soilReqs;
-	 long plantX;
-	 long plantY; 
+	 int plantX;
+	 int plantY; 
 	 String species;
 	 public String getLight() {
 		return light;
@@ -100,7 +100,7 @@ public class Plants{
 	String characteristic;
 	
 	public String toString(){
-			return "species : \"" + species + "\" located on X: " + plantLength + " Y: " + plantHeight;
+			return "species : \"" + species + "\" located on X: " + plantX + " Y: " + plantY;
 		}
 	
 	

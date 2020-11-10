@@ -36,10 +36,10 @@ public class Garden {
 
 	public void addPlant(String species, int x, int y){
 		Plants newPlant= new Plants();  
-		newPlant.plantx = x;
+		newPlant.plantX = x;
 		newPlant.plantY = y;
 		newPlant.species = species;
-    	if (newPlant.plantX > gardenX || newPlant.plantY > gardenHeight) {
+    	if (newPlant.plantX > gardenLength || newPlant.plantY > gardenHeight) {
     		System.out.println("out of range, try again.");
     	}else {
 	    	Garden_Plants.add(newPlant);
@@ -58,8 +58,8 @@ public class Garden {
 
 		
 	public void changePlant(String species, int oldx, int oldy, int newx, int newy) {// scanner ,check location, 
-		addPlant( species, oldx, oldy)
-		removePlant( species, newx, newy)
+		addPlant( species, oldx, oldy);
+		removePlant( species, newx, newy);
 	}
 	
 	}
