@@ -1,17 +1,15 @@
 public class Plants{
-	 int x;
-	 int y;
-	 String species;
+	 String name;
 	 
-	 String characteristic;
+	 public Plants(String n) {
+		 name = n;
+	 }
 	 
-	 
-	 
-	public String toString(){
-			return "breed : \"" + species + "\" located on X: " + x + " Y: " + y;
+	public String getName(){
+			return name;
 		}
 	
-	
-	//Hashcode
-	//equalsmethod
+	public void setName(String name){
+		this.name = name;
+	}
 }

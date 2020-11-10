@@ -96,6 +96,16 @@ public class Garden {
 	   }	
     	
 	}
+
+	public void setGardenX() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void setGardenY() {
+		// TODO Auto-generated method stub
+		
+	}
 }
 
 
