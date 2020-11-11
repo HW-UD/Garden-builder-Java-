@@ -1,8 +1,8 @@
-package Controller;
+package controller;
 
-import Model.SceneName;
 import javafx.event.Event;
 import javafx.stage.Stage;
+import model.SceneName;
 
 //import net.snortum.javafx.multiscene.Main;
 //import net.snortum.javafx.multiscene.model.SceneName;

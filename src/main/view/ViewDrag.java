@@ -1,5 +1,5 @@
-package View;
-import Controller.DragController;
+package view;
+import controller.DragController;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;

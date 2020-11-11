@@ -1,16 +1,16 @@
-package Controller;
+package controller;
 
 
 import java.util.HashMap;
 import java.util.Map;
 
-import Model.SceneName;
-import View.ViewDrag;
-import View.ViewSeason;
-import View.ViewSurround;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import model.SceneName;
+import view.ViewDrag;
+import view.ViewSeason;
+import view.ViewSurround;
 
 //import net.snortum.javafx.multiscene.model.SceneName;
 //import net.snortum.javafx.multiscene.view.MainView;
