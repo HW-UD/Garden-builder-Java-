@@ -46,7 +46,7 @@ public class ViewBase implements ViewMaker {
 //		label.setFont(new Font(32));
 //		root.setCenter(label);
 		
-		Button backButton = new Button("Previous");
+		Button backButton = new Button("Back");
 		backButton.setOnMousePressed(handlerP);
 		Button nextButton = new Button("Next");
 		nextButton.setOnMousePressed(handlerN);
