@@ -51,6 +51,13 @@ public class ViewDrag extends ViewBase {
 //    	iv1.setFitHeight(imgheight);
 //    	iv1.setFitWidth(imgwidth);
 		
+	   BorderPane root = new BorderPane();
+		
+		root.setPadding(new Insets(10));
+		Label label = new Label("drag");
+		label.setFont(new Font(32));
+		root.setCenter(label);
+		
 		Button backButton = new Button("Previous");
 		backButton.setOnMousePressed(handlerP);
 		Button nextButton = new Button("Next");

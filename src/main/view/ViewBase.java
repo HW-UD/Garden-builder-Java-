@@ -2,7 +2,6 @@ package view;
 
 
 
-import controller.Main;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -24,13 +23,7 @@ public class ViewBase implements ViewMaker {
 	protected final double WIDTH = 800;
 	protected final double HEIGHT = 600;
 	
-	/**
-	 * Construct a view base.
-	 * 
-	 * @param stage the primary stage from {@link Main}
-	 * @param labelText the text for the label
-	 * @param handler the "back" button handler
-	 */
+
 	public ViewBase(Stage stage, EventHandler<? super MouseEvent> handlerP,EventHandler<? super MouseEvent> handlerN) {
 		if (stage == null) {
 			throw new IllegalArgumentException("Stage cannot be null");

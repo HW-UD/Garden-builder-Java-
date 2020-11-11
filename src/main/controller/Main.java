@@ -9,8 +9,11 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model.SceneName;
 import view.ViewDrag;
+import view.ViewFences;
+import view.ViewFlowers;
 import view.ViewSeason;
 import view.ViewSurround;
+import view.ViewTrees;
 
 //import net.snortum.javafx.multiscene.model.SceneName;
 //import net.snortum.javafx.multiscene.view.MainView;
@@ -32,16 +35,16 @@ public class Main extends Application {
 //		scenes.put(SceneName.ViewExample, new ViewExample(stage).getScene());
 //		scenes.put(SceneName.ViewPwork, new ViewPwork(stage).getScene());
 //		scenes.put(SceneName.ViewCharacteristics, new ViewCharacteristics(stage).getScene());
-//		scenes.put(SceneName.ViewTrees, new ViewTrees(stage).getScene());
-//		scenes.put(SceneName.ViewFlowers, new ViewFlowers(stage).getScene());
-//		scenes.put(SceneName.ViewFences, new ViewFences(stage).getScene());
+		scenes.put(SceneName.ViewTrees, new ViewTrees(stage).getScene());
+		scenes.put(SceneName.ViewFlowers, new ViewFlowers(stage).getScene());
+		scenes.put(SceneName.ViewFences, new ViewFences(stage).getScene());
 		scenes.put(SceneName.ViewDrag, new ViewDrag(stage).getScene());
 		scenes.put(SceneName.ViewSeason, new ViewSeason(stage).getScene());
 		scenes.put(SceneName.ViewSurround, new ViewSurround(stage).getScene());
 //		scenes.put(SceneName.ViewRating, new ViewRating(stage).getScene());
 
 		// Start with the main scene
-		stage.setScene(scenes.get(SceneName.ViewDrag));
+		stage.setScene(scenes.get(SceneName.ViewFences));
 		stage.setTitle("G14 Garden Design");
 		stage.show();
 	}
