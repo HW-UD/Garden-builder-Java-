@@ -1,6 +1,8 @@
+package View;
 
 
 
+import Controller.Main;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -14,17 +16,11 @@ import javafx.stage.Stage;
 
 //import net.snortum.javafx.multiscene.Main;
 
-/**
- * This is the base for all views.
- * 
- * @author Knute Snortum
- * @version 2018-05-24
- */
 public class ViewBase implements ViewMaker {
 
 	private Stage stage;
-	private String labelText;
-	private EventHandler<? super MouseEvent> handler;
+	private EventHandler<? super MouseEvent> handlerP;
+	private EventHandler<? super MouseEvent> handlerN;
 
 	/**
 	 * Construct a view base.
@@ -33,36 +29,38 @@ public class ViewBase implements ViewMaker {
 	 * @param labelText the text for the label
 	 * @param handler the "back" button handler
 	 */
-	public ViewBase(Stage stage, String labelText, EventHandler<? super MouseEvent> handler) {
+	public ViewBase(Stage stage, EventHandler<? super MouseEvent> handlerP,EventHandler<? super MouseEvent> handlerN) {
 		if (stage == null) {
 			throw new IllegalArgumentException("Stage cannot be null");
 		}
 		
-		if (handler == null) {
+		if (handlerP == null) {
 			throw new IllegalArgumentException("Handler cannot be null");
 		}
 		
 		this.stage = stage;
-		this.labelText = labelText;
-		this.handler = handler;
+		this.handlerP = handlerP;
+		this.handlerN = handlerN;
 	}
 
 	@Override
 	public Scene getScene() {
 		BorderPane root = new BorderPane();
-		root.setPadding(new Insets(10));
-		Label label = new Label(labelText);
-		label.setFont(new Font(32));
-		root.setCenter(label);
+////		root.setPadding(new Insets(10));
+//		Label label = new Label(labelText);
+//		label.setFont(new Font(32));
+//		root.setCenter(label);
 		
-		Button backButton = new Button("Back");
-		backButton.setOnMousePressed(handler);
-		Button closeButton = new Button("Close");
-		closeButton.setOnMousePressed(e -> stage.close());
+		Button backButton = new Button("Previous");
+		backButton.setOnMousePressed(handlerP);
+		Button nextButton = new Button("Next");
+		backButton.setOnMousePressed(handlerN);
+//		Button closeButton = new Button("Close");
+//		closeButton.setOnMousePressed(e -> stage.close());
 		
 		ButtonBar bbar = new ButtonBar();
 		bbar.setPadding(new Insets(10, 0, 0, 10));
-		bbar.getButtons().addAll(backButton, closeButton);
+		bbar.getButtons().addAll(backButton, nextButton);
 		root.setBottom(bbar);
 
 		return new Scene(root);

@@ -1,4 +1,6 @@
+package Controller;
 
+import Model.SceneName;
 import javafx.event.Event;
 import javafx.stage.Stage;
 
@@ -23,5 +25,9 @@ public class DragController {
 	/** Display ViewFences scene when the "back" button is clicked */
 	public void handleMousePress(Event event) {
 		stage.setScene(Main.getScenes().get(SceneName.ViewFences));
+	}
+	
+	public void handleMousePress2(Event event) {
+		stage.setScene(Main.getScenes().get(SceneName.ViewSurround));
 	}
 }

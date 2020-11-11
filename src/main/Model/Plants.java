@@ -1,3 +1,4 @@
+package Model;
 public class Plants{
 	 String light;
 	 String water;

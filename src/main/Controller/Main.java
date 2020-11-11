@@ -1,8 +1,13 @@
+package Controller;
 
 
 import java.util.HashMap;
 import java.util.Map;
 
+import Model.SceneName;
+import View.ViewDrag;
+import View.ViewSeason;
+import View.ViewSurround;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -24,6 +29,8 @@ public class Main extends Application {
 	
 		// Create and store all scenes up front
 		scenes.put(SceneName.ViewWelcome, new ViewWelcome(stage).getScene());
+		scenes.put(SceneName.ViewExample, new ViewExample(stage).getScene());
+		scenes.put(SceneName.ViewPwork, new ViewPwork(stage).getScene());
 		scenes.put(SceneName.ViewCharacteristics, new ViewCharacteristics(stage).getScene());
 		scenes.put(SceneName.ViewTrees, new ViewTrees(stage).getScene());
 		scenes.put(SceneName.ViewFlowers, new ViewFlowers(stage).getScene());
@@ -31,8 +38,6 @@ public class Main extends Application {
 		scenes.put(SceneName.ViewDrag, new ViewDrag(stage).getScene());
 		scenes.put(SceneName.ViewSeason, new ViewSeason(stage).getScene());
 		scenes.put(SceneName.ViewSurround, new ViewSurround(stage).getScene());
-		scenes.put(SceneName.ViewExample, new ViewExample(stage).getScene());
-		scenes.put(SceneName.ViewPwork, new ViewPwork(stage).getScene());
 		scenes.put(SceneName.ViewRating, new ViewRating(stage).getScene());
 
 		// Start with the main scene
