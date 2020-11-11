@@ -18,9 +18,9 @@ public class ViewFences  extends ViewBase{
 		root.setPadding(new Insets(10));
 		Label label = new Label("Choose Fences");
 		label.setFont(new Font(32));
-		root.setCenter(label);
+		root.setTop(label);
 		
-		Button backButton = new Button("Previous");
+		Button backButton = new Button("Back");
 		backButton.setOnMousePressed(handlerP);
 		Button nextButton = new Button("Next");
 		nextButton.setOnMousePressed(handlerN);
