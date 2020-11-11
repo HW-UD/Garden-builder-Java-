@@ -19,7 +19,7 @@ public class ViewFlowers  extends ViewBase{
 		root.setPadding(new Insets(10));
 		Label label = new Label("Choose Flowers");
 		label.setFont(new Font(32));
-		root.setCenter(label);
+		root.setTop(label);
 		
 		Button backButton = new Button("Previous");
 		backButton.setOnMousePressed(handlerP);
