@@ -6,6 +6,8 @@ import java.awt.EventQueue;
 import javafx.scene.text.Font;
 
 import controller.Main;
+import controller.SurroundController;
+import controller.WelcomeController;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -36,52 +38,46 @@ public class ViewWelcome implements ViewMaker {
 	public Scene getScene() {
 		
 		// Inject stage from Main into controller
-		Main controller = new Main();
+		WelcomeController controller = new WelcomeController(stage);
 
-		// Switch between scenes
-//		Button button1 = new Button("Scene 1");
-//		button1.setOnMousePressed(e -> controller.handleOnPressButton1(e));
-//		Button button2 = new Button("Scene 2");
-//		button2.setOnMousePressed(e -> controller.handleOnPressButton2(e));
-//		Button button3 = new Button("Scene 3");
-//		button3.setOnMousePressed(e -> controller.handleOnPressButton3(e));
-		
-		// Build scene
-		//VBox vbox = new VBox();
-		//vbox.setSpacing(10);
-		//vbox.setPadding(new Insets(10));
-		//vbox.getChildren().addAll(button1, button2, button3);
-		
 		BorderPane root = new BorderPane();
-		//root.setLeft(vbox);
+	
 		Label label = new Label("Welcome to Garden Designer");
-		label.setFont(new Font(32));
+		label.setFont(Font.font ("Verdana", 42));
+		//label.setTextFill(Color.web("#0076a3"));
 		root.setTop(label);
 		root.setMargin(label, new Insets(120,0,0,250));
+		
+		
 	
 		Button startButton = new Button("Start");
-		//nextButton.setOnMousePressed(e -> stage.next());
-//		ButtonBar bbar1 = new ButtonBar();
-//		bbar1.setPadding(new Insets(101));
-//		bbar1.getButtons().add(nextButton);
-//		root.setBottom(bbar1);
-		
-//		Button closeButton = new Button("Close");
-//		closeButton.setOnMousePressed(e -> stage.close());
-//		ButtonBar bbar = new ButtonBar();
-//		bbar.setPadding(new Insets(10));
-//		bbar.getButtons().add(closeButton);
-//		root.setBottom(bbar);
-		Scene scene = new Scene(root, 1000, 600);
+		startButton.setOnMousePressed(e -> controller.handleOnPressButton1(e));
 		Button exampleButton = new Button("Example");
+		exampleButton.setOnMousePressed(e -> controller.handleOnPressButton2(e));
 		Button perviousworkButton = new Button("Pervious_Work");
+		perviousworkButton.setOnMousePressed(e -> controller.handleOnPressButton3(e));
+		Button closeButton = new Button("Close");
+		closeButton.setOnMousePressed(e -> stage.close());
+		//nextButton.setOnMousePressed(e -> stage.next());
+		ButtonBar bbar = new ButtonBar();
+		bbar.setPadding(new Insets(101));
+		bbar.getButtons().addAll(startButton, exampleButton, perviousworkButton, closeButton);
+		root.setBottom(bbar);
+		bbar.setPadding(new Insets(10, 4, 4, 10));
+		
+		
+		Scene scene = new Scene(root, 1000, 600);
+
 		
 		Label length = new Label("Length: ");
 		TextField lengthtf = new TextField ();
+		length.setFont(Font.font ("Verdana", 20));
 		Label width = new Label("Width: ");
 		TextField widthtf = new TextField ();
+		width.setFont(Font.font ("Verdana", 20));
 		Label name = new Label("Garden name: ");
 		TextField nametf = new TextField ();
+		name.setFont(Font.font ("Verdana", 20));
 		GridPane grid = new GridPane();
 		grid.setVgap(20);
 		grid.setHgap(35);
@@ -92,15 +88,6 @@ public class ViewWelcome implements ViewMaker {
 		grid.add(lengthtf, 3, 1);
 		grid.add(width, 4, 0);
 		grid.add(widthtf, 4, 1);
-		grid.add(startButton, 6, 12);
-		startButton.setMinHeight(30);
-		startButton.setMinWidth(90);
-		grid.add(exampleButton, 5, 12);
-		exampleButton.setMinHeight(30);
-		exampleButton.setMinWidth(90);
-		grid.add(perviousworkButton, 4, 12);
-		perviousworkButton.setMinHeight(30);
-		perviousworkButton.setMinWidth(90);
 		root.setCenter(grid);
 		root.setMargin(grid, new Insets(100,0,0,200));
 
