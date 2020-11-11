@@ -19,10 +19,10 @@ import javafx.stage.Stage;
 public class ViewBase implements ViewMaker {
 
 	private Stage stage;
-	private EventHandler<? super MouseEvent> handlerP;
-	private EventHandler<? super MouseEvent> handlerN;
-	private final double WIDTH = 800;
-	private final double HEIGHT = 600;
+	protected EventHandler<? super MouseEvent> handlerP;
+	protected EventHandler<? super MouseEvent> handlerN;
+	protected final double WIDTH = 800;
+	protected final double HEIGHT = 600;
 	
 	/**
 	 * Construct a view base.
@@ -56,7 +56,7 @@ public class ViewBase implements ViewMaker {
 		Button backButton = new Button("Previous");
 		backButton.setOnMousePressed(handlerP);
 		Button nextButton = new Button("Next");
-		backButton.setOnMousePressed(handlerN);
+		nextButton.setOnMousePressed(handlerN);
 //		Button closeButton = new Button("Close");
 //		closeButton.setOnMousePressed(e -> stage.close());
 		
