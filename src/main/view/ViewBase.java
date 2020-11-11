@@ -21,7 +21,9 @@ public class ViewBase implements ViewMaker {
 	private Stage stage;
 	private EventHandler<? super MouseEvent> handlerP;
 	private EventHandler<? super MouseEvent> handlerN;
-
+	private final double WIDTH = 800;
+	private final double HEIGHT = 600;
+	
 	/**
 	 * Construct a view base.
 	 * 
@@ -63,6 +65,6 @@ public class ViewBase implements ViewMaker {
 		bbar.getButtons().addAll(backButton, nextButton);
 		root.setBottom(bbar);
 
-		return new Scene(root);
+		return new Scene(root, WIDTH, HEIGHT);
 	}
 }
