@@ -27,6 +27,19 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FilenameFilter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashSet;
+
+import javax.imageio.ImageIO;
+
+
+
+
+
 
 public class ViewDrag extends ViewBase {
 
@@ -34,12 +47,39 @@ public class ViewDrag extends ViewBase {
 //		super(stage, handlerP, handlerN);
 //		// TODO Auto-generated constructor stub
 //	}
-	private ImageView iv1 = new ImageView();/////////要改
 	private final int imgwidth = 100;
 	private final int imgheight = 100;
+	static HashSet <Image> plants_img = new HashSet();
+
 	
+	private void getFile(String path){        
+        File file = new File(path);   // get file list where the path has           
+        File[] array = file.listFiles();  // get the folder list   
+        System.out.println (array.toString());
+        
+        for(int i=0;i<array.length;i++){   
+            if(array[i].isFile()){   
+                // only take file name   
+            	if (array[i].getName().endsWith(".jpg")) {
+            		System.out.println("^^^^^" + array[i].getName());   
+            		
+                    String temp= "../img/spring/" + array[i].getName();
+                    System.out.println("000000" + temp);
+                    
+                    Image img =  new Image(getClass().getResourceAsStream(temp));
+                    plants_img.add(img);
+            	}
+                
+                
+            }else if(array[i].isDirectory()){   
+                getFile(array[i].getPath());   
+            }   
+        }   
+    }   
+
 	@Override
 	public Scene getScene() {
+//		DragController contr= new DragController(stage);
 		BorderPane root = new BorderPane();
 		
     	TilePane tilepane = new TilePane();
@@ -52,80 +92,40 @@ public class ViewDrag extends ViewBase {
     	root.setRight(vbox);
     	root.setCenter(flowpane);
     	root.setLeft(tilepane);
+  
+    	getFile("/Users/wanghuawei/eclipse-workspace/project-team-14/src/main/img/spring");
+    	for (Image i: plants_img) {
+    		ImageView iv1 = new ImageView();
+        	iv1.setImage(i);
+        	tilepane.getChildren().add(iv1);
+        	iv1.setPreserveRatio(true);
+        	iv1.setFitHeight(imgheight);
+        	iv1.setFitWidth(imgwidth);
+        	DragController.drag (iv1);
+    	}
+    	DragController.drop ( flowpane) ;
+    	DragController.DragOver ( flowpane) ;
     	
- 
-    	Image im1 = new Image(getClass().getResourceAsStream("commonMilkweed.png"));
-    	iv1.setImage(im1);
-    	tilepane.getChildren().add(iv1);
-    	iv1.setPreserveRatio(true);
-    	iv1.setFitHeight(imgheight);
-    	iv1.setFitWidth(imgwidth);
-		
-		
-		
-//		root.setPadding(new Insets(10));
-//		Label label = new Label("Drag");
-//		label.setFont(new Font(32));
-//		root.setCenter(label);
 		
 		Button backButton = new Button("Back");
 		backButton.setOnMousePressed(handlerP);
 		Button nextButton = new Button("Next");
 		nextButton.setOnMousePressed(handlerN);
-
 		
 		ButtonBar bbar = new ButtonBar();
 		bbar.setPadding(new Insets(10, 0, 0, 10));
 		bbar.getButtons().addAll(backButton, nextButton);
 		root.setBottom(bbar);
 
-		iv1.setOnDragDetected(new EventHandler<MouseEvent>(){
-    		@Override
-    		public void handle(MouseEvent event){
-    			Dragboard iv2 = iv1.startDragAndDrop(TransferMode.COPY);
-    			ClipboardContent content = new ClipboardContent();
-    			content.putImage(iv1.getImage());
-    			iv2.setContent(content);
-    			WritableImage wi = new WritableImage(imgwidth,imgheight);
-    			iv1.snapshot(new SnapshotParameters(), wi);
-    			iv2.setDragView(wi);   		
-
-    		}
-    	});
-    	
-    	flowpane.setOnDragDropped(new EventHandler<DragEvent>() {
-    		@Override
-    		public void handle(DragEvent event) {
-    			ImageView iv1copy = new ImageView(event.getDragboard().getImage());
-    			iv1copy.setPreserveRatio(true);
-    			iv1copy.setFitHeight(imgheight);
-    			iv1copy.setFitWidth(imgwidth);
-    			
-
-    			flowpane.getChildren().add(iv1copy);
-    			
-//    			Point p = MouseInfo.getPointerInfo().getLocation();
-//
-//    			iv1copy.setTranslateX(p.getX()- 550);
-//    			iv1copy.setTranslateY(p.getY());//
-    			
-    			iv1copy.setTranslateX(event.getX());
-    			iv1copy.setTranslateY(event.getY());
-    		}
-    	});
-    	
-    	flowpane.setOnDragOver(new EventHandler<DragEvent>() {
-    		@Override
-    		public void handle(DragEvent event) {
-    			event.acceptTransferModes(TransferMode.COPY);
-    		}
-    	});
 		
 		
 		
 		return new Scene(root, WIDTH, HEIGHT);
 	}
 	
+	public FlowPane getFlower() {
+		return null;
+	}
 	
 	
 	/** Must inject a stage */
@@ -134,3 +134,15 @@ public class ViewDrag extends ViewBase {
 	}
 
 }
+
+
+////Image im1 = new Image(getClass().getResourceAsStream("../img/commonMilkweed.png"));
+//String temp= "/Users/wanghuawei/eclipse-workspace/project-team-14/src/main/img"+ "/" + "AmericanBasswood.png";
+////String temp= "../img/AmericanBasswood.png";
+//Image img =  new Image(getClass().getResourceAsStream(temp));
+//ImageView iv1 = new ImageView();/////////要改
+//iv1.setImage(img);
+//tilepane.getChildren().add(iv1);
+//iv1.setPreserveRatio(true);
+//iv1.setFitHeight(imgheight);
+//iv1.setFitWidth(imgwidth);
