@@ -5,6 +5,7 @@ import controller.SurroundController;
 import javafx.collections.FXCollections;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -15,10 +16,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
 import javafx.scene.control.Tooltip;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class ViewCharacteristics extends ViewBase {
@@ -65,12 +69,16 @@ public class ViewCharacteristics extends ViewBase {
         backButton.setOnMousePressed(handlerP);
         Button nextButton = new Button("Next");
         nextButton.setOnMousePressed(handlerN);
+        Button button = new Button("?");
         ButtonBar bbar = new ButtonBar();
 		bbar.setPadding(new Insets(101));
-		bbar.getButtons().addAll(backButton, nextButton);
+		bbar.getButtons().addAll(button,backButton, nextButton);
 		root.setBottom(bbar);
 		bbar.setPadding(new Insets(10, 4, 4, 10));
  
+        button.setOnAction(e -> new ViewAlertbox().display("title", "message"));
+        AnchorPane layout = new AnchorPane();
+        layout.getChildren().add(button);
        
         
         GridPane grid = new GridPane();
@@ -107,12 +115,6 @@ public class ViewCharacteristics extends ViewBase {
         grid.add(soilreqs, 7, 5);
         soilreqs.setFont(Font.font ("Verdana", 20));
         grid.add(soilreqComboBox, 8, 5);
-//        grid.add(nextButton, 9, 23);
-//		nextButton.setMinHeight(30);
-//		nextButton.setMinWidth(90);
-//		grid.add(backButton, 8, 23);
-//		backButton.setMinHeight(30);
-//		backButton.setMinWidth(90);
         root.setCenter(grid);
 		root.setMargin(grid, new Insets(10,0,0,50));
       
@@ -122,7 +124,9 @@ public class ViewCharacteristics extends ViewBase {
        // root.getChildren().add(label);
 //        stage.setScene(scene);
 //        stage.show();
+	
         
         return new Scene(root, WIDTH, HEIGHT);
     }    
+	
 }
