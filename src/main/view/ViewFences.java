@@ -147,6 +147,7 @@ public class ViewFences  extends ViewBase{
         sc.setVisibleAmount(50);
         sc.setBlockIncrement(300);
         sc.setPrefWidth(30);
+        sc.resize(10, 600);
  
         for (int i = 0; i < 5; i++) {
             final ImageView pic = pics[i] =
