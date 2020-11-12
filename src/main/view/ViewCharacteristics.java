@@ -60,13 +60,14 @@ public class ViewCharacteristics extends ViewBase {
         soilreqComboBox.getItems().addAll("acidity","neutral","alkalinity");   
         
         
-        Button nextButton = new Button("Next");
-        nextButton.setOnMousePressed(handlerN);
+       
         Button backButton = new Button("Back");
         backButton.setOnMousePressed(handlerP);
+        Button nextButton = new Button("Next");
+        nextButton.setOnMousePressed(handlerN);
         ButtonBar bbar = new ButtonBar();
 		bbar.setPadding(new Insets(101));
-		bbar.getButtons().addAll(nextButton, backButton);
+		bbar.getButtons().addAll(backButton, nextButton);
 		root.setBottom(bbar);
 		bbar.setPadding(new Insets(10, 4, 4, 10));
  
