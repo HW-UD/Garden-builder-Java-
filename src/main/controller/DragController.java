@@ -76,6 +76,8 @@ public class DragController {
 				iv1copy.setFitHeight(100);
 				iv1copy.setFitWidth(100);
 				
+				
+				
 	
 				flowpane.getChildren().add(iv1copy);
 				
@@ -86,6 +88,9 @@ public class DragController {
 				
 				iv1copy.setTranslateX(event.getX());
 				iv1copy.setTranslateY(event.getY());
+				
+				Main.model.garden.addPlant(iv1copy.getClass().getSimpleName(), event.getX(), event.getY());
+				System.out.println(Main.model.garden.getGarden_Plants());
 			}
 		});
 	}

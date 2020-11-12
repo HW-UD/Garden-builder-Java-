@@ -6,8 +6,8 @@ public class Plants{
 	 String food;
 	 String bloomtime;
 	 String soilReqs;
-	 int plantX;
-	 int plantY; 
+	 double plantX;
+	 double plantY; 
 	 String species;
 	 public String getLight() {
 		return light;
@@ -59,7 +59,7 @@ public class Plants{
 	}
 
 
-	public int getPlantx() {
+	public double getPlantx() {
 		return plantX;
 	}
 
@@ -69,7 +69,7 @@ public class Plants{
 	}
 
 
-	public int getPlanty() {
+	public double getPlanty() {
 		return plantY;
 	}
 

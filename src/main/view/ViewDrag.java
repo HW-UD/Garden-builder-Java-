@@ -37,45 +37,12 @@ import java.util.HashSet;
 import javax.imageio.ImageIO;
 
 
-
-
-
-
 public class ViewDrag extends ViewBase {
 
-//	public ViewDrag(Stage stage, EventHandler<? super MouseEvent> handlerP, EventHandler<? super MouseEvent> handlerN) {
-//		super(stage, handlerP, handlerN);
-//		// TODO Auto-generated constructor stub
-//	}
+
 	private final int imgwidth = 100;
 	private final int imgheight = 100;
-	static HashSet <Image> plants_img = new HashSet();
 
-	
-	private void getFile(String path){        
-        File file = new File(path);   // get file list where the path has           
-        File[] array = file.listFiles();  // get the folder list   
-        System.out.println (array.toString());
-        
-        for(int i=0;i<array.length;i++){   
-            if(array[i].isFile()){   
-                // only take file name   
-            	if (array[i].getName().endsWith(".jpg")) {
-            		System.out.println("^^^^^" + array[i].getName());   
-            		
-                    String temp= "../img/spring/" + array[i].getName();
-                    System.out.println("000000" + temp);
-                    
-                    Image img =  new Image(getClass().getResourceAsStream(temp));
-                    plants_img.add(img);
-            	}
-                
-                
-            }else if(array[i].isDirectory()){   
-                getFile(array[i].getPath());   
-            }   
-        }   
-    }   
 
 	@Override
 	public Scene getScene() {

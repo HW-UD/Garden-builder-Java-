@@ -34,17 +34,30 @@ public class Garden {
 	public void setGardenHeight(int gardenHeight) {
 		this.gardenHeight = gardenHeight;
 	}
+	
+	public Collection<Plants> getGarden_Plants() {
+		return Garden_Plants;
+	}
 
-	public void addPlant(String species, int x, int y){
+	public void setGarden_Plants(Collection<Plants> garden_Plants) {
+		Garden_Plants = garden_Plants;
+	}
+	
+	
+	
+	
+	
+
+	public void addPlant(String species, double d, double e){
 		Plants newPlant= new Plants();  
-		newPlant.plantX = x;
-		newPlant.plantY = y;
+		newPlant.plantX = d;
+		newPlant.plantY = e;
 		newPlant.species = species;
-    	if (newPlant.plantX > gardenLength || newPlant.plantY > gardenHeight) {
-    		System.out.println("out of range, try again.");
-    	}else {
+//    	if (newPlant.plantX > gardenLength || newPlant.plantY > gardenHeight) {
+//    		System.out.println("out of range, try again.");
+//    	}else {
 	    	Garden_Plants.add(newPlant);
-    		}			
+//    		}			
 	}
 
 	
