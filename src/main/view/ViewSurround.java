@@ -64,12 +64,12 @@ public class ViewSurround extends ViewBase {
 //        root.setBackground(background); 
 		
 		
-		Button backButton = new Button("Previous");
+		Button backButton = new Button("Back");
 		backButton.setOnMousePressed(handlerP);
 		Button nextButton = new Button("Next");
 		nextButton.setOnMousePressed(handlerN);
-//		Button closeButton = new Button("Close");
-//		closeButton.setOnMousePressed(e -> stage.close());
+
+
 		
 		ButtonBar bbar = new ButtonBar();
 		bbar.setPadding(new Insets(10, 0, 0, 10));

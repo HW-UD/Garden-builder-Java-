@@ -3,6 +3,8 @@ import java.awt.MouseInfo;
 import java.awt.Point;
 
 import controller.DragController;
+import controller.Main;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -29,8 +31,10 @@ import javafx.stage.Stage;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FilenameFilter;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.HashSet;
 
@@ -78,10 +82,31 @@ public class ViewDrag extends ViewBase {
 		backButton.setOnMousePressed(handlerP);
 		Button nextButton = new Button("Next");
 		nextButton.setOnMousePressed(handlerN);
+		Button saveButton = new Button("Save");
+		saveButton.setOnAction( new EventHandler<ActionEvent>() {
+        	public void handle(ActionEvent e) {
+        		try{
+                   
+
+                    
+                    FileOutputStream fos = new FileOutputStream("planted.ser");
+                    ObjectOutputStream oos = new ObjectOutputStream(fos);
+                    oos.writeObject(Main.getModel().garden.getGarden_Plants());
+                    oos.close();
+                }
+                catch (Exception ex)
+ {
+                }
+
+
+        	}
+        	
+        });
+		
 		
 		ButtonBar bbar = new ButtonBar();
 		bbar.setPadding(new Insets(10, 0, 0, 10));
-		bbar.getButtons().addAll(backButton, nextButton);
+		bbar.getButtons().addAll(saveButton,backButton, nextButton);
 		root.setBottom(bbar);
 
 		

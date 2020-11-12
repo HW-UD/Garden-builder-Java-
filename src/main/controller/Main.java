@@ -58,6 +58,16 @@ public class Main extends Application {
 		return scenes;
 	}
 	
+	
+	
+	public static GardenModel getModel() {
+		return model;
+	}
+
+	public static void setModel(GardenModel model) {
+		Main.model = model;
+	}
+
 	public static void main(String[] args) {
 		launch(args);
 	}
