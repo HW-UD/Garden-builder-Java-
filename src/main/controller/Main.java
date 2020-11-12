@@ -40,12 +40,12 @@ public class Main extends Application {
 		 surron = new ViewSurround(stage);
 		 season = new ViewSeason(stage);
 		// Create and store all scenes up front
-//		scenes.put(SceneName.ViewWelcome, new ViewWelcome(stage).getScene());
+		scenes.put(SceneName.ViewWelcome, new ViewWelcome(stage).getScene());
 //		scenes.put(SceneName.ViewExample, new ViewExample(stage).getScene());
 //		scenes.put(SceneName.ViewPwork, new ViewPwork(stage).getScene());
-//		scenes.put(SceneName.ViewCharacteristics, new ViewCharacteristics(stage).getScene());
-//		scenes.put(SceneName.ViewTrees, new ViewTrees(stage).getScene());
-//		scenes.put(SceneName.ViewFlowers, new ViewFlowers(stage).getScene());
+		scenes.put(SceneName.ViewCharacteristics, new ViewCharacteristics(stage).getScene());
+		scenes.put(SceneName.ViewTrees, new ViewTrees(stage).getScene());
+		scenes.put(SceneName.ViewFlowers, new ViewFlowers(stage).getScene());
 		scenes.put(SceneName.ViewFences, new ViewFences(stage).getScene());
 		scenes.put(SceneName.ViewDrag, new ViewDrag(stage).getScene());
 		scenes.put(SceneName.ViewSurround, surron.getScene());

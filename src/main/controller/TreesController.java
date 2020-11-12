@@ -4,10 +4,10 @@ import javafx.event.Event;
 import javafx.stage.Stage;
 import model.SceneName;
 
-public class ViewFlowersController {
+public class TreesController {
 private Stage stage;
 	
-	public ViewFlowersController(Stage stage) {
+	public TreesController(Stage stage) {
 		if (stage == null) {
 			throw new IllegalArgumentException("Stage cannot be null");
 		}
@@ -16,11 +16,11 @@ private Stage stage;
 	}
 	
 	public void handleMousePress(Event event) {
-		stage.setScene(Main.getScenes().get(SceneName.ViewTrees));
+		stage.setScene(Main.getScenes().get(SceneName.ViewCharacteristics));
 	}
 			
 	public void handleMousePress2(Event event) {
-		stage.setScene(Main.getScenes().get(SceneName. ViewFences));
+		stage.setScene(Main.getScenes().get(SceneName. ViewFlowers));
 	}
 
 }

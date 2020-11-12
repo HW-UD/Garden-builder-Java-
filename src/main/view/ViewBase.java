@@ -28,7 +28,7 @@ public class ViewBase implements ViewMaker {
 	private Stage stage;
 	protected EventHandler<? super MouseEvent> handlerP;
 	protected EventHandler<? super MouseEvent> handlerN;
-	protected final double WIDTH = 800;
+	protected final double WIDTH = 1000;
 	protected final double HEIGHT = 600;
 
 	protected final int imgwidth = 100;
