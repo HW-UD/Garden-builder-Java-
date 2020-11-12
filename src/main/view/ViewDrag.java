@@ -12,6 +12,7 @@ import javafx.scene.SnapshotParameters;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
@@ -56,14 +57,17 @@ public class ViewDrag extends ViewBase {
         Pane flowpane = new Pane();
         tilepane.setStyle("-fx-background-color : #7CFC00;");
         flowpane.setStyle("-fx-background-color : #8B4513;");
-    	HBox hbox = new HBox();
-    	VBox vbox = new VBox();
-    	root.setTop(hbox);
-    	root.setRight(vbox);
+        
+        tilepane.setPrefWidth(imgwidth+20);
+        tilepane.setPrefColumns(1);
+        
+        ScrollPane scrollPane = new ScrollPane(tilepane);
+        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        root.setLeft(scrollPane);
+
     	root.setCenter(flowpane);
-    	root.setLeft(tilepane);
   
-    /*	getFile("/Users/wanghuawei/eclipse-workspace/project-team-14/src/main/img/spring");
+    	getFile("/Users/wanghuawei/eclipse-workspace/project-team-14/src/main/img/spring");
     	for (Image i: plants_img) {
 
     		ImageView iv1 = new ImageView();
@@ -73,7 +77,7 @@ public class ViewDrag extends ViewBase {
         	iv1.setFitHeight(imgheight);
         	iv1.setFitWidth(imgwidth);
         	DragController.drag (iv1);
-    	}*/
+    	}
     	DragController.drop ( flowpane) ;
     	DragController.DragOver ( flowpane) ;
     	

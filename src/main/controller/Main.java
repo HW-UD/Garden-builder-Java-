@@ -11,6 +11,7 @@ import model.GardenModel;
 import model.SceneName;
 import view.ViewCharacteristics;
 import view.ViewDrag;
+import view.ViewExample;
 import view.ViewFences;
 import view.ViewFlowers;
 import view.ViewSeason;
@@ -41,7 +42,7 @@ public class Main extends Application {
 		 season = new ViewSeason(stage);
 		// Create and store all scenes up front
 		scenes.put(SceneName.ViewWelcome, new ViewWelcome(stage).getScene());
-//		scenes.put(SceneName.ViewExample, new ViewExample(stage).getScene());
+		scenes.put(SceneName.ViewExample, new ViewExample(stage).getScene());
 //		scenes.put(SceneName.ViewPwork, new ViewPwork(stage).getScene());
 		scenes.put(SceneName.ViewCharacteristics, new ViewCharacteristics(stage).getScene());
 		scenes.put(SceneName.ViewTrees, new ViewTrees(stage).getScene());
@@ -53,7 +54,7 @@ public class Main extends Application {
 //		scenes.put(SceneName.ViewRating, new ViewRating(stage).getScene());
 
 		// Start with the main scene
-		stage.setScene(scenes.get(SceneName.ViewFences));
+		stage.setScene(scenes.get(SceneName.ViewWelcome));
 		stage.setTitle("G14 Garden Design");
 		stage.show();
 	}
