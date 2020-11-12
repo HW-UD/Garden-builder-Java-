@@ -64,7 +64,7 @@ public class ViewDrag extends ViewBase {
     	root.setCenter(flowpane);
     	root.setLeft(tilepane);
   
-    	getFile("/Users/wanghuawei/eclipse-workspace/project-team-14/src/main/img/spring");
+    /*	getFile("/Users/wanghuawei/eclipse-workspace/project-team-14/src/main/img/spring");
     	for (Image i: plants_img) {
     		ImageView iv1 = new ImageView();
         	iv1.setImage(i);
@@ -73,7 +73,7 @@ public class ViewDrag extends ViewBase {
         	iv1.setFitHeight(imgheight);
         	iv1.setFitWidth(imgwidth);
         	DragController.drag (iv1);
-    	}
+    	}*/
     	DragController.drop ( flowpane) ;
     	DragController.DragOver ( flowpane) ;
     	
