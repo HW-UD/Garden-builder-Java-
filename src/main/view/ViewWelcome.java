@@ -8,6 +8,8 @@ import javafx.scene.text.Font;
 import controller.Main;
 import controller.SurroundController;
 import controller.WelcomeController;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -82,9 +84,29 @@ public class ViewWelcome implements ViewMaker {
 		Label length = new Label("Length: ");
 		TextField lengthtf = new TextField ();
 		length.setFont(Font.font ("Verdana", 20));
+		lengthtf.textProperty().addListener(new ChangeListener<String>() {
+		       @Override
+		       public void changed(ObservableValue<? extends String> observable, String oldValue, 
+		           String newValue) {
+		           if (!newValue.matches("\\d*")) {
+		        	   lengthtf.setText(newValue.replaceAll("[^\\d]", ""));
+		           }
+		       }
+		});
+	       
 		Label width = new Label("Width: ");
 		TextField widthtf = new TextField ();
 		width.setFont(Font.font ("Verdana", 20));
+		widthtf.textProperty().addListener(new ChangeListener<String>() {
+		       @Override
+		       public void changed(ObservableValue<? extends String> observable, String oldValue, 
+		           String newValue) {
+		           if (!newValue.matches("\\d*")) {
+		        	   widthtf.setText(newValue.replaceAll("[^\\d]", ""));
+		           }
+		       }
+		});
+		
 		Label name = new Label("Garden name: ");
 		TextField nametf = new TextField ();
 		name.setFont(Font.font ("Verdana", 20));
