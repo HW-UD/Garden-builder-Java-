@@ -17,6 +17,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -42,7 +44,15 @@ public class ViewWelcome implements ViewMaker {
 
 		BorderPane root = new BorderPane();
 	
-		Label label = new Label("Welcome to Garden Designer");
+		Image img =new Image(getClass().getResourceAsStream("../img/default/welcome.png"));
+		ImageView iv1 = new ImageView();
+        iv1.setImage(img);
+        root.getChildren().add(iv1);
+        iv1.setPreserveRatio(true);
+        iv1.setTranslateX(iv1.getTranslateX()+80);
+        iv1.setTranslateY(iv1.getTranslateY()+90);
+        
+		Label label = new Label("    ");
 		label.setFont(Font.font ("Verdana", 42));
 		//label.setTextFill(Color.web("#0076a3"));
 		root.setTop(label);
