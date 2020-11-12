@@ -45,9 +45,6 @@ import javax.imageio.ImageIO;
 
 public class ViewDrag extends ViewBase {
 
-
-
-
 	@Override
 	public Scene getScene() {
 //		DragController contr= new DragController(stage);

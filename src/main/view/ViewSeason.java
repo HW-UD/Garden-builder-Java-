@@ -39,8 +39,7 @@ public class ViewSeason extends ViewBase {
         middle.setPrefSize(400,400);
         root.setCenter(middle);//FIXME I want it set on the center of the scence, but it is not.
         
-//        System.out.println("debug");
-//        int in=100;
+
 
         
 		Button backButton = new Button("Back");
@@ -57,15 +56,14 @@ public class ViewSeason extends ViewBase {
 		Button FallButton = new Button("Fall");
 		Button WinterButton = new Button("Winter");
 
-//		ButtonBar surrbar = new ButtonBar();
-//		surrbar.getButtons().addAll(SpringButton, SummerButton,FallButton,WinterButton);
-//		root.setBottom(surrbar);
-//		root.getChildren().addAll(SpringButton, SummerButton,FallButton,WinterButton);
+//TODO may put button other place.
+		
 		bbar.getButtons().addAll(SpringButton, SummerButton,FallButton,WinterButton,backButton, nextButton);
 		root.setBottom(bbar);
 		
 		SpringButton.setOnAction( new EventHandler<ActionEvent>() {
         	public void handle(ActionEvent e) {
+//        		middle.getChildren().remove();
         		inputImg("../img/spring/");
         	}	
         });
@@ -89,12 +87,9 @@ public class ViewSeason extends ViewBase {
         });
 		
 		
+		 
 		
-
-
-		Scene returnv = new Scene(root, WIDTH, HEIGHT);
-		
-		return returnv;
+		return new Scene(root, WIDTH, HEIGHT);
 	}
 	
 	
