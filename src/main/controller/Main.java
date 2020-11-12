@@ -30,10 +30,15 @@ public class Main extends Application {
 	/** Holds the various scenes to switch between */
 	private static Map<SceneName, Scene> scenes = new HashMap<>();
 	static GardenModel model;
+	
+	static ViewSurround surron;
+	static ViewSeason season;
+	
 	@Override
 	public void start(Stage stage) {
 		 model= new GardenModel();
-		
+		 surron = new ViewSurround(stage);
+		 season = new ViewSeason(stage);
 		// Create and store all scenes up front
 //		scenes.put(SceneName.ViewWelcome, new ViewWelcome(stage).getScene());
 //		scenes.put(SceneName.ViewExample, new ViewExample(stage).getScene());
@@ -43,8 +48,8 @@ public class Main extends Application {
 //		scenes.put(SceneName.ViewFlowers, new ViewFlowers(stage).getScene());
 		scenes.put(SceneName.ViewFences, new ViewFences(stage).getScene());
 		scenes.put(SceneName.ViewDrag, new ViewDrag(stage).getScene());
-		scenes.put(SceneName.ViewSeason, new ViewSeason(stage).getScene());
-		scenes.put(SceneName.ViewSurround, new ViewSurround(stage).getScene());
+		scenes.put(SceneName.ViewSurround, surron.getScene());
+		scenes.put(SceneName.ViewSeason, season.getScene());
 //		scenes.put(SceneName.ViewRating, new ViewRating(stage).getScene());
 
 		// Start with the main scene
@@ -60,6 +65,15 @@ public class Main extends Application {
 	
 	
 	
+	public static ViewSurround getSurron() {
+		return surron;
+	}
+
+	public static ViewSeason getseason() {
+		return season;
+	}
+
+
 	public static GardenModel getModel() {
 		return model;
 	}

@@ -29,5 +29,6 @@ public class SurroundController {
 	
 	public void handleMousePress2(Event event) {
 		stage.setScene(Main.getScenes().get(SceneName.ViewSeason));
+		Main.getseason().inputImg("../img/default/");//FIXME 
 	}
 }

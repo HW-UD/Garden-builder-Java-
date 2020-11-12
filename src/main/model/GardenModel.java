@@ -40,7 +40,7 @@ public class GardenModel {
 	}
 	
 	public GardenModel() {
-		UpdatePlant();
+		//UpdatePlant();
 	}
 	
 

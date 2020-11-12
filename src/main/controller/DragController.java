@@ -4,7 +4,7 @@ import javafx.event.Event;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import model.SceneName;
-
+import view.ViewSurround;
 
 import java.awt.MouseInfo;
 import java.awt.Point;
@@ -21,6 +21,7 @@ import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.Pane;
 
 
 public class DragController {
@@ -43,7 +44,10 @@ public class DragController {
 	
 	public void handleMousePress2(Event event) {
 		stage.setScene(Main.getScenes().get(SceneName.ViewSurround));
+		Main.getSurron().inputImg("../img/default/");//FIXME 
 	}
+	
+	
 	
 	
 	public void drag(Event event) {
@@ -66,7 +70,7 @@ public class DragController {
 		});
 	}
 	
-	public static void drop (FlowPane flowpane) {
+	public static void drop (Pane flowpane) {
 		
 		flowpane.setOnDragDropped(new EventHandler<DragEvent>() {
 			@Override
@@ -95,7 +99,7 @@ public class DragController {
 		});
 	}
 
-	public static void DragOver (FlowPane flowpane) {
+	public static void DragOver (Pane flowpane) {
 	
 	flowpane.setOnDragOver(new EventHandler<DragEvent>() {
 		@Override

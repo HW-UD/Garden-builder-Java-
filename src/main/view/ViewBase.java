@@ -5,6 +5,7 @@ package view;
 import java.io.File;
 import java.util.HashSet;
 
+import controller.Main;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -12,10 +13,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import model.Plants;
 
 //import net.snortum.javafx.multiscene.Main;
 
@@ -26,9 +30,40 @@ public class ViewBase implements ViewMaker {
 	protected EventHandler<? super MouseEvent> handlerN;
 	protected final double WIDTH = 800;
 	protected final double HEIGHT = 600;
+
+	protected final int imgwidth = 100;
+	protected final int imgheight = 100;
 	
 	static HashSet <Image> plants_img = new HashSet();
 
+	Pane middle;
+	
+	public void inputImg(String path) {
+		
+        for (Plants i : Main.getModel().garden.getGarden_Plants()) {
+    		System.out.println("");
+    		System.out.println(i.getSpecies());
+    		System.out.println(i.getPlantx());
+    		System.out.println(i.getPlanty());
+    		
+    		String fpath = path + "commonMilkweed.jpg";//need to be change to i.getspecies;
+    		System.out.println(fpath);
+    		Image commonMilkweed = new Image(getClass().getResourceAsStream(fpath));
+        	/////
+    		ImageView iv1 = new ImageView();
+        	iv1.setImage(commonMilkweed);
+        	middle.getChildren().add(iv1);
+        	iv1.setPreserveRatio(true);
+        	iv1.setFitHeight(imgheight);
+        	iv1.setFitWidth(imgwidth);
+        	iv1.setTranslateX(i.getPlantx());
+        	iv1.setTranslateY(i.getPlanty());
+
+        	/////
+        }
+	}
+	
+	
 	
 	public void getFile(String path){        
         File file = new File(path);   // get file list where the path has           

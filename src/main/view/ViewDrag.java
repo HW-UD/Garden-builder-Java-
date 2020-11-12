@@ -23,6 +23,7 @@ import javafx.scene.input.TransferMode;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -44,8 +45,6 @@ import javax.imageio.ImageIO;
 public class ViewDrag extends ViewBase {
 
 
-	private final int imgwidth = 100;
-	private final int imgheight = 100;
 
 
 	@Override
@@ -54,7 +53,7 @@ public class ViewDrag extends ViewBase {
 		BorderPane root = new BorderPane();
 		
     	TilePane tilepane = new TilePane();
-        FlowPane flowpane = new FlowPane();
+        Pane flowpane = new Pane();
         tilepane.setStyle("-fx-background-color : #7CFC00;");
         flowpane.setStyle("-fx-background-color : #8B4513;");
     	HBox hbox = new HBox();
@@ -66,6 +65,7 @@ public class ViewDrag extends ViewBase {
   
     	getFile("/Users/wanghuawei/eclipse-workspace/project-team-14/src/main/img/spring");
     	for (Image i: plants_img) {
+
     		ImageView iv1 = new ImageView();
         	iv1.setImage(i);
         	tilepane.getChildren().add(iv1);
@@ -82,25 +82,19 @@ public class ViewDrag extends ViewBase {
 		backButton.setOnMousePressed(handlerP);
 		Button nextButton = new Button("Next");
 		nextButton.setOnMousePressed(handlerN);
+		
 		Button saveButton = new Button("Save");
 		saveButton.setOnAction( new EventHandler<ActionEvent>() {
         	public void handle(ActionEvent e) {
         		try{
-                   
-
-                    
                     FileOutputStream fos = new FileOutputStream("planted.ser");
                     ObjectOutputStream oos = new ObjectOutputStream(fos);
                     oos.writeObject(Main.getModel().garden.getGarden_Plants());
                     oos.close();
                 }
                 catch (Exception ex)
- {
-                }
-
-
-        	}
-        	
+        		{}
+        	}	
         });
 		
 		
