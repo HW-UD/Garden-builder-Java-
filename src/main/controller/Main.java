@@ -14,6 +14,8 @@ import view.ViewDrag;
 import view.ViewExample;
 import view.ViewFences;
 import view.ViewFlowers;
+import view.ViewPwork;
+import view.ViewRating;
 import view.ViewSeason;
 import view.ViewSurround;
 import view.ViewTrees;
@@ -43,7 +45,7 @@ public class Main extends Application {
 		// Create and store all scenes up front
 		scenes.put(SceneName.ViewWelcome, new ViewWelcome(stage).getScene());
 		scenes.put(SceneName.ViewExample, new ViewExample(stage).getScene());
-//		scenes.put(SceneName.ViewPwork, new ViewPwork(stage).getScene());
+		scenes.put(SceneName.ViewPwork, new ViewPwork(stage).getScene());
 		scenes.put(SceneName.ViewCharacteristics, new ViewCharacteristics(stage).getScene());
 		scenes.put(SceneName.ViewTrees, new ViewTrees(stage).getScene());
 		scenes.put(SceneName.ViewFlowers, new ViewFlowers(stage).getScene());
@@ -51,7 +53,7 @@ public class Main extends Application {
 		scenes.put(SceneName.ViewDrag, new ViewDrag(stage).getScene());
 		scenes.put(SceneName.ViewSurround, surron.getScene());
 		scenes.put(SceneName.ViewSeason, season.getScene());
-//		scenes.put(SceneName.ViewRating, new ViewRating(stage).getScene());
+		scenes.put(SceneName.ViewRating, new ViewRating(stage).getScene());
 
 		// Start with the main scene
 		stage.setScene(scenes.get(SceneName.ViewWelcome));
