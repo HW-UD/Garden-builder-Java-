@@ -1,5 +1,6 @@
 package model;
 public class Plants{
+	 String name;
 	 String light;
 	 String water;
 	 String bloomcolor;

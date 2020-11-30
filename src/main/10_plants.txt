@@ -1,1 +1,10 @@
-Allegheny Serviceberry (Amelanchier laevis),Alternate Leaf Dogwood (cornus alternifolia),American Basswood (Tilia americana),American Plum (Prunus americana),Canadian Service-Berry (Amelanchier canadensis),Chestnut Oak (Quercus montana),Downy Service-Berry (Amelanchier arborea),Eastern Hop-Hornbeam (Ostrya virginiana),Easter Red-Cedar (Juniperus virginiana),Eastern Wahoo(Euonymus atropurpureus)
+AlleghenyServiceberry,glare,large,long,large,red,acidity
+AlternateLeafDogwood,glare,large,long,large,yellow,acidity
+AmericanBasswood,glare,large,long,large,white,acidity
+AmericanPlum,glare,large,long,large,pink,acidity
+CanadianService-Berry,glare,large,long,large,purple,acidity
+ChestnutOak,glare,large,long,large,red,acidity
+DownyService-Berry,glare,large,long,large,red,acidity
+EasternHop-Hornbeam,glare,large,long,large,red,acidity
+EasterRed-Cedar,glare,large,long,large,red,acidity
+EasternWahoo,glare,large,long,large,red,acidity

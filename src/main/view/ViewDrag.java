@@ -11,6 +11,8 @@ import javafx.scene.Scene;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
@@ -23,12 +25,14 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+
 
 
 import java.awt.image.BufferedImage;
@@ -55,8 +59,18 @@ public class ViewDrag extends ViewBase {
         tilepane.setStyle("-fx-background-color : #7CFC00;");
         flowpane.setStyle("-fx-background-color : #8B4513;");
         
+        
         tilepane.setPrefWidth(imgwidth+20);
         tilepane.setPrefColumns(1);
+        
+        ChoiceBox light = new ChoiceBox();
+        light.getItems().addAll("glare","medium","weak");
+        tilepane.getChildren().addAll(light);
+        
+        ChoiceBox water = new ChoiceBox();
+        water.getItems().addAll("large","medium","little");
+        tilepane.getChildren().add(water);
+        
         
         ScrollPane scrollPane = new ScrollPane(tilepane);
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
@@ -64,7 +78,7 @@ public class ViewDrag extends ViewBase {
 
     	root.setCenter(flowpane);
   
-    	getFile("/Users/wanghuawei/eclipse-workspace/project-team-14/src/main/img/spring");
+    	getFile("/Users/ruiheng/eclipse-workspace/project-team-14/src/main/img/spring");
     	for (Image i: plants_img) {
 
     		ImageView iv1 = new ImageView();

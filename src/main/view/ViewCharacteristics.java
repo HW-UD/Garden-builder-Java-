@@ -30,7 +30,8 @@ public class ViewCharacteristics extends ViewBase {
 
 	public ViewCharacteristics(Stage stage) {
 //		this.stage = stage;
-		super(stage, e -> new CharacteristicsController(stage).handleMousePress(e), e -> new CharacteristicsController(stage).handleMousePress2(e));
+		super(stage, e -> new CharacteristicsController(stage).handleMousePress(e), 
+				e -> new CharacteristicsController(stage).handleMousePress2(e));
 	}
 	public Scene getScene() {
 //        stage.setTitle("ComboBoxSample");
@@ -45,22 +46,22 @@ public class ViewCharacteristics extends ViewBase {
         
         root.setPadding(new Insets(10));
         
-        final ComboBox lightComboBox = new ComboBox();
+        final ComboBox<String> lightComboBox = new ComboBox();
         lightComboBox.getItems().addAll("glare","medium","weak");
        
-        final ComboBox waterComboBox = new ComboBox();
+        final ComboBox<String> waterComboBox = new ComboBox();
         waterComboBox.getItems().addAll("large","medium","little");
         
-        final ComboBox bloomtimeComboBox = new ComboBox();
+        final ComboBox<String> bloomtimeComboBox = new ComboBox();
         bloomtimeComboBox.getItems().addAll("long","medium","short");
         
-        final ComboBox foodComboBox = new ComboBox();
+        final ComboBox<String> foodComboBox = new ComboBox();
         foodComboBox.getItems().addAll("large","medium","little");
         
-        final ComboBox bloomcolorComboBox = new ComboBox();
+        final ComboBox<String> bloomcolorComboBox = new ComboBox();
         bloomcolorComboBox.getItems().addAll("red","yellow","white","pink","purple");
         
-        final ComboBox soilreqComboBox = new ComboBox();
+        final ComboBox<String> soilreqComboBox = new ComboBox();
         soilreqComboBox.getItems().addAll("acidity","neutral","alkalinity");   
         
         
@@ -119,12 +120,6 @@ public class ViewCharacteristics extends ViewBase {
 		root.setMargin(grid, new Insets(10,0,0,50));
       
         
-        
-        //root.getChildren().add(grid);
-       // root.getChildren().add(label);
-//        stage.setScene(scene);
-//        stage.show();
-	
         
         return new Scene(root, WIDTH, HEIGHT);
     }    
