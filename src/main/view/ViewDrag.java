@@ -4,6 +4,8 @@ import java.awt.Point;
 
 import controller.DragController;
 import controller.Main;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -30,6 +32,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Polygon;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
@@ -57,17 +62,54 @@ public class ViewDrag extends ViewBase {
     	TilePane tilepane = new TilePane();
         Pane flowpane = new Pane();
         tilepane.setStyle("-fx-background-color : #7CFC00;");
-        flowpane.setStyle("-fx-background-color : #8B4513;");
+        //flowpane.setStyle("-fx-background-color : #8B4513;");
         
         
+       
+        Image background = new Image("file:src/main/img/default/tudi.jpg");
+        Circle circ = new Circle(300);
+        circ.setTranslateX(120);
+        circ.setTranslateY(10);
+        circ.setCenterX(350);
+        circ.setCenterY(290);
+        circ.setFill(new ImagePattern(background, 0.2, 0.2, 0.4, 0.4, true));   
+        flowpane.getChildren().add(circ);
+//       	
+//       	Button circleButton = new Button("Circle");
+//       	circleButton.setOnAction( new EventHandler<ActionEvent>() {
+//        	public void handle(ActionEvent e) {
+//        		try{
+//        			Image background = new Image("file:src/main/img/default/tudi.jpg");
+//        	        Circle circ = new Circle(300);
+//        	        circ.setTranslateX(120);
+//        	        circ.setTranslateY(10);
+//        	        circ.setCenterX(350);
+//        	        circ.setCenterY(290);
+//        	        circ.setFill(new ImagePattern(background, 0.2, 0.2, 0.4, 0.4, true));   
+//        	        flowpane.getChildren().add(circ);
+//        		}
+//        	}
+//        		
+//        	}
+       	
         tilepane.setPrefWidth(imgwidth+20);
         tilepane.setPrefColumns(1);
         
-        ChoiceBox light = new ChoiceBox();
+        ChoiceBox<String> light = new ChoiceBox<String>();
         light.getItems().addAll("glare","medium","weak");
         tilepane.getChildren().addAll(light);
         
-        ChoiceBox water = new ChoiceBox();
+        ArrayList<String> glareplants = new ArrayList<String>();
+    	glareplants.add("file:src/main/img/default/tudi.jpg");
+    	
+    	light.valueProperty().addListener(new ChangeListener<String>() {
+			@Override 
+			public void changed(ObservableValue ov, String t, String t1) {
+				glareplants.add("file:src/main/img/default/tudi.jpg");
+			}
+		});
+        
+        ChoiceBox<String> water = new ChoiceBox<String>();
         water.getItems().addAll("large","medium","little");
         tilepane.getChildren().add(water);
         

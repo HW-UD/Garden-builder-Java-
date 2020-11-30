@@ -73,7 +73,7 @@ public class ViewBase implements ViewMaker {
         for(int i=0;i<array.length;i++){   
             if(array[i].isFile()){   
                 // only take file name   
-            	if (array[i].getName().endsWith(".jpg")) {
+            	if (array[i].getName().endsWith(".png")) {
             		System.out.println("^^^^^" + array[i].getName());   
             		
                     String temp= "../img/spring/" + array[i].getName();

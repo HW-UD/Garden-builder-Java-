@@ -1,6 +1,7 @@
 package view;
 
 import controller.CharacteristicsController;
+import controller.DragController;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -9,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.TilePane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
@@ -65,6 +67,22 @@ public class ViewExample extends ViewBase {
         iv5.setTranslateX(iv1.getTranslateX()+450);
         iv5.setTranslateY(iv1.getTranslateY()+210);
 		
+//		TilePane tilepane = new TilePane();
+//		tilepane.setPrefWidth(imgwidth+20);
+//	    tilepane.setPrefColumns(1);
+//		
+//		getFile("/Users/ruiheng/eclipse-workspace/project-team-14/src/main/img/spring");
+//    	for (Image i: plants_img) {
+//
+//    		ImageView iv1 = new ImageView();
+//        	iv1.setImage(i);
+//        	tilepane.getChildren().add(iv1);
+//        	iv1.setPreserveRatio(true);
+//        	iv1.setFitHeight(imgheight);
+//        	iv1.setFitWidth(imgwidth);
+////        	DragController.drag (iv1);
+//    	}
+    	
 		Button backButton = new Button("Back");
 		backButton.setOnMousePressed(handlerP);
 		

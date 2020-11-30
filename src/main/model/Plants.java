@@ -10,13 +10,30 @@ public class Plants{
 	 double plantX;
 	 double plantY; 
 	 String species;
+	 
 	 public String getLight() {
 		return light;
 	}
 
 
 	public void setLight(String light) {
+		light = "glare";
+		light = "medium";
+		light = "weak";
 		this.light = light;
+	}
+
+
+	public String getWater() {
+		return water;
+	}
+
+
+	public void setWater(String water) {
+		water = "large";
+		water = "medium";
+		water = "little";
+		this.water = water;
 	}
 
 

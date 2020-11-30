@@ -43,9 +43,16 @@ public class ViewWelcome implements ViewMaker {
 		
 		// Inject stage from Main into controller
 		WelcomeController controller = new WelcomeController(stage);
+		
 
 		BorderPane root = new BorderPane();
 	
+		// set the background
+     	Image background = new Image("file:src/main/img/rating/background.png");
+     	ImageView bk = new ImageView();
+       	bk.setImage(background);
+       	root.getChildren().add(bk);
+        
 		Image img =new Image(getClass().getResourceAsStream("../img/default/welcome.png"));
 		ImageView iv1 = new ImageView();
         iv1.setImage(img);
@@ -53,6 +60,7 @@ public class ViewWelcome implements ViewMaker {
         iv1.setPreserveRatio(true);
         iv1.setTranslateX(iv1.getTranslateX()+80);
         iv1.setTranslateY(iv1.getTranslateY()+90);
+        
         
 		Label label = new Label("    ");
 		label.setFont(Font.font ("Verdana", 42));

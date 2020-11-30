@@ -56,7 +56,7 @@ public class Main extends Application {
 		scenes.put(SceneName.ViewRating, new ViewRating(stage).getScene());
 
 		// Start with the main scene
-		stage.setScene(scenes.get(SceneName.ViewWelcome));
+		stage.setScene(scenes.get(SceneName.ViewDrag));
 		stage.setTitle("G14 Garden Design");
 		stage.show();
 	}
