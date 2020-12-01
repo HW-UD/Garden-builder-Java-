@@ -37,7 +37,7 @@ public class ViewCharacteristics extends ViewBase {
 //        stage.setTitle("ComboBoxSample");
 //        Scene scene = new Scene(new Group(), 1000, 600);
 		BorderPane root = new BorderPane();
-        Label label = new Label("Identify your plant characteristics");
+        Label label = new Label("Description of plant characteristics");
         label.setFont(new Font(32));
         label.setFont(new Font(32));
 		root.setTop(label);

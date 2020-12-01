@@ -10,6 +10,8 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.SnapshotParameters;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ChoiceBox;
@@ -56,80 +58,93 @@ public class ViewDrag extends ViewBase {
 
 	@Override
 	public Scene getScene() {
-//		DragController contr= new DragController(stage);
 		BorderPane root = new BorderPane();
+		GraphicsContext gc;
+	    Canvas canvas = new Canvas(WIDTH, HEIGHT);
+		root.getChildren().add(canvas);
+		gc = canvas.getGraphicsContext2D();
 		
     	TilePane tilepane = new TilePane();
         Pane pane = new Pane();
         tilepane.setStyle("-fx-background-color : #7CFC00;");
-        //pane.setStyle("-fx-background-color : #8B4513;");
+        //flowpane.setStyle("-fx-background-color : #8B4513;");
         
-        tilepane.setPrefWidth(imgwidth+20);
-        tilepane.setPrefColumns(1);
-        
-        pane.setOnKeyPressed(new EventHandler<KeyEvent>(){
-        	@Override
-        	public void handle(KeyEvent e) {
-        		switch(e.getCode()) {
-        		case DIGIT1:
-        			Image background = new Image("file:src/main/img/default/tudi.jpg");
-        	        Circle circ = new Circle(300);
-        	        circ.setTranslateX(120);
-        	        circ.setTranslateY(10);
-        	        circ.setCenterX(350);
-        	        circ.setCenterY(290);
-        	        circ.setFill(new ImagePattern(background, 0.2, 0.2, 0.4, 0.4, true));   
-        	        pane.getChildren().add(circ);
-        	        break;
-        		case DIGIT2:
-        			Image background2 = new Image("file:src/main/img/default/tudi.jpg");
-        			ImageView bk = new ImageView();
-        	    	bk.setImage(background2);
-        	    	pane.getChildren().add(bk);
-        	    	break;
-				default:
-					break;
-        	    	}
-        	}
+        Button circleButton = new Button("Circle");
+        circleButton.setOnAction( new EventHandler<ActionEvent>() {
+        	public void handle(ActionEvent e) {
+        		Image background = new Image(getClass().getResourceAsStream("../img/default/tudicircle.png"));
+                gc.drawImage(background, 0, 0, WIDTH, HEIGHT);
+        	}	
         });
-       
-        Image background = new Image("file:src/main/img/default/tudi.jpg");
-        Circle circ = new Circle(300);
-        circ.setTranslateX(120);
-        circ.setTranslateY(10);
-        circ.setCenterX(350);
-        circ.setCenterY(290);
-        circ.setFill(new ImagePattern(background, 0.2, 0.2, 0.4, 0.4, true));   
-        pane.getChildren().add(circ);
         
-        Image background2 = new Image("file:src/main/img/default/tudi.jpg");
-		ImageView bk = new ImageView();
-    	bk.setImage(background2);
-    	pane.getChildren().add(bk);
+        Button squareButton = new Button("Square");
+        squareButton.setOnAction( new EventHandler<ActionEvent>() {
+        	public void handle(ActionEvent e) {
+        		Image background = new Image(getClass().getResourceAsStream("../img/default/tudi.jpg"));
+                gc.drawImage(background, 0, 0, WIDTH, HEIGHT);
+        	}	
+        });
+        
+//        Image background = new Image("file:src/main/img/default/tudi.jpg");
+//        Polygon p2 = new Polygon();
+//        
+//        p2.setLayoutX(100);
+//        p2.setLayoutY(120);
+//        p2.getPoints().add(50.0);
+//        p2.getPoints().add(0.0);
+//        p2.getPoints().add(100.0);
+//        p2.getPoints().add(100.0);
+//        p2.getPoints().add(0.0);
+//        p2.getPoints().add(100.0);
+//        
+//        p2.setFill(new ImagePattern(background, 0, 0, 500, 1000, false));
+//        
+//        flowpane.getChildren().add(p2);
 
        	
+        tilepane.setPrefWidth(imgwidth+30);
+        tilepane.setPrefHeight(imgheight+600);
+        tilepane.setPrefColumns(1);
         
         
-        
+        Button sbutton = new Button("Submit");
         
         ChoiceBox<String> light = new ChoiceBox<String>();
-        light.getItems().addAll("glare","medium","weak");
+        light.getItems().addAll("light glare","light medium","light weak");
         tilepane.getChildren().addAll(light);
-        
-        ArrayList<String> glareplants = new ArrayList<String>();
-    	glareplants.add("file:src/main/img/default/tudi.jpg");
-    	
-    	light.valueProperty().addListener(new ChangeListener<String>() {
-			@Override 
-			public void changed(ObservableValue ov, String t, String t1) {
-				tilepane.setId(glareplants.get(Integer.parseInt(t1)));
-			}
-		});
-    	
-        
         ChoiceBox<String> water = new ChoiceBox<String>();
-        water.getItems().addAll("large","medium","little");
+        water.getItems().addAll("water large","water medium","water little");
         tilepane.getChildren().add(water);
+        
+//        ArrayList<Image> glareplants = new ArrayList<Image>();
+//    	glareplants.add(new Image("file:src/main/img/default/tudi.jpg"));
+//    	glareplants.add(new Image("file:src/main/img/default/tudi.jpg"));
+//    	
+    	sbutton.setOnAction(e -> {
+    		loadFile("/Users/ruiheng/eclipse-workspace/project-team-14/src/main/img/light");
+        	for (Image i: plants_img) {
+        		ImageView iv1 = new ImageView();
+            	iv1.setImage(i);
+            	tilepane.getChildren().add(iv1);
+            	iv1.setPreserveRatio(true);
+            	iv1.setFitHeight(imgheight);
+            	iv1.setFitWidth(imgwidth);
+            	DragController.drag (iv1);
+        	}
+        	});
+        
+        sbutton.setOnAction(e -> {
+    		loadFile("/Users/ruiheng/eclipse-workspace/project-team-14/src/main/img/water");
+        	for (Image iv: plants_img) {
+        		ImageView iv2 = new ImageView();
+            	iv2.setImage(iv);
+            	tilepane.getChildren().add(iv2);
+            	iv2.setPreserveRatio(true);
+            	iv2.setFitHeight(imgheight);
+            	iv2.setFitWidth(imgwidth);
+            	DragController.drag (iv2);
+        	}
+		});
         
         
         ScrollPane scrollPane = new ScrollPane(tilepane);
@@ -138,21 +153,20 @@ public class ViewDrag extends ViewBase {
 
     	root.setCenter(pane);
   
-    	loadFile("/Users/wanghuawei/eclipse-workspace/project-team-14/src/main/img/spring");
-    	for (GardenImage i: plants_img) {
-
-    		GardenImgView iv1 = new GardenImgView();
-    		iv1.setID(i.getID());
-        	iv1.setImage(i);
-        	
-        	tilepane.getChildren().add(iv1);
-        	iv1.setPreserveRatio(true);
-        	iv1.setFitHeight(imgheight);
-        	iv1.setFitWidth(imgwidth);
-        	DragController.drag (iv1);
-    	}
-    	DragController.drop ( pane) ;
-    	DragController.DragOver ( pane) ;
+//    	loadFile("/Users/ruiheng/eclipse-workspace/project-team-14/src/main/img/spring");
+//    	for (Image i: plants_img) {
+//
+//    		ImageView iv1 = new ImageView();
+//        	iv1.setImage(i);
+//        	tilepane.getChildren().add(iv1);
+//        	iv1.setPreserveRatio(true);
+//        	iv1.setFitHeight(imgheight);
+//        	iv1.setFitWidth(imgwidth);
+//        	DragController.drag (iv1);
+//    	}
+    	
+    	DragController.drop (pane) ;
+    	DragController.DragOver (pane) ;
     	
 		
 		Button backButton = new Button("Back");
@@ -177,7 +191,7 @@ public class ViewDrag extends ViewBase {
 		
 		ButtonBar bbar = new ButtonBar();
 		bbar.setPadding(new Insets(10, 0, 0, 10));
-		bbar.getButtons().addAll(saveButton,backButton, nextButton);
+		bbar.getButtons().addAll(sbutton,squareButton,circleButton,saveButton,backButton, nextButton);
 		root.setBottom(bbar);
 
 		
@@ -197,15 +211,3 @@ public class ViewDrag extends ViewBase {
 	}
 
 }
-
-
-////Image im1 = new Image(getClass().getResourceAsStream("../img/commonMilkweed.png"));
-//String temp= "/Users/wanghuawei/eclipse-workspace/project-team-14/src/main/img"+ "/" + "AmericanBasswood.png";
-////String temp= "../img/AmericanBasswood.png";
-//Image img =  new Image(getClass().getResourceAsStream(temp));
-//ImageView iv1 = new ImageView();/////////要改
-//iv1.setImage(img);
-//tilepane.getChildren().add(iv1);
-//iv1.setPreserveRatio(true);
-//iv1.setFitHeight(imgheight);
-//iv1.setFitWidth(imgwidth);
