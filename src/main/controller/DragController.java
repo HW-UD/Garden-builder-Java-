@@ -66,6 +66,19 @@ public static String getName() {
 //		stage.setScene(Main.getScenes().get(SceneName.ViewSurround));
 //	}
 //	
+	
+//	public static void RmImg(GardenImgView iv1,Pane pane) {
+//		
+//		iv1.setOnMouseClicked(e->{
+//		if (e.getClickCount() == 2) {
+//			//FlowerInfo flowerInfo =  (FlowerInfo) imageViewCopy.getUserData();
+//			pane.getChildren().remove(imageViewCopy);
+//			gardenController.removeInGarden(flowerInfo);
+//			}
+//		};
+//		
+//	}
+	
 	public static void drag (GardenImgView iv1) {
 		
 		iv1.setOnDragDetected(new EventHandler<MouseEvent>(){
@@ -100,8 +113,6 @@ public static String getName() {
 				iv1copy.setFitWidth(100);
 				
 				
-				
-	
 				pane.getChildren().add(iv1copy);
 				
 //				Point p = MouseInfo.getPointerInfo().getLocation();
@@ -118,6 +129,10 @@ public static String getName() {
 		});
 	}
 
+
+	
+	
+	
 	public static void DragOver (Pane flowpane) {
 	
 	flowpane.setOnDragOver(new EventHandler<DragEvent>() {
