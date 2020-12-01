@@ -1,7 +1,6 @@
 package view;
 import java.awt.MouseInfo;
 import java.awt.Point;
-
 import controller.DragController;
 import controller.Main;
 import javafx.beans.value.ChangeListener;
@@ -23,6 +22,7 @@ import javafx.scene.image.WritableImage;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.BorderPane;
@@ -64,7 +64,31 @@ public class ViewDrag extends ViewBase {
         tilepane.setStyle("-fx-background-color : #7CFC00;");
         //flowpane.setStyle("-fx-background-color : #8B4513;");
         
-        
+        flowpane.setOnKeyPressed(new EventHandler<KeyEvent>(){
+        	@Override
+        	public void handle(KeyEvent e) {
+        		switch(e.getCode()) {
+        		case DIGIT1:
+        			Image background = new Image("file:src/main/img/default/tudi.jpg");
+        	        Circle circ = new Circle(300);
+        	        circ.setTranslateX(120);
+        	        circ.setTranslateY(10);
+        	        circ.setCenterX(350);
+        	        circ.setCenterY(290);
+        	        circ.setFill(new ImagePattern(background, 0.2, 0.2, 0.4, 0.4, true));   
+        	        flowpane.getChildren().add(circ);
+        	        break;
+        		case DIGIT2:
+        			Image background2 = new Image("file:src/main/img/default/tudi.jpg");
+        			ImageView bk = new ImageView();
+        	    	bk.setImage(background2);
+        	    	flowpane.getChildren().add(bk);
+        	    	break;
+				default:
+					break;
+        	    	}
+        	}
+        });
        
         Image background = new Image("file:src/main/img/default/tudi.jpg");
         Circle circ = new Circle(300);
@@ -74,23 +98,12 @@ public class ViewDrag extends ViewBase {
         circ.setCenterY(290);
         circ.setFill(new ImagePattern(background, 0.2, 0.2, 0.4, 0.4, true));   
         flowpane.getChildren().add(circ);
-//       	
-//       	Button circleButton = new Button("Circle");
-//       	circleButton.setOnAction( new EventHandler<ActionEvent>() {
-//        	public void handle(ActionEvent e) {
-//        		try{
-//        			Image background = new Image("file:src/main/img/default/tudi.jpg");
-//        	        Circle circ = new Circle(300);
-//        	        circ.setTranslateX(120);
-//        	        circ.setTranslateY(10);
-//        	        circ.setCenterX(350);
-//        	        circ.setCenterY(290);
-//        	        circ.setFill(new ImagePattern(background, 0.2, 0.2, 0.4, 0.4, true));   
-//        	        flowpane.getChildren().add(circ);
-//        		}
-//        	}
-//        		
-//        	}
+        
+        Image background2 = new Image("file:src/main/img/default/tudi.jpg");
+		ImageView bk = new ImageView();
+    	bk.setImage(background2);
+    	flowpane.getChildren().add(bk);
+
        	
         tilepane.setPrefWidth(imgwidth+20);
         tilepane.setPrefColumns(1);
@@ -105,9 +118,10 @@ public class ViewDrag extends ViewBase {
     	light.valueProperty().addListener(new ChangeListener<String>() {
 			@Override 
 			public void changed(ObservableValue ov, String t, String t1) {
-				glareplants.add("file:src/main/img/default/tudi.jpg");
+				tilepane.setId(glareplants.get(Integer.parseInt(t1)));
 			}
 		});
+    	
         
         ChoiceBox<String> water = new ChoiceBox<String>();
         water.getItems().addAll("large","medium","little");
