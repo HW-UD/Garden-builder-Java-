@@ -4,7 +4,18 @@ package view;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+
+import controller.Main;
 import controller.PworkController;
+import controller.WelcomeController;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -23,7 +34,7 @@ public class ViewPwork extends ViewBase {
 
 
 	public ViewPwork(Stage stage) {
-		super(stage, e -> new PworkController(stage).handleMousePress(e), e -> new PworkController(stage).handleMousePress2(e));
+		super(stage, e -> new PworkController(stage).handleMousePress1(e), e -> new PworkController(stage).handleMousePress2(e));
 	}
 	
 	public Scene getScene() {
@@ -40,17 +51,27 @@ public class ViewPwork extends ViewBase {
         flow.setVgap(4);
         flow.setHgap(4);
         root.setCenter(flow);
-        Button work1 =  new Button("work 1");
-        //work1.setOnMousePressed(e -> controller.handleOnPressButton1(e));
-        Button work2 =  new Button("work 2");
-        //work2.setOnMousePressed(e -> controller.handleOnPressButton1(e));
-        Button work3 =  new Button("work 3");
-        //work3.setOnMousePressed(e -> controller.handleOnPressButton1(e));
-        Button work4 =  new Button("work 4");
-        //work3.setOnMousePressed(e -> controller.handleOnPressButton1(e));
+        
+        //Deserializing planted.ser
+        Button loadButton =  new Button("load");
+        loadButton.setOnAction( new EventHandler<ActionEvent>() {
+        	public void handle(ActionEvent e) {
+        		try{
+                    FileInputStream fis = new FileInputStream("planted.ser");
+                    ObjectInputStream ois = new ObjectInputStream(fis);
+                    Main.getModel().garden.setGarden_Plants((ArrayList)ois.readObject());               
+                    ois.close();
+                }
+                catch (Exception ex)
+        		{}
+        	}	
+        });
+     
+        
+         
         ButtonBar works = new ButtonBar();
         works.setPadding(new Insets(10, 0, 0, 10));
-        works.getButtons().addAll(work1,work2,work3,work4);
+        works.getButtons().addAll(loadButton);
         flow.getChildren().add(works);
         
 		Button backButton = new Button("Back");

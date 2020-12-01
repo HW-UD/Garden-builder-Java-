@@ -24,21 +24,8 @@ public class PworkController {
 	}
 	
 	/** Display ViewFences scene when the "back" button is clicked */
-//	public void handleMousePress1(Event event) {
-//		stage.setScene(Main.getScenes().get(SceneName.ViewDrag));
-//	}
-//	
-//	public void handleMousePress2(Event event) {
-//		stage.setScene(Main.getScenes().get(SceneName.ViewDrag));
-//	}
-//	public void handleMousePress3(Event event) {
-//		stage.setScene(Main.getScenes().get(SceneName.ViewDrag));
-//	}
-//	public void handleMousePress4(Event event) {
-//		stage.setScene(Main.getScenes().get(SceneName.ViewDrag));
-//
-//   }
-	public void handleMousePress(Event event) {
+
+	public void handleMousePress1(Event event) {
 		stage.setScene(Main.getScenes().get(SceneName.ViewWelcome));
 	}
 	
