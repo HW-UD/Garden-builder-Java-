@@ -9,15 +9,24 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollBar;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Toggle;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+
+import java.io.File;
+
 import controller.DragController;
 import controller.TreesController;
 
@@ -27,17 +36,86 @@ public class ViewTrees extends ViewBase{
     final ImageView[] pics = new ImageView[5];
     final VBox vb = new VBox();
     DropShadow shadow = new DropShadow();
-	private ImageView iv1 = new ImageView();
-	private ImageView iv2 = new ImageView();
+//	private ImageView iv1 = new ImageView();
+//	private ImageView iv2 = new ImageView();
 	private ImageView iv3 = new ImageView();
 	private ImageView iv4 = new ImageView();
-	private final int imgwidth = 250;
-	private final int imgheight = 250;
+	private final double imgwidth = 200;
+	private final double imgheight = 200;
+	private final int imgTransX = 100;
+	private final int imgTransY = 100;
+	private final int ButtonLength = 300;
+	private final int ButtonWidth = 500;
+	BorderPane root = new BorderPane();
+	FlowPane flowpane = new FlowPane();
+
+	public void loadButtons(String path){        
+        File file = new File(path);   // get file list where the path has           
+        File[] array = file.listFiles();  // get the folder list   
+        System.out.println (array.toString());
+        
+        for(int i=0;i<array.length;i++){   
+            if(array[i].isFile()){   
+                // only take file name   
+             if (array[i].getName().endsWith(".png")) {
+             
+              
+                    String temp= "../img/spring/" + array[i].getName();
+                                      
+  String pictureName = array[i].getName();
+                    String flowerName = pictureName.substring(0, pictureName.indexOf("."));
+                    
+                    Image im1 =  new Image(getClass().getResourceAsStream(temp));
+
+                    
+                    
+           ImageView view1 = new ImageView(im1);
+       
+         view1.setFitHeight(imgheight);
+         view1.setFitWidth(imgwidth);
+         
+         ToggleButton button1 = new ToggleButton(flowerName,new ImageView(im1));
+//          button1.setTranslateX(10);
+//          button1.setTranslateY(10);
+          button1.setPrefSize(ButtonWidth, ButtonLength);
+     
+          button1.setGraphic(view1);
+         
+            button1.selectedProperty().addListener((observable, oldValue, newValue) -> {
+                 // If selected, color the background red
+            if (newValue) {
+                 button1.setStyle(
+                        "-fx-background-color: red;");
+            //     button1.setOnMousePressed(handlerP);  //暂时的互动，需要删除
+                 newValue = false;
+                 } else {
+                     button1.setStyle(null);
+                 }
+             });
+
+            flowpane.getChildren().add(button1);
+                   
+             }
+
+                      
+             
+                
+            }else if(array[i].isDirectory()){   
+                loadButtons(array[i].getPath());   
+            }   
+        }   
+    }
+	
+
 
 	public Scene getScene() {
+			
+                   
+        flowpane.setPrefWidth(1000);
 		
-		BorderPane root = new BorderPane();
-		
+        ScrollPane scrollPane = new ScrollPane(flowpane);
+        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        root.setCenter(scrollPane);
 		
 		root.setPadding(new Insets(10));
 		Label label = new Label("Choose Trees");
@@ -58,57 +136,113 @@ public class ViewTrees extends ViewBase{
 		root.setBottom(bbar);
 		
 		//Create the 1st image and set the position of the image 
-	    Image im1 = new Image(getClass().getResourceAsStream("../img/default/FloridaAniseTree.jpg"));
-	    iv1.setImage(im1);
-	    root.getChildren().add(iv1);
-	    iv1.setFitHeight(imgheight);
-    	iv1.setFitWidth(imgwidth);
-    	iv1.setTranslateX(iv1.getTranslateX()+80);
-    	iv1.setTranslateY(iv1.getTranslateY()+90);
+		/*
+		 * Image im1 = new
+		 * Image(getClass().getResourceAsStream("../img/default/FloridaAniseTree.jpg"));
+		 * ImageView view1 = new ImageView(im1);
+		 * 
+		 * view1.setFitHeight(imgheight); view1.setFitWidth(imgwidth);
+		 * 
+		 * ToggleButton button1 = new ToggleButton(); button1.setTranslateX(10);
+		 * button1.setTranslateY(10); button1.setPrefSize(ButtonSize, ButtonSize);
+		 * button1.setGraphic(view1); button1.setOnMousePressed(handlerP); //暂时的互动，需要删除
+		 */    	
+    
+		/*
+		 * if(button1.onMouseClickedProperty() != null) { System.out.println("单击了条目"); }
+		 */            
+         
+         
+	    loadButtons("D:/java workspace/project-team-14/src/main/img/spring");
+//     	    Image im1 = new Image(getClass().getResourceAsStream("../img/default/FloridaAniseTree.jpg"));
+//    	    ImageView view1 = new ImageView(im1);
+//    	  
+//    	    view1.setFitHeight(imgheight);
+//        	view1.setFitWidth(imgwidth);
+//        	
+//        	ToggleButton button1 = new ToggleButton("alalal", new ImageView(im1));
+//     	    button1.setTranslateX(10);
+//     	    button1.setTranslateY(10);
+//     	    button1.setPrefSize(ButtonSize, ButtonSize);
+//     
+//     	    button1.setGraphic(view1);
+//        	
+//            button1.selectedProperty().addListener((observable, oldValue, newValue) -> {
+//                 // If selected, color the background red
+//            if (newValue) {
+//                 button1.setStyle(
+//                        "-fx-background-color: red;");
+//            //     button1.setOnMousePressed(handlerP); 	//暂时的互动，需要删除
+//                 newValue = false;
+//                 } else {
+//                     button1.setStyle(null);
+//                 }
+//             });
+//
+//    	     tilepane.getChildren().add(button1);
     	
     	//Create the 2nd image and set the position of the image 
-	    Image im2 = new Image(getClass().getResourceAsStream("../img/default/FringeTree.jpg"));
+	/*    Image im2 = new Image(getClass().getResourceAsStream("../img/default/FringeTree.jpg"));
 	    iv2.setImage(im2);
-	    root.getChildren().add(iv2);
+	    tilepane.getChildren().add(iv2);
 	    iv2.setFitHeight(imgheight);
     	iv2.setFitWidth(imgwidth);
-    	iv2.setTranslateX(iv2.getTranslateX()+380);
-    	iv2.setTranslateY(iv2.getTranslateY()+90);
+    	iv2.setTranslateX(5*imgTransX);
+    	iv2.setTranslateY(-2*imgTransY);*/
     	
-    	//Create the 3rd image and set the position of the image 
-	    Image im3 = new Image(getClass().getResourceAsStream("../img/default/PagodaTree.jpg"));
-	    iv3.setImage(im3);
-	    root.getChildren().add(iv3);
-	    iv3.setFitHeight(imgheight);
-    	iv3.setFitWidth(imgwidth);
-    	iv3.setTranslateX(iv3.getTranslateX()+80);
-    	iv3.setTranslateY(iv3.getTranslateY()+390);
-    	
-    	//Create the 4th image and set the position of the image 
-	    Image im4 = new Image(getClass().getResourceAsStream("../img/default/TulipTree.jpg"));
-	    iv4.setImage(im4);
-	    root.getChildren().add(iv4);
-	    iv4.setFitHeight(imgheight);
-    	iv4.setFitWidth(imgwidth);
-    	iv4.setTranslateX(iv4.getTranslateX()+380);
-    	iv4.setTranslateY(iv4.getTranslateY()+390);
-    	
+//    	Image im2 = new Image(getClass().getResourceAsStream("../img/default/FringeTree.jpg"));
+//	    ImageView view2 = new ImageView(im2);
+//	  
+//	    view2.setFitHeight(imgheight);
+//    	view2.setFitWidth(imgwidth);
+//    	
+//    	ToggleButton button2 = new ToggleButton();
+// 	    button2.setTranslateX(100);
+// 	    button2.setTranslateY(100);
+// 	    button2.setGraphic(view2);
+//    	button2.setOnMousePressed(handlerP); 	//暂时的互动，需要删除
+//    	
+//    
+//    	
+//    	tilepane.getChildren().add(button2);
+//    	
+//    	//Create the 3rd image and set the position of the image 
+//	    Image im3 = new Image(getClass().getResourceAsStream("../img/default/PagodaTree.jpg"));
+//	    iv3.setImage(im3);
+//	    tilepane.getChildren().add(iv3);
+//	    iv3.setFitHeight(imgheight);
+//    	iv3.setFitWidth(imgwidth);
+//    	iv3.setTranslateX(imgTransX);
+//    	iv3.setTranslateY(-imgTransY);
+//    	
+//    	//Create the 4th image and set the position of the image 
+//	    Image im4 = new Image(getClass().getResourceAsStream("../img/default/TulipTree.jpg"));
+//	    iv4.setImage(im4);
+//	    tilepane.getChildren().add(iv4);
+//	    iv4.setFitHeight(imgheight);
+//    	iv4.setFitWidth(imgwidth);
+//    	iv4.setTranslateX(5*imgTransX);
+//    	iv4.setTranslateY(-4*imgTransY);
+//    	
+//
+//    	
+//    	Label Tree1 = new Label("Florida Anise Tree");
+//    	Tree1.setFont(new Font("Arial",20));//set the font and the size of the title
+//    	Tree1.setTextFill(Color.web("#0076a3"));//set the Color of the label
+//		Label Tree2 = new Label("Fringe Tree ");
+//		Tree2.setFont(new Font("Arial",20));//set the font and the size of the title
+//		Tree2.setTextFill(Color.web("#0076a3"));//set the Color of the label
+//		Label Tree3 = new Label("Pagoda Tree ");
+//		Tree3.setFont(new Font("Arial",20));//set the font and the size of the title
+//		Tree3.setTextFill(Color.web("#0076a3"));//set the Color of the label
+//		Label Tree4 = new Label("Tulip Tree");
+//		Tree4.setFont(new Font("Arial",20));//set the font and the size of the title
+//		Tree4.setTextFill(Color.web("#0076a3"));//set the Color of the label
 
-    	
-    	Label Tree1 = new Label("Florida Anise Tree");
-    	Tree1.setFont(new Font("Arial",20));//set the font and the size of the title
-    	Tree1.setTextFill(Color.web("#0076a3"));//set the Color of the label
-		Label Tree2 = new Label("Fringe Tree ");
-		Tree2.setFont(new Font("Arial",20));//set the font and the size of the title
-		Tree2.setTextFill(Color.web("#0076a3"));//set the Color of the label
-		Label Tree3 = new Label("Pagoda Tree ");
-		Tree3.setFont(new Font("Arial",20));//set the font and the size of the title
-		Tree3.setTextFill(Color.web("#0076a3"));//set the Color of the label
-		Label Tree4 = new Label("Tulip Tree");
-		Tree4.setFont(new Font("Arial",20));//set the font and the size of the title
-		Tree4.setTextFill(Color.web("#0076a3"));//set the Color of the label
+		
+		
 	
-		GridPane grid = new GridPane();
+	/*	GridPane grid = new GridPane();
 		grid.setVgap(20);
 		grid.setHgap(35);
 		grid.setPadding((new Insets(12,6,6,12)));
@@ -128,7 +262,7 @@ public class ViewTrees extends ViewBase{
 	        shadow.setOffsetX(2);
 	        shadow.setOffsetY(2);
 	 
-	        vb.setLayoutX(5);
+	        /*     vb.setLayoutX(5);
 	        vb.setSpacing(10);
 	        
 	        sc.setLayoutX(scence.getWidth()-sc.getWidth());
@@ -146,9 +280,9 @@ public class ViewTrees extends ViewBase{
 	                new ImageView(images[i]);
 	            pic.setEffect(shadow);
 	            vb.getChildren().add(pics[i]);
-	        }
+	        }*/
 
-			return scence;
+	        return new Scene(root, WIDTH, HEIGHT);
 	}
 	
 	     
