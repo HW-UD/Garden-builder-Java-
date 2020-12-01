@@ -160,19 +160,9 @@ public class ViewDrag extends ViewBase {
 		Button nextButton = new Button("Next");
 		nextButton.setOnMousePressed(handlerN);
 		
-		Button saveButton = new Button("Save");
-		saveButton.setOnAction( new EventHandler<ActionEvent>() {
-        	public void handle(ActionEvent e) {
-        		try{
-                    FileOutputStream fos = new FileOutputStream("planted.ser");
-                    ObjectOutputStream oos = new ObjectOutputStream(fos);
-                    oos.writeObject(Main.getModel().garden.getGarden_Plants());
-                    oos.close();
-                }
-                catch (Exception ex)
-        		{}
-        	}	
-        });
+		Button saveButton = new Button("Save");		
+		saveButton.setOnAction(e -> new SaveViewbox().display("title", "message"));
+
 		
 		
 		ButtonBar bbar = new ButtonBar();
