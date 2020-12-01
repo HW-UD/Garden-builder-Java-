@@ -122,8 +122,8 @@ public class ViewDrag extends ViewBase {
 //    	
     	sbutton.setOnAction(e -> {
     		loadFile("/Users/ruiheng/eclipse-workspace/project-team-14/src/main/img/light");
-        	for (Image i: plants_img) {
-        		ImageView iv1 = new ImageView();
+        	for (GardenImage i: plants_img) {
+        		GardenImgView iv1 = new GardenImgView();
             	iv1.setImage(i);
             	tilepane.getChildren().add(iv1);
             	iv1.setPreserveRatio(true);
@@ -135,8 +135,8 @@ public class ViewDrag extends ViewBase {
         
         sbutton.setOnAction(e -> {
     		loadFile("/Users/ruiheng/eclipse-workspace/project-team-14/src/main/img/water");
-        	for (Image iv: plants_img) {
-        		ImageView iv2 = new ImageView();
+        	for (GardenImage iv: plants_img) {
+        		GardenImgView iv2 = new GardenImgView();
             	iv2.setImage(iv);
             	tilepane.getChildren().add(iv2);
             	iv2.setPreserveRatio(true);

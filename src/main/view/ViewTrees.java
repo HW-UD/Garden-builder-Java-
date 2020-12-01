@@ -86,7 +86,7 @@ public class ViewTrees extends ViewBase{
             if (newValue) {
                  button1.setStyle(
                         "-fx-background-color: red;");
-            //     button1.setOnMousePressed(handlerP);  //ÔÝÊ±µÄ»¥¶¯£¬ÐèÒªÉ¾³ý
+            //     button1.setOnMousePressed(handlerP);  //ï¿½ï¿½Ê±ï¿½Ä»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÒªÉ¾ï¿½ï¿½
                  newValue = false;
                  } else {
                      button1.setStyle(null);
@@ -145,15 +145,15 @@ public class ViewTrees extends ViewBase{
 		 * 
 		 * ToggleButton button1 = new ToggleButton(); button1.setTranslateX(10);
 		 * button1.setTranslateY(10); button1.setPrefSize(ButtonSize, ButtonSize);
-		 * button1.setGraphic(view1); button1.setOnMousePressed(handlerP); //ÔÝÊ±µÄ»¥¶¯£¬ÐèÒªÉ¾³ý
+		 * button1.setGraphic(view1); button1.setOnMousePressed(handlerP); //ï¿½ï¿½Ê±ï¿½Ä»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÒªÉ¾ï¿½ï¿½
 		 */    	
     
 		/*
-		 * if(button1.onMouseClickedProperty() != null) { System.out.println("µ¥»÷ÁËÌõÄ¿"); }
+		 * if(button1.onMouseClickedProperty() != null) { System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¿"); }
 		 */            
          
          
-	    loadButtons("D:/java workspace/project-team-14/src/main/img/spring");
+	    loadButtons("/Users/wanghuawei/eclipse-workspace/project-team-14/src/main/img/spring");
 //     	    Image im1 = new Image(getClass().getResourceAsStream("../img/default/FloridaAniseTree.jpg"));
 //    	    ImageView view1 = new ImageView(im1);
 //    	  
@@ -172,7 +172,7 @@ public class ViewTrees extends ViewBase{
 //            if (newValue) {
 //                 button1.setStyle(
 //                        "-fx-background-color: red;");
-//            //     button1.setOnMousePressed(handlerP); 	//ÔÝÊ±µÄ»¥¶¯£¬ÐèÒªÉ¾³ý
+//            //     button1.setOnMousePressed(handlerP); 	//ï¿½ï¿½Ê±ï¿½Ä»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÒªÉ¾ï¿½ï¿½
 //                 newValue = false;
 //                 } else {
 //                     button1.setStyle(null);
@@ -200,7 +200,7 @@ public class ViewTrees extends ViewBase{
 // 	    button2.setTranslateX(100);
 // 	    button2.setTranslateY(100);
 // 	    button2.setGraphic(view2);
-//    	button2.setOnMousePressed(handlerP); 	//ÔÝÊ±µÄ»¥¶¯£¬ÐèÒªÉ¾³ý
+//    	button2.setOnMousePressed(handlerP); 	//ï¿½ï¿½Ê±ï¿½Ä»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÒªÉ¾ï¿½ï¿½
 //    	
 //    
 //    	
