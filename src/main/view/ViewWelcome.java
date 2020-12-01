@@ -4,7 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 import javafx.scene.text.Font;
-
+import javafx.scene.text.FontWeight;
 import controller.Main;
 import controller.SurroundController;
 import controller.WelcomeController;
@@ -63,7 +63,7 @@ public class ViewWelcome implements ViewMaker {
         
         
 		Label label = new Label("    ");
-		label.setFont(Font.font ("Verdana", 42));
+		label.setFont(Font.font ("Verdana", FontWeight.BOLD, 42));
 		//label.setTextFill(Color.web("#0076a3"));
 		root.setTop(label);
 		root.setMargin(label, new Insets(120,0,0,250));
@@ -91,7 +91,7 @@ public class ViewWelcome implements ViewMaker {
 		
 		Label length = new Label("Length: ");
 		TextField lengthtf = new TextField ();
-		length.setFont(Font.font ("Verdana", 20));
+		length.setFont(Font.font ("Verdana",FontWeight.BOLD, 20));
 		lengthtf.textProperty().addListener(new ChangeListener<String>() {
 		       @Override
 		       public void changed(ObservableValue<? extends String> observable, String oldValue, 
@@ -104,7 +104,7 @@ public class ViewWelcome implements ViewMaker {
 	       
 		Label width = new Label("Width: ");
 		TextField widthtf = new TextField ();
-		width.setFont(Font.font ("Verdana", 20));
+		width.setFont(Font.font ("Verdana",FontWeight.BOLD, 20));
 		widthtf.textProperty().addListener(new ChangeListener<String>() {
 		       @Override
 		       public void changed(ObservableValue<? extends String> observable, String oldValue, 
@@ -117,7 +117,7 @@ public class ViewWelcome implements ViewMaker {
 		
 		Label name = new Label("Garden name: ");
 		TextField nametf = new TextField ();
-		name.setFont(Font.font ("Verdana", 20));
+		name.setFont(Font.font ("Verdana", FontWeight.BOLD, 20));
 		GridPane grid = new GridPane();
 		grid.setVgap(20);
 		grid.setHgap(35);
