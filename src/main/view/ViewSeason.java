@@ -63,26 +63,30 @@ public class ViewSeason extends ViewBase {
 		
 		SpringButton.setOnAction( new EventHandler<ActionEvent>() {
         	public void handle(ActionEvent e) {
-//        		middle.getChildren().remove();
-        		inputImg("../img/spring/");
+        		middle.getChildren().clear();
+        		loadImg("../img/spring/");
         	}	
         });
 		
 		SummerButton.setOnAction( new EventHandler<ActionEvent>() {
         	public void handle(ActionEvent e) {
-        		inputImg("../img/summer/");
+        		middle.getChildren().clear();
+        		loadImg("../img/summer/");
         	}	
         });
 		
 		FallButton.setOnAction( new EventHandler<ActionEvent>() {
         	public void handle(ActionEvent e) {
-        		inputImg("../img/fall/");
+        		middle.getChildren().clear();
+
+        		loadImg("../img/fall/");
         	}	
         });
 		
 		WinterButton.setOnAction( new EventHandler<ActionEvent>() {
         	public void handle(ActionEvent e) {
-        		inputImg("../img/winter/");
+        		middle.getChildren().clear();
+        		loadImg("../img/winter/");
         	}	
         });
 		

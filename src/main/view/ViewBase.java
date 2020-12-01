@@ -34,19 +34,33 @@ public class ViewBase implements ViewMaker {
 	protected final int imgwidth = 100;
 	protected final int imgheight = 100;
 	
-	static HashSet <Image> plants_img = new HashSet();
+	static HashSet <GardenImage> plants_img = new HashSet();
 
 	Pane middle;
 	
-	public void inputImg(String path) {
+	
+	
+	public Pane getMiddle() {
+		return middle;
+	}
+
+
+	public void setMiddle(Pane middle) {
+		this.middle = middle;
+	}
+
+
+
+	public void loadImg(String path) {
 		
         for (Plants i : Main.getModel().garden.getGarden_Plants()) {
-    		System.out.println("");
+    		System.out.println(i.getSpecies());
     		System.out.println(i.getSpecies());
     		System.out.println(i.getPlantx());
     		System.out.println(i.getPlanty());
     		
-    		String fpath = path + "commonMilkweed.jpg";//need to be change to i.getspecies;
+    		
+    		String fpath = path + i.getSpecies() +".png";//need to be change to i.getspecies;
     		System.out.println(fpath);
     		Image commonMilkweed = new Image(getClass().getResourceAsStream(fpath));
         	/////
@@ -65,7 +79,7 @@ public class ViewBase implements ViewMaker {
 	
 	
 	
-	public void getFile(String path){        
+	public void loadFile(String path){        
         File file = new File(path);   // get file list where the path has           
         File[] array = file.listFiles();  // get the folder list   
         System.out.println (array.toString());
@@ -79,13 +93,19 @@ public class ViewBase implements ViewMaker {
                     String temp= "../img/spring/" + array[i].getName();
                     System.out.println("000000" + temp);
                     
-                    Image img =  new Image(getClass().getResourceAsStream(temp));
+                    GardenImage img =  new GardenImage(getClass().getResourceAsStream(temp));
+                    String pictureName = array[i].getName();
+                    String flowerName = pictureName.substring(0, pictureName.indexOf("."));
+                    
+                    img.setID(flowerName);
                     plants_img.add(img);
             	}
-                
+
+                     	
+            	
                 
             }else if(array[i].isDirectory()){   
-                getFile(array[i].getPath());   
+                loadFile(array[i].getPath());   
             }   
         }   
     }   

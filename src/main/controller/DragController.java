@@ -1,9 +1,12 @@
 package controller;
 
 import javafx.event.Event;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import model.SceneName;
+import view.GardenImage;
+import view.GardenImgView;
 import view.ViewSurround;
 
 import java.awt.MouseInfo;
@@ -27,7 +30,7 @@ import javafx.scene.layout.Pane;
 public class DragController {
 	
 	private Stage stage;
-	
+	static private String name;
 	/** Must inject a stage */
 	public DragController(Stage stage) {
 		if (stage == null) {
@@ -44,24 +47,36 @@ public class DragController {
 	
 	public void handleMousePress2(Event event) {
 		stage.setScene(Main.getScenes().get(SceneName.ViewSurround));
-		Main.getSurron().inputImg("../img/default/");//FIXME 
+		Main.getSurron().getMiddle().getChildren().clear();
+		Main.getSurron().loadImg("../img/spring/");//FIXME 
 	}
 	
 	
 	
-	
-	public void drag(Event event) {
-		stage.setScene(Main.getScenes().get(SceneName.ViewSurround));
+public static String getName() {
+		return name;
 	}
-	
-	public static void drag (ImageView iv1) {
+
+	public static void setName(String name) {
+		DragController.name = name;
+	}
+
+	//	
+//	public void drag(Event event) {
+//		stage.setScene(Main.getScenes().get(SceneName.ViewSurround));
+//	}
+//	
+	public static void drag (GardenImgView iv1) {
 		
 		iv1.setOnDragDetected(new EventHandler<MouseEvent>(){
 			@Override
 			public void handle(MouseEvent event){
+				System.out.println(iv1.getID());
+				setName(iv1.getID());
+				
 				Dragboard iv2 = iv1.startDragAndDrop(TransferMode.COPY);
 				ClipboardContent content = new ClipboardContent();
-				content.putImage(iv1.getImage());
+				content.putImage(iv1.getImage());///////
 				iv2.setContent(content);
 				WritableImage wi = new WritableImage(100,100);
 				iv1.snapshot(new SnapshotParameters(), wi);
@@ -70,12 +85,16 @@ public class DragController {
 		});
 	}
 	
-	public static void drop (Pane flowpane) {
+	public static void drop (Pane pane) {
 		
-		flowpane.setOnDragDropped(new EventHandler<DragEvent>() {
+		pane.setOnDragDropped(new EventHandler<DragEvent>() {
 			@Override
 			public void handle(DragEvent event) {
-				ImageView iv1copy = new ImageView(event.getDragboard().getImage());
+				Image i =  event.getDragboard().getImage();
+				GardenImgView iv1copy =  new GardenImgView();
+				
+				iv1copy.setImage(i);
+				iv1copy.setID(name);
 				iv1copy.setPreserveRatio(true);
 				iv1copy.setFitHeight(100);
 				iv1copy.setFitWidth(100);
@@ -83,7 +102,7 @@ public class DragController {
 				
 				
 	
-				flowpane.getChildren().add(iv1copy);
+				pane.getChildren().add(iv1copy);
 				
 //				Point p = MouseInfo.getPointerInfo().getLocation();
 	//
@@ -93,7 +112,7 @@ public class DragController {
 				iv1copy.setTranslateX(event.getX());
 				iv1copy.setTranslateY(event.getY());
 				
-				Main.model.garden.addPlant(iv1copy.getClass().getSimpleName(), event.getX(), event.getY());
+				Main.model.garden.addPlant(iv1copy.getID(), event.getX(), event.getY());
 				System.out.println(Main.model.garden.getGarden_Plants());
 			}
 		});

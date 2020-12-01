@@ -60,11 +60,14 @@ public class ViewDrag extends ViewBase {
 		BorderPane root = new BorderPane();
 		
     	TilePane tilepane = new TilePane();
-        Pane flowpane = new Pane();
+        Pane pane = new Pane();
         tilepane.setStyle("-fx-background-color : #7CFC00;");
-        //flowpane.setStyle("-fx-background-color : #8B4513;");
+        //pane.setStyle("-fx-background-color : #8B4513;");
         
-        flowpane.setOnKeyPressed(new EventHandler<KeyEvent>(){
+        tilepane.setPrefWidth(imgwidth+20);
+        tilepane.setPrefColumns(1);
+        
+        pane.setOnKeyPressed(new EventHandler<KeyEvent>(){
         	@Override
         	public void handle(KeyEvent e) {
         		switch(e.getCode()) {
@@ -76,13 +79,13 @@ public class ViewDrag extends ViewBase {
         	        circ.setCenterX(350);
         	        circ.setCenterY(290);
         	        circ.setFill(new ImagePattern(background, 0.2, 0.2, 0.4, 0.4, true));   
-        	        flowpane.getChildren().add(circ);
+        	        pane.getChildren().add(circ);
         	        break;
         		case DIGIT2:
         			Image background2 = new Image("file:src/main/img/default/tudi.jpg");
         			ImageView bk = new ImageView();
         	    	bk.setImage(background2);
-        	    	flowpane.getChildren().add(bk);
+        	    	pane.getChildren().add(bk);
         	    	break;
 				default:
 					break;
@@ -97,16 +100,17 @@ public class ViewDrag extends ViewBase {
         circ.setCenterX(350);
         circ.setCenterY(290);
         circ.setFill(new ImagePattern(background, 0.2, 0.2, 0.4, 0.4, true));   
-        flowpane.getChildren().add(circ);
+        pane.getChildren().add(circ);
         
         Image background2 = new Image("file:src/main/img/default/tudi.jpg");
 		ImageView bk = new ImageView();
     	bk.setImage(background2);
-    	flowpane.getChildren().add(bk);
+    	pane.getChildren().add(bk);
 
        	
-        tilepane.setPrefWidth(imgwidth+20);
-        tilepane.setPrefColumns(1);
+        
+        
+        
         
         ChoiceBox<String> light = new ChoiceBox<String>();
         light.getItems().addAll("glare","medium","weak");
@@ -132,21 +136,23 @@ public class ViewDrag extends ViewBase {
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         root.setLeft(scrollPane);
 
-    	root.setCenter(flowpane);
+    	root.setCenter(pane);
   
-    	getFile("/Users/ruiheng/eclipse-workspace/project-team-14/src/main/img/spring");
-    	for (Image i: plants_img) {
+    	loadFile("/Users/wanghuawei/eclipse-workspace/project-team-14/src/main/img/spring");
+    	for (GardenImage i: plants_img) {
 
-    		ImageView iv1 = new ImageView();
+    		GardenImgView iv1 = new GardenImgView();
+    		iv1.setID(i.getID());
         	iv1.setImage(i);
+        	
         	tilepane.getChildren().add(iv1);
         	iv1.setPreserveRatio(true);
         	iv1.setFitHeight(imgheight);
         	iv1.setFitWidth(imgwidth);
         	DragController.drag (iv1);
     	}
-    	DragController.drop ( flowpane) ;
-    	DragController.DragOver ( flowpane) ;
+    	DragController.drop ( pane) ;
+    	DragController.DragOver ( pane) ;
     	
 		
 		Button backButton = new Button("Back");
