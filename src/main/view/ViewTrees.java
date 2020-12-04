@@ -137,7 +137,7 @@ public class ViewTrees extends ViewBase {
 		 * if(button1.onMouseClickedProperty() != null) { System.out.println("��������Ŀ"); }
 		 */
 
-		loadButtons("/Users/ruiheng/eclipse-workspace/project-team-14/src/main/img/spring");
+		loadButtons("/Users/wanghuawei/eclipse-workspace/project-team-14/src/main/img/spring");
 //     	    Image im1 = new Image(getClass().getResourceAsStream("../img/default/FloridaAniseTree.jpg"));
 //    	    ImageView view1 = new ImageView(im1);
 //    	  
