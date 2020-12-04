@@ -23,8 +23,8 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class SaveViewbox {
-	
-	
+
+
 	public void display(String title , String message){
 	    Stage window = new Stage();
 	    window.setTitle("title");
@@ -32,7 +32,7 @@ public class SaveViewbox {
 	    window.setMinWidth(300);
 	    window.setMinHeight(150);
 
-	    
+
 		Label Name = new Label("Name: ");
 		TextField SaNameInput = new TextField ();
 		Name.setFont(Font.font ("Verdana", 20));
@@ -45,16 +45,16 @@ public class SaveViewbox {
 //		           }
 //		       }
 //		});
-	    
-	    
-	    
+
+
+
 	    Button button = new Button("Close");
 	    button.setOnAction(e -> window.close());
-	    
+
 		Button saveButton = new Button("Save");
 		saveButton.setOnAction( new EventHandler<ActionEvent>() {
-			
-			
+
+
         	public void handle(ActionEvent e) {
         		try{
         			System.out.println("works");
@@ -69,36 +69,36 @@ public class SaveViewbox {
                 catch (Exception ex)
         		{}
         	}	
-        	
-        	
+
+
         });
 
 
 	    VBox layout = new VBox(10);
-	    
+
 		ButtonBar bbar = new ButtonBar();
 		bbar.setPadding(new Insets(10, 0, 0, 10));
 		bbar.getButtons().addAll(saveButton,button);
-	    
+
 	    layout.getChildren().addAll( bbar,Name,SaNameInput);
 //	    layout.setAlignment(Pos.CENTER);
 
-	    
-	    
-	    
+
+
+
 
 
 
 
 //TODO may put button other place.
 
-	    
-	    
+
+
 	    Scene scene = new Scene(layout);
 	    window.setScene(scene);
 	    window.showAndWait();
-	    
-	    
-	  
+
+
+
 	    }
-}
+} 

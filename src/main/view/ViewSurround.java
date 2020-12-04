@@ -34,7 +34,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import model.Plants;
-import model.SceneName;
 
 
 public class ViewSurround extends ViewBase {
@@ -59,7 +58,7 @@ public class ViewSurround extends ViewBase {
 
 
         middle = new Pane();
-        //middle.setStyle("-fx-background-color: #8B4513;");
+        middle.setStyle("-fx-background-color: #8B4513;");
         middle.setPrefSize(400,400);
         root.setCenter(middle);//FIXME I want it set on the center of the scence, but it is not.
         
@@ -81,8 +80,6 @@ public class ViewSurround extends ViewBase {
 		Button LawnButton = new Button("Lawn");
 		Button shrubButton = new Button("shrub");
 
-		
-		
 //		ButtonBar surrbar = new ButtonBar();
 //		surrbar.getButtons().addAll(RiverButton, ForestButton,LawnButton,shrubButton);
 //		root.setBottom(surrbar);

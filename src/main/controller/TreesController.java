@@ -20,7 +20,7 @@ private Stage stage;
 	}
 			
 	public void handleMousePress2(Event event) {
-		stage.setScene(Main.getScenes().get(SceneName. ViewFlowers));
+		stage.setScene(Main.getScenes().get(SceneName. ViewFences));
 	}
 
 }

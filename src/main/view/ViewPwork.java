@@ -40,7 +40,7 @@ public class ViewPwork extends ViewBase {
 	public Scene getScene() {
 
 		BorderPane root = new BorderPane();
-        Label label = new Label("Chose a recent work");
+        Label label = new Label("Choose a recent work");
         label.setFont(Font.font("Times New Roman", FontWeight.BOLD, 30));
 		root.setTop(label);
 		BorderPane.setMargin(label, new Insets(5,0,0,350));

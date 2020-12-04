@@ -25,7 +25,7 @@ import model.Plants;
 
 public class ViewBase implements ViewMaker {
 
-	protected Stage stage;
+	private Stage stage;
 	protected EventHandler<? super MouseEvent> handlerP;
 	protected EventHandler<? super MouseEvent> handlerN;
 	protected final double WIDTH = 1000;

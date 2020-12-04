@@ -56,8 +56,6 @@ import javax.imageio.ImageIO;
 
 public class ViewDrag extends ViewBase {
 
-	public static String shape;
-	
 	@Override
 	public Scene getScene() {
 		BorderPane root = new BorderPane();
@@ -74,7 +72,6 @@ public class ViewDrag extends ViewBase {
         Button circleButton = new Button("Circle");
         circleButton.setOnAction( new EventHandler<ActionEvent>() {
         	public void handle(ActionEvent e) {
-        		shape="Circle";
         		Image background = new Image(getClass().getResourceAsStream("../img/default/tudicircle.png"));
                 gc.drawImage(background, 0, 0, WIDTH, HEIGHT);
         	}	
@@ -83,7 +80,6 @@ public class ViewDrag extends ViewBase {
         Button squareButton = new Button("Square");
         squareButton.setOnAction( new EventHandler<ActionEvent>() {
         	public void handle(ActionEvent e) {
-        		shape="Circle";
         		Image background = new Image(getClass().getResourceAsStream("../img/default/tudi.jpg"));
                 gc.drawImage(background, 0, 0, WIDTH, HEIGHT);
         	}	
@@ -125,11 +121,10 @@ public class ViewDrag extends ViewBase {
 //    	glareplants.add(new Image("file:src/main/img/default/tudi.jpg"));
 //    	
     	sbutton.setOnAction(e -> {
-
-    		loadFile("/Users/wanghuawei/eclipse-workspace/project-team-14/src/main/img/spring");
+    		loadFile("/Users/ruiheng/eclipse-workspace/project-team-14/src/main/img/spring");
         	for (GardenImage i: plants_img) {
         		GardenImgView iv1 = new GardenImgView();
-        		iv1.setID(i.getID());	
+        		iv1.setID(i.getID());
             	iv1.setImage(i);
             	tilepane.getChildren().add(iv1);
             	iv1.setPreserveRatio(true);
@@ -139,8 +134,6 @@ public class ViewDrag extends ViewBase {
         	}
         	});
         
-    	
-
 //        sbutton.setOnAction(e -> {
 //    		loadFile("/Users/ruiheng/eclipse-workspace/project-team-14/src/main/img/spring");
 //        	for (Image iv: plants_img) {
@@ -182,10 +175,23 @@ public class ViewDrag extends ViewBase {
 		Button nextButton = new Button("Next");
 		nextButton.setOnMousePressed(handlerN);
 		
-		Button saveButton = new Button("Save");		
-		saveButton.setOnAction(e -> new SaveViewbox().display("title", "message"));
-
-		
+//		Button saveButton = new Button("Save");
+//		saveButton.setOnAction( new EventHandler<ActionEvent>() {
+//        	public void handle(ActionEvent e) {
+//        		try{
+//                    FileOutputStream fos = new FileOutputStream("planted.ser");
+//                    ObjectOutputStream oos = new ObjectOutputStream(fos);
+//                    oos.writeObject(Main.getModel().garden.getGarden_Plants());
+//                    oos.close();
+//                }
+//                catch (Exception ex)
+//        		{}
+//        	}	
+//        });
+		Button saveButton = new Button("Save");  
+		  saveButton.setOnAction(e -> new SaveViewbox().display("title", "message"));
+		  
+		  
 		
 		ButtonBar bbar = new ButtonBar();
 		bbar.setPadding(new Insets(10, 0, 0, 10));
