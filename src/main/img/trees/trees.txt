@@ -1,0 +1,16 @@
+AlleghenyServiceberry,Dry,Medium
+AmericanBasswood,Moist,Medium
+AbiesConcolor,Dry,Medium
+AcerSaccharinum,Moist,Medium
+AcerSaccharum,Dry,Medium
+CatalpaBignonioides,Wet,Low
+CercisCanadensis,Dry,Low
+ChamaecyparisThyoides,Wet,Low
+ChionanthusVirginicus,Moist,High
+EhretiaAnacua,Dry,Low
+ForestieraAngustifolia,Dry,Low
+FraxinusAmericana,Dry,High
+MimosaTexana,Dry,Low
+
+
+

@@ -1,0 +1,14 @@
+AbutilonFruticosum,Orange,Low
+AbroniaMellifera,White,Medium
+AconitumColumbianum,Purple,High
+AmsoniaIllustris,Blue,Medium
+ViolaMacloskeyi,White,High
+ViolaPubescens,Orange,Medium
+RanunculusMacranthus,Yellow,Medium
+RudbeckiaFulgida,Orange,Medium
+SabatiaCampestris,Pink,Medium
+SennaHebecarpa,Yellow,Medium
+ParnassiaCaroliniana,White,High
+LinumBerlandieri,Yellow,Low
+LindheimeraTexana,Yellow,Low
+HerbertiaLahue,Purple,Medium
