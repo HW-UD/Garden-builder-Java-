@@ -21,6 +21,7 @@ import javafx.scene.image.WritableImage;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.FlowPane;
@@ -117,7 +118,22 @@ public static String getName() {
 			}
 		});
 	}
-
+	
+	
+	public static void delect (Pane pane) {
+		pane.setOnMouseClicked(new EventHandler<MouseEvent>(){
+			@Override
+			public void handle(MouseEvent event) {
+				
+				if(event.getButton() == MouseButton.PRIMARY) {
+					//pane.getChildren().remove(iv1copy);
+				}	
+			}
+		});
+	}
+	
+	
+	
 	public static void DragOver (Pane flowpane) {
 	
 	flowpane.setOnDragOver(new EventHandler<DragEvent>() {
