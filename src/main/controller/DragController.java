@@ -105,7 +105,7 @@ public static String getName() {
 				pane.getChildren().add(iv1copy);
 				
 //				Point p = MouseInfo.getPointerInfo().getLocation();
-	//
+//
 //				iv1copy.setTranslateX(p.getX()- 550);
 //				iv1copy.setTranslateY(p.getY());//
 				
