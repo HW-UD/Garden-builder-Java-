@@ -9,9 +9,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model.GardenModel;
 import model.SceneName;
-import view.ViewCharacteristics;
 import view.ViewDrag;
-import view.ViewExample;
 import view.ViewFences;
 import view.ViewFlowers;
 import view.ViewPwork;
@@ -46,10 +44,10 @@ public class Main extends Application {
 		 drag = new ViewDrag(stage);
 		// Create and store all scenes up front
 		scenes.put(SceneName.ViewWelcome, new ViewWelcome(stage).getScene());
-		scenes.put(SceneName.ViewExample, new ViewExample(stage).getScene());
+		//scenes.put(SceneName.ViewExample, new ViewExample(stage).getScene());
 		scenes.put(SceneName.ViewPwork, new ViewPwork(stage).getScene());
-		scenes.put(SceneName.ViewCharacteristics, new ViewCharacteristics(stage).getScene());
-		scenes.put(SceneName.ViewTrees, new ViewTrees(stage).getScene());
+		//scenes.put(SceneName.ViewCharacteristics, new ViewCharacteristics(stage).getScene());
+		//scenes.put(SceneName.ViewTrees, new ViewTrees(stage).getScene());
 		scenes.put(SceneName.ViewFlowers, new ViewFlowers(stage).getScene());
 		scenes.put(SceneName.ViewFences, new ViewFences(stage).getScene());
 		scenes.put(SceneName.ViewDrag, drag.getScene());

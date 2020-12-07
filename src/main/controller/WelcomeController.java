@@ -18,17 +18,17 @@ public class WelcomeController {
 
 	/** Display the first scene */
 	public void handleOnPressButton1(MouseEvent event) {
-		stage.setScene(Main.getScenes().get(SceneName.ViewCharacteristics));
+		stage.setScene(Main.getScenes().get(SceneName.ViewDrag));
 	}
 	
-	/** Display the second scene */
-	public void handleOnPressButton2(MouseEvent event) {
-		stage.setScene(Main.getScenes().get(SceneName.ViewExample));
-	}
-	
-	/** Display the third scene */
-	public void handleOnPressButton3(MouseEvent event) {
-		stage.setScene(Main.getScenes().get(SceneName.ViewPwork));
-	}
+//	/** Display the second scene */
+//	public void handleOnPressButton2(MouseEvent event) {
+//		stage.setScene(Main.getScenes().get(SceneName.ViewExample));
+//	}
+//	
+//	/** Display the third scene */
+//	public void handleOnPressButton3(MouseEvent event) {
+//		stage.setScene(Main.getScenes().get(SceneName.ViewPwork));
+//	}
 	
 }
