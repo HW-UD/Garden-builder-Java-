@@ -112,6 +112,7 @@ public static String getName() {
 				
 				iv1copy.setTranslateX(event.getX());
 				iv1copy.setTranslateY(event.getY());
+				delect ( pane, iv1copy);
 				
 				Main.model.getGarden().addPlant(iv1copy.getID(), event.getX(), event.getY());
 				System.out.println(Main.model.getGarden().getGarden_Plants());
@@ -120,13 +121,13 @@ public static String getName() {
 	}
 	
 	
-	public static void delect (Pane pane) {
+	public static void delect (Pane pane,GardenImgView iv1copy) {
 		pane.setOnMouseClicked(new EventHandler<MouseEvent>(){
 			@Override
 			public void handle(MouseEvent event) {
 				
 				if(event.getButton() == MouseButton.PRIMARY) {
-					//pane.getChildren().remove(iv1copy);
+					pane.getChildren().remove(iv1copy);
 				}	
 			}
 		});

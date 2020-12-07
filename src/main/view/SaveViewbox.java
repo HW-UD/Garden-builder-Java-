@@ -4,6 +4,8 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import controller.Main;
 
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 import java.awt.image.RenderedImage;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -35,69 +37,39 @@ import model.SceneName;
 public class SaveViewbox {
 	private Stage stage;
     String WorkPath = System.getProperty("user.dir");
+    BufferedImage bufferedImage = new BufferedImage(550, 400, BufferedImage.TYPE_INT_ARGB);
 
 	
-	public void saveAsPng() {
-		WritableImage writableImage = new WritableImage(/*int)getWidth()+ (int)getHeight() + */100,
-                100);
-		WritableImage image = Main.getScenes().get(SceneName. ViewDrag).snapshot(writableImage);
+    private void saveImage(WritableImage snapshot) {
+
+      }
+     
+    
+	public void saveAsPng(String savedName) {
+
+	       WritableImage snapshot = Main.getDrag().getMiddle().snapshot(new SnapshotParameters(), null);
+
+           BufferedImage image;
+           image = javafx.embed.swing.SwingFXUtils.fromFXImage(snapshot, bufferedImage);
+           try {
+               Graphics2D gd = (Graphics2D) image.getGraphics();
+               int WandH=200;
+               gd.translate(WandH, WandH);
+               File file=new File(WorkPath+"/src/main/Saved/"+savedName+".png");
+               ImageIO.write(image, "png", file);
+           } catch (IOException ex) {
+//               Logger.getLogger(TrySnapshot.class.getName()).log(Level.SEVERE, null, ex);
+           };
+           
 		
-		String path= WorkPath+ "/src/main/Saved/";
-		// TODO: probably use a file chooser here
-//		File file = new File(path + "chart.png");
-		File file = new File("chart.png");
-		
-	    try {
-	        ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", file);
-	    } catch (IOException e) {
-	    	// TODO: handle exception here
-	    }
 	}
 	
-	
-	public void captureAndSaveDisplay(TextField SaNameInput){
-//	    FileChooser fileChooser = new FileChooser();
-//
-//	    //Set extension filter
-//	    fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("png files (*.png)", "*.png"));
-//
-//	    //Prompt user to select a file
-//	    File file = fileChooser.showSaveDialog(null);
-		
-		
-// 	    File file = fileChooser.showSaveDialog(null);
-//
-//		
-//	    if(file != null){
-	        try {
-	        	
-	        	
-	            //Pad the capture area
-	            WritableImage writableImage = new WritableImage(/*int)getWidth()+ (int)getHeight() + */100,
-	                    100);
-	    		Main.getScenes().get(SceneName. ViewDrag).snapshot(writableImage);
-	            RenderedImage renderedImage = SwingFXUtils.fromFXImage(writableImage, null);
-	            
-	            
-	    		String savedName=SaNameInput.getText();
-	    		
-	    		String path= WorkPath + "/src/main/Saved/";
-	    		
-	    		FileOutputStream fos = new FileOutputStream(path+savedName+ ".png");
-	            ObjectOutputStream oos = new ObjectOutputStream(fos);
-	            oos.writeObject(renderedImage);
-	            oos.close();
-	            
-	            //Write the snapshot to the chosen file
-//	            ImageIO.write(renderedImage, "png", file);
-	        } catch (IOException ex) { ex.printStackTrace(); }
-//	    }
-	}
+
 	
 
 	public void display(String title , String message){
 	    Stage window = new Stage();
-	    window.setTitle("title");
+	    window.setTitle("Save");
 	    window.initModality(Modality.APPLICATION_MODAL);
 	    window.setMinWidth(300);
 	    window.setMinHeight(150);
@@ -106,17 +78,6 @@ public class SaveViewbox {
 		Label Name = new Label("Name: ");
 		TextField SaNameInput = new TextField ();
 		Name.setFont(Font.font ("Verdana", 20));
-//		lengthtf.textProperty().addListener(new ChangeListener<String>() {
-//		       @Override
-//		       public void changed(ObservableValue<? extends String> observable, String oldValue, 
-//		           String newValue) {
-//		           if (!newValue.matches("\\d*")) {
-//		        	   lengthtf.setText(newValue.replaceAll("[^\\d]", ""));
-//		           }
-//		       }
-//		});
-
-
 
 	    Button button = new Button("Close");
 	    button.setOnAction(e -> window.close());
@@ -127,8 +88,6 @@ public class SaveViewbox {
 
         	public void handle(ActionEvent e) {
         		try{
-        			System.out.println("works");
-        			
         			String savedName=SaNameInput.getText();
         			String path=WorkPath+ "/src/main/Saved/";
         			//String path = "file:src/main/Saved/";
@@ -137,12 +96,10 @@ public class SaveViewbox {
                     FileOutputStream fos = new FileOutputStream(path+savedName+ ".dat");
                     ObjectOutputStream oos = new ObjectOutputStream(fos);
                     
-                    System.out.println("#################");
-                    System.out.println(Main.getModel().getGarden().getGarden_Plants());
                     
                     oos.writeObject(Main.getModel().getGarden().getGarden_Plants());
                     oos.close();
-//                    saveAsPng();
+                    saveAsPng(savedName);
                     window.close();
                 }
                 catch (Exception ex)

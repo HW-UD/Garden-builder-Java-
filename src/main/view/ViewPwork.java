@@ -47,6 +47,8 @@ public class ViewPwork extends ViewBase {
 	FlowPane flowpane = new FlowPane();
 	BorderPane root = new BorderPane();
     String WorkPath = System.getProperty("user.dir");
+	private final double imgwidth = 200;
+	private final double imgheight = 200;
 
 
 	public void loadButtons(String path) {
@@ -58,53 +60,32 @@ public class ViewPwork extends ViewBase {
 			if (array[i].isFile()) {
 				if (array[i].getName().endsWith(".dat")) {
 //					String temp = "../Saved/" + array[i].getName();
-					
+					final int ButtonLength = 300;
+					final int ButtonWidth = 500;
 					String fileName = array[i].getName();
 					String GName = fileName.substring(0, fileName.indexOf("."));
 					
-					
-//					Image im1 = new Image(getClass().getResourceAsStream(temp));
-//					ImageView view1 = new ImageView(im1);
-//					view1.setFitHeight(imgheight);
-//					view1.setFitWidth(imgwidth);
+					Image im1 = new Image(getClass().getResourceAsStream("../Saved/"+GName+".png"));
+					ImageView view1 = new ImageView(im1);
+					view1.setFitHeight(imgheight);
+					view1.setFitWidth(imgwidth);
 
-					ToggleButton button1 = new ToggleButton(GName/*, new ImageView(im1)*/);
-
-					final int ButtonLength = 300;
-					final int ButtonWidth = 500;
+					ToggleButton button1 = new ToggleButton(GName, new ImageView(im1));
 					button1.setPrefSize(ButtonWidth, ButtonLength);
-
-//					button1.setGraphic(view1);
-
+					button1.setGraphic(view1);
+//					button1.setOnMousePressed(handlerN);
 			    	button1.setOnAction(e -> {
-			
-			    	System.out.println("qqqq");
-			    	
 			    	try{
 			    		System.out.println(path + "/"+fileName);
 				    	ObjectInputStream ois = new ObjectInputStream(new FileInputStream(path+"/"+fileName));
 				        HashSet readObject = (HashSet) ois.readObject();
-				        System.out.println("@@@@@@@@@@@@@@@@@@@@@");
-
 		            	Main.getModel().getGarden().setGarden_Plants(readObject);
-
 				        ois.close();
-
-
-				            // Clean up the file
 				         //   new File("tempdata.ser").delete();
 				        }
 				        catch (Exception ex){}
 						
-			    		 
-			    		
 			        	});
-
-
-
-
-					
-					
 					
 					button1.selectedProperty().addListener((observable, oldValue, newValue) -> {
 						// If selected, color the background blue
@@ -117,7 +98,6 @@ public class ViewPwork extends ViewBase {
 					});
 
 					flowpane.getChildren().add(button1);
-
 				}
 
 			} else if (array[i].isDirectory()) {
@@ -151,12 +131,13 @@ public class ViewPwork extends ViewBase {
 			// Create next and back button
 			Button backButton = new Button("Back");
 			backButton.setOnMousePressed(handlerP);
+			
 			Button nextButton = new Button("Next");
 			nextButton.setOnMousePressed(handlerN);
 
 			ButtonBar bbar = new ButtonBar();
 			bbar.setPadding(new Insets(10, 0, 0, 10));
-			bbar.getButtons().addAll(backButton, nextButton);
+			bbar.getButtons().addAll(backButton,nextButton);
 			root.setBottom(bbar);
 
 
