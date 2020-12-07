@@ -123,7 +123,8 @@ public class ViewFences extends ViewBase {
 		bbar.getButtons().addAll(backButton, nextButton);
 		root.setBottom(bbar);
 
-		loadButtons("/Users/yuzu/git/project-team-14/src/main/img/fences");
+		String path1= "/Users/wanghuawei/eclipse-workspace/project-team-14/src/main/Saved/";
+		loadButtons(path1);
 
 		return new Scene(root, WIDTH, HEIGHT);
 	}

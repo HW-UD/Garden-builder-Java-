@@ -74,14 +74,14 @@ public class ViewWelcome implements ViewMaker {
 		startButton.setOnMousePressed(e -> controller.handleOnPressButton1(e));
 //		Button exampleButton = new Button("Example");
 //		exampleButton.setOnMousePressed(e -> controller.handleOnPressButton2(e));
-//		Button perviousworkButton = new Button("Pervious_Work");
-//		perviousworkButton.setOnMousePressed(e -> controller.handleOnPressButton3(e));
+		Button perviousworkButton = new Button("Pervious_Work");
+		perviousworkButton.setOnMousePressed(e -> controller.handleOnPressButton3(e));
 		Button closeButton = new Button("Close");
 		closeButton.setOnMousePressed(e -> stage.close());
 		//nextButton.setOnMousePressed(e -> stage.next());
 		ButtonBar bbar = new ButtonBar();
 		bbar.setPadding(new Insets(101));
-		bbar.getButtons().addAll(startButton, closeButton);
+		bbar.getButtons().addAll(perviousworkButton,startButton, closeButton);
 		root.setBottom(bbar);
 		bbar.setPadding(new Insets(10, 4, 4, 10));
 		

@@ -26,9 +26,9 @@ public class WelcomeController {
 //		stage.setScene(Main.getScenes().get(SceneName.ViewExample));
 //	}
 //	
-//	/** Display the third scene */
-//	public void handleOnPressButton3(MouseEvent event) {
-//		stage.setScene(Main.getScenes().get(SceneName.ViewPwork));
-//	}
+	/** Display the third scene */
+	public void handleOnPressButton3(MouseEvent event) {
+		stage.setScene(Main.getScenes().get(SceneName.ViewPwork));
+	}
 	
 }
