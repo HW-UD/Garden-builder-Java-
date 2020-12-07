@@ -15,7 +15,7 @@ private Stage stage;
 		this.stage = stage;
 	}
 	public void handleMousePress(Event event) {
-		stage.setScene(Main.getScenes().get(SceneName.ViewTrees));
+		stage.setScene(Main.getScenes().get(SceneName.ViewWelcome));
 	}
 			
 	public void handleMousePress2(Event event) {
