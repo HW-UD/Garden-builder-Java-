@@ -182,11 +182,20 @@ public class ViewDrag extends ViewBase {
 		Button saveButton = new Button("Save");  
 		  saveButton.setOnAction(e -> new SaveViewbox().display("title", "message"));
 		  
+		Button clear = new Button("Clear");
+			EventHandler<ActionEvent> Clearevent = new EventHandler<ActionEvent>() {
+				   public void handle(ActionEvent e) {
+				    middle.getChildren().clear();
+				   }
+				  };
+
+				  clear.setOnAction(Clearevent);
+		  
 		  
 		
 		ButtonBar bbar = new ButtonBar();
 		bbar.setPadding(new Insets(10, 0, 0, 10));
-		bbar.getButtons().addAll(sbutton,squareButton,circleButton,saveButton,backButton, nextButton);
+		bbar.getButtons().addAll(clear,sbutton,squareButton,circleButton,saveButton,backButton, nextButton);
 		root.setBottom(bbar);
 
 		

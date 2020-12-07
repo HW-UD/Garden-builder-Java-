@@ -89,47 +89,47 @@ public class ViewWelcome implements ViewMaker {
 		Scene scene = new Scene(root, 1000, 600);
 
 		
-		Label length = new Label("Length: ");
-		TextField lengthtf = new TextField ();
-		length.setFont(Font.font ("Verdana",FontWeight.BOLD, 20));
-		lengthtf.textProperty().addListener(new ChangeListener<String>() {
-		       @Override
-		       public void changed(ObservableValue<? extends String> observable, String oldValue, 
-		           String newValue) {
-		           if (!newValue.matches("\\d*")) {
-		        	   lengthtf.setText(newValue.replaceAll("[^\\d]", ""));
-		           }
-		       }
-		});
-	       
-		Label width = new Label("Width: ");
-		TextField widthtf = new TextField ();
-		width.setFont(Font.font ("Verdana",FontWeight.BOLD, 20));
-		widthtf.textProperty().addListener(new ChangeListener<String>() {
-		       @Override
-		       public void changed(ObservableValue<? extends String> observable, String oldValue, 
-		           String newValue) {
-		           if (!newValue.matches("\\d*")) {
-		        	   widthtf.setText(newValue.replaceAll("[^\\d]", ""));
-		           }
-		       }
-		});
-		
-		Label name = new Label("Garden name: ");
-		TextField nametf = new TextField ();
-		name.setFont(Font.font ("Verdana", FontWeight.BOLD, 20));
-		GridPane grid = new GridPane();
-		grid.setVgap(20);
-		grid.setHgap(35);
-		grid.setPadding((new Insets(12,6,6,12)));
-		grid.add(name, 1, 0);
-		grid.add(nametf, 1, 1);
-		grid.add(length, 3, 0);
-		grid.add(lengthtf, 3, 1);
-		grid.add(width, 4, 0);
-		grid.add(widthtf, 4, 1);
-		root.setCenter(grid);
-		root.setMargin(grid, new Insets(100,0,0,200));
+//		Label length = new Label("Length: ");
+//		TextField lengthtf = new TextField ();
+//		length.setFont(Font.font ("Verdana",FontWeight.BOLD, 20));
+//		lengthtf.textProperty().addListener(new ChangeListener<String>() {
+//		       @Override
+//		       public void changed(ObservableValue<? extends String> observable, String oldValue, 
+//		           String newValue) {
+//		           if (!newValue.matches("\\d*")) {
+//		        	   lengthtf.setText(newValue.replaceAll("[^\\d]", ""));
+//		           }
+//		       }
+//		});
+//	       
+//		Label width = new Label("Width: ");
+//		TextField widthtf = new TextField ();
+//		width.setFont(Font.font ("Verdana",FontWeight.BOLD, 20));
+//		widthtf.textProperty().addListener(new ChangeListener<String>() {
+//		       @Override
+//		       public void changed(ObservableValue<? extends String> observable, String oldValue, 
+//		           String newValue) {
+//		           if (!newValue.matches("\\d*")) {
+//		        	   widthtf.setText(newValue.replaceAll("[^\\d]", ""));
+//		           }
+//		       }
+//		});
+//		
+//		Label name = new Label("Garden name: ");
+//		TextField nametf = new TextField ();
+//		name.setFont(Font.font ("Verdana", FontWeight.BOLD, 20));
+//		GridPane grid = new GridPane();
+//		grid.setVgap(20);
+//		grid.setHgap(35);
+//		grid.setPadding((new Insets(12,6,6,12)));
+//		grid.add(name, 1, 0);
+//		grid.add(nametf, 1, 1);
+//		grid.add(length, 3, 0);
+//		grid.add(lengthtf, 3, 1);
+//		grid.add(width, 4, 0);
+//		grid.add(widthtf, 4, 1);
+//		root.setCenter(grid);
+//		root.setMargin(grid, new Insets(100,0,0,200));
 
 		
 		

@@ -14,7 +14,7 @@ import java.awt.Point;
 
 import controller.DragController;
 import javafx.event.EventHandler;
-
+import javafx.scene.Node;
 import javafx.scene.SnapshotParameters;
 
 import javafx.scene.image.WritableImage;
@@ -67,6 +67,8 @@ public static String getName() {
 //		stage.setScene(Main.getScenes().get(SceneName.ViewSurround));
 //	}
 //	
+	
+	
 	public static void drag (GardenImgView iv1) {
 		
 		iv1.setOnDragDetected(new EventHandler<MouseEvent>(){
@@ -113,20 +115,26 @@ public static String getName() {
 				iv1copy.setTranslateX(event.getX());
 				iv1copy.setTranslateY(event.getY());
 				delect ( pane, iv1copy);
-				
+				iv1copy.setOnMouseDragged(e -> move(e));
 				Main.model.getGarden().addPlant(iv1copy.getID(), event.getX(), event.getY());
 				System.out.println(Main.model.getGarden().getGarden_Plants());
 			}
 		});
 	}
 	
+	public static void move(MouseEvent event) {
+		  //System.out.println("ic mouse");
+		  Node n = (Node) event.getSource();
+		  n.setTranslateX(n.getTranslateX() + event.getX());
+		  n.setTranslateY(n.getTranslateY() + event.getY());
+		 }
 	
 	public static void delect (Pane pane,GardenImgView iv1copy) {
 		pane.setOnMouseClicked(new EventHandler<MouseEvent>(){
 			@Override
 			public void handle(MouseEvent event) {
 				
-				if(event.getButton() == MouseButton.PRIMARY) {
+				if(event.getButton() == MouseButton.SECONDARY) {
 					pane.getChildren().remove(iv1copy);
 				}	
 			}
