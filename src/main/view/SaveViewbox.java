@@ -34,14 +34,15 @@ import model.SceneName;
 
 public class SaveViewbox {
 	private Stage stage;
+    String WorkPath = System.getProperty("user.dir");
 
+	
 	public void saveAsPng() {
 		WritableImage writableImage = new WritableImage(/*int)getWidth()+ (int)getHeight() + */100,
                 100);
 		WritableImage image = Main.getScenes().get(SceneName. ViewDrag).snapshot(writableImage);
 		
-		
-		String path= "/Users/wanghuawei/eclipse-workspace/project-team-14/src/main/Saved/";
+		String path= WorkPath+ "/src/main/Saved/";
 		// TODO: probably use a file chooser here
 //		File file = new File(path + "chart.png");
 		File file = new File("chart.png");
@@ -79,7 +80,8 @@ public class SaveViewbox {
 	            
 	            
 	    		String savedName=SaNameInput.getText();
-	    		String path= "/Users/wanghuawei/eclipse-workspace/project-team-14/src/main/Saved/";
+	    		
+	    		String path= WorkPath + "/src/main/Saved/";
 	    		
 	    		FileOutputStream fos = new FileOutputStream(path+savedName+ ".png");
 	            ObjectOutputStream oos = new ObjectOutputStream(fos);
@@ -128,11 +130,11 @@ public class SaveViewbox {
         			System.out.println("works");
         			
         			String savedName=SaNameInput.getText();
-        			String path= "/Users/wanghuawei/eclipse-workspace/project-team-14/src/main/Saved/";
+        			String path=WorkPath+ "/src/main/Saved/";
         			//String path = "file:src/main/Saved/";
         			
         			
-                    FileOutputStream fos = new FileOutputStream(path+savedName+ ".ser");
+                    FileOutputStream fos = new FileOutputStream(path+savedName+ ".dat");
                     ObjectOutputStream oos = new ObjectOutputStream(fos);
                     
                     System.out.println("#################");

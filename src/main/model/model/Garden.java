@@ -4,12 +4,13 @@ import java.util.HashSet;
 import java.util.InputMismatchException;
 import java.util.Iterator;
 import java.util.Scanner;
+import java.util.Set;
 
 public class Garden {
 	private int gardenLength;
 	private int gardenHeight;
 	
-	HashSet <Plants> Garden_Plants;
+	Set <Plants> Garden_Plants;
 	
 	
 	public Garden() {

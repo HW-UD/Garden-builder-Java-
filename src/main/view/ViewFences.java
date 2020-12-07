@@ -123,7 +123,8 @@ public class ViewFences extends ViewBase {
 		bbar.getButtons().addAll(backButton, nextButton);
 		root.setBottom(bbar);
 
-		String path1= "/Users/wanghuawei/eclipse-workspace/project-team-14/src/main/Saved/";
+        String WorkPath = System.getProperty("user.dir");
+		String path1= WorkPath + "/src/main/img/fences";
 		loadButtons(path1);
 
 		return new Scene(root, WIDTH, HEIGHT);

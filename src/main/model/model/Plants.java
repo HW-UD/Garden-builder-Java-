@@ -1,5 +1,8 @@
 package model;
-public class Plants{
+
+import java.io.Serializable;
+
+public class Plants implements Serializable{
 	 String name;
 	 String light;
 	 String water;

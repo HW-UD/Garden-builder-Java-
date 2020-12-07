@@ -121,7 +121,10 @@ public class ViewDrag extends ViewBase {
 //    	glareplants.add(new Image("file:src/main/img/default/tudi.jpg"));
 //    	
     	sbutton.setOnAction(e -> {
-    		loadFile("/Users/wanghuawei/eclipse-workspace/project-team-14/src/main/img/spring");
+
+	        String WorkPath = System.getProperty("user.dir");
+    		
+    		loadFile(WorkPath+"/src/main/img/spring");
         	for (GardenImage i: plants_img) {
         		GardenImgView iv1 = new GardenImgView();
         		iv1.setID(i.getID());
@@ -135,7 +138,7 @@ public class ViewDrag extends ViewBase {
         	});
         
 //        sbutton.setOnAction(e -> {
-//    		loadFile("/Users/ruiheng/eclipse-workspace/project-team-14/src/main/img/spring");
+//    		loadFile("src/main/img/spring");
 //        	for (Image iv: plants_img) {
 //        		GardenImgView iv2 = new GardenImgView();
 //            	iv2.setImage(iv);
@@ -154,7 +157,7 @@ public class ViewDrag extends ViewBase {
 
     	root.setCenter(middle);
   
-//    	loadFile("/Users/ruiheng/eclipse-workspace/project-team-14/src/main/img/spring");
+//    	loadFile("src/main/img/spring");
 //    	for (Image i: plants_img) {
 //
 //    		ImageView iv1 = new ImageView();

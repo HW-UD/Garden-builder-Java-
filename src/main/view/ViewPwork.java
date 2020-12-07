@@ -8,13 +8,16 @@ import javafx.scene.text.Text;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Set;
+
+import java.net.URL;
 
 import controller.DragController;
 import controller.Main;
@@ -43,9 +46,9 @@ import javafx.scene.image.ImageView;
 public class ViewPwork extends ViewBase {
 	FlowPane flowpane = new FlowPane();
 	BorderPane root = new BorderPane();
+    String WorkPath = System.getProperty("user.dir");
 
 
-	@SuppressWarnings("unchecked")
 	public void loadButtons(String path) {
 		File file = new File(path); // get file list where the path has
 		File[] array = file.listFiles(); // get the folder list
@@ -53,12 +56,10 @@ public class ViewPwork extends ViewBase {
 
 		for (int i = 0; i < array.length; i++) {
 			if (array[i].isFile()) {
-				// only take file name
-				if (array[i].getName().endsWith(".ser")) {
-					String temp = "../Saved/" + array[i].getName();
+				if (array[i].getName().endsWith(".dat")) {
+//					String temp = "../Saved/" + array[i].getName();
 					
 					String fileName = array[i].getName();
-					System.out.println(fileName);
 					String GName = fileName.substring(0, fileName.indexOf("."));
 					
 					
@@ -77,34 +78,17 @@ public class ViewPwork extends ViewBase {
 
 			    	button1.setOnAction(e -> {
 			
-			    		System.out.println("qqqq");
-			    		
-			    		try
-				        {
-							///Users/wanghuawei/eclipse-workspace/project-team-14/src/main/Saved     path1 + fileName
-				    		String path1= "/Users/wanghuawei/eclipse-workspace/project-team-14/src/main/Saved/";
-				            FileInputStream fis = new FileInputStream(path1 + fileName);
-				            ObjectInputStream ois = new ObjectInputStream(fis);
-				            System.out.println("OISOISOISOIS@@@@@@@@@@@@@@@@@@@@@");
+			    	System.out.println("qqqq");
+			    	
+			    	try{
+			    		System.out.println(path + "/"+fileName);
+				    	ObjectInputStream ois = new ObjectInputStream(new FileInputStream(path+"/"+fileName));
+				        HashSet readObject = (HashSet) ois.readObject();
+				        System.out.println("@@@@@@@@@@@@@@@@@@@@@");
 
-				            System.out.println((HashSet<Plants>) ois.readObject());
+		            	Main.getModel().getGarden().setGarden_Plants(readObject);
 
-
-				            HashSet<Plants> newp =	 (HashSet<Plants>) ois.readObject();
-				            System.out.println("@@@@@@@@@@@@@@@@@@@@@");
-
-
-				            System.out.println(newp);
-
-				            
-//				            Iterator<Object> di = newp.iterator();
-//				            for (Object d1 = di.next(); di.hasNext(); d1 = di.next()) {
-//				            	Plants tmp = (Plants) di;
-//				            	
-//				            	Main.getModel().getGarden().addPlant(tmp.getSpecies(), tmp.getPlantx(), tmp.getPlanty());
-//				            }
-//       
-				            ois.close();
+				        ois.close();
 
 
 				            // Clean up the file
@@ -158,7 +142,7 @@ public class ViewPwork extends ViewBase {
 			root.setCenter(scrollPane);
 
 			root.setPadding(new Insets(10));
-			Label label = new Label("Choose PLants");
+			Label label = new Label("Choose Previouse Work");
 			label.setFont(new Font("Arial", 32));// set the font and the size of the title
 			root.setTop(label);
 
@@ -176,8 +160,8 @@ public class ViewPwork extends ViewBase {
 			root.setBottom(bbar);
 
 
-
-			loadButtons("/Users/wanghuawei/eclipse-workspace/project-team-14/src/main/Saved");
+	        System.out.println("Working Directory = " + WorkPath+"/src/main/Saved");
+			loadButtons(WorkPath+"/src/main/Saved");
 
 			return new Scene(root, WIDTH, HEIGHT);
         
