@@ -65,7 +65,7 @@ public class ViewDrag extends ViewBase {
 		gc = canvas.getGraphicsContext2D();
 		
     	TilePane tilepane = new TilePane();
-        Pane pane = new Pane();
+        middle = new Pane();
         tilepane.setStyle("-fx-background-color : #7CFC00;");
         //flowpane.setStyle("-fx-background-color : #8B4513;");
         
@@ -121,7 +121,7 @@ public class ViewDrag extends ViewBase {
 //    	glareplants.add(new Image("file:src/main/img/default/tudi.jpg"));
 //    	
     	sbutton.setOnAction(e -> {
-    		loadFile("/Users/ruiheng/eclipse-workspace/project-team-14/src/main/img/spring");
+    		loadFile("/Users/wanghuawei/eclipse-workspace/project-team-14/src/main/img/spring");
         	for (GardenImage i: plants_img) {
         		GardenImgView iv1 = new GardenImgView();
         		iv1.setID(i.getID());
@@ -152,7 +152,7 @@ public class ViewDrag extends ViewBase {
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         root.setLeft(scrollPane);
 
-    	root.setCenter(pane);
+    	root.setCenter(middle);
   
 //    	loadFile("/Users/ruiheng/eclipse-workspace/project-team-14/src/main/img/spring");
 //    	for (Image i: plants_img) {
@@ -166,8 +166,8 @@ public class ViewDrag extends ViewBase {
 //        	DragController.drag (iv1);
 //    	}
     	
-    	DragController.drop (pane) ;
-    	DragController.DragOver (pane) ;
+    	DragController.drop (middle) ;
+    	DragController.DragOver (middle) ;
     	
 		
 		Button backButton = new Button("Back");
@@ -175,19 +175,7 @@ public class ViewDrag extends ViewBase {
 		Button nextButton = new Button("Next");
 		nextButton.setOnMousePressed(handlerN);
 		
-//		Button saveButton = new Button("Save");
-//		saveButton.setOnAction( new EventHandler<ActionEvent>() {
-//        	public void handle(ActionEvent e) {
-//        		try{
-//                    FileOutputStream fos = new FileOutputStream("planted.ser");
-//                    ObjectOutputStream oos = new ObjectOutputStream(fos);
-//                    oos.writeObject(Main.getModel().garden.getGarden_Plants());
-//                    oos.close();
-//                }
-//                catch (Exception ex)
-//        		{}
-//        	}	
-//        });
+
 		Button saveButton = new Button("Save");  
 		  saveButton.setOnAction(e -> new SaveViewbox().display("title", "message"));
 		  

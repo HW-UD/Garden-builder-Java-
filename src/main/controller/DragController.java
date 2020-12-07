@@ -112,8 +112,8 @@ public static String getName() {
 				iv1copy.setTranslateX(event.getX());
 				iv1copy.setTranslateY(event.getY());
 				
-				Main.model.garden.addPlant(iv1copy.getID(), event.getX(), event.getY());
-				System.out.println(Main.model.garden.getGarden_Plants());
+				Main.model.getGarden().addPlant(iv1copy.getID(), event.getX(), event.getY());
+				System.out.println(Main.model.getGarden().getGarden_Plants());
 			}
 		});
 	}

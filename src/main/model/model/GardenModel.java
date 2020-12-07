@@ -11,8 +11,8 @@ import java.util.List;
 import java.util.Scanner;
 
 public class GardenModel {
-	public static Garden garden = new Garden();
-	public static String[] plantdata;
+	 static Garden garden = new Garden();
+	 static String[] plantdata;
 	
 	
 	
@@ -41,6 +41,22 @@ public class GardenModel {
 	
 	public GardenModel() {
 		//UpdatePlant();
+	}
+
+	public Garden getGarden() {
+		return garden;
+	}
+
+	public static void setGarden(Garden garden) {
+		GardenModel.garden = garden;
+	}
+
+	public static String[] getPlantdata() {
+		return plantdata;
+	}
+
+	public static void setPlantdata(String[] plantdata) {
+		GardenModel.plantdata = plantdata;
 	}
 
 	

@@ -36,12 +36,14 @@ public class Main extends Application {
 	
 	static ViewSurround surron;
 	static ViewSeason season;
+	static ViewDrag drag;
 	
 	@Override
 	public void start(Stage stage) {
 		 model= new GardenModel();
 		 surron = new ViewSurround(stage);
 		 season = new ViewSeason(stage);
+		 drag = new ViewDrag(stage);
 		// Create and store all scenes up front
 		scenes.put(SceneName.ViewWelcome, new ViewWelcome(stage).getScene());
 		scenes.put(SceneName.ViewExample, new ViewExample(stage).getScene());
@@ -50,7 +52,7 @@ public class Main extends Application {
 		scenes.put(SceneName.ViewTrees, new ViewTrees(stage).getScene());
 		scenes.put(SceneName.ViewFlowers, new ViewFlowers(stage).getScene());
 		scenes.put(SceneName.ViewFences, new ViewFences(stage).getScene());
-		scenes.put(SceneName.ViewDrag, new ViewDrag(stage).getScene());
+		scenes.put(SceneName.ViewDrag, drag.getScene());
 		scenes.put(SceneName.ViewSurround, surron.getScene());
 		scenes.put(SceneName.ViewSeason, season.getScene());
 		scenes.put(SceneName.ViewRating, new ViewRating(stage).getScene());
@@ -68,6 +70,15 @@ public class Main extends Application {
 	
 	
 	
+	
+	public static ViewDrag getDrag() {
+		return drag;
+	}
+
+	public static void setDrag(ViewDrag drag) {
+		Main.drag = drag;
+	}
+
 	public static ViewSurround getSurron() {
 		return surron;
 	}

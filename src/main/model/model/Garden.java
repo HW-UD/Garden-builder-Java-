@@ -9,7 +9,7 @@ public class Garden {
 	private int gardenLength;
 	private int gardenHeight;
 	
-	Collection <Plants> Garden_Plants;
+	HashSet <Plants> Garden_Plants;
 	
 	
 	public Garden() {
@@ -39,8 +39,8 @@ public class Garden {
 		return Garden_Plants;
 	}
 
-	public void setGarden_Plants(Collection<Plants> garden_Plants) {
-		Garden_Plants = garden_Plants;
+	public void setGarden_Plants(HashSet<Plants> hashSet) {
+		Garden_Plants = hashSet;
 	}
 	
 	

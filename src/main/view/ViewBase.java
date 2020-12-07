@@ -53,7 +53,7 @@ public class ViewBase implements ViewMaker {
 
 	public void loadImg(String path) {
 		
-        for (Plants i : Main.getModel().garden.getGarden_Plants()) {
+        for (Plants i : Main.getModel().getGarden().getGarden_Plants()) {
     		System.out.println(i.getSpecies());
     		System.out.println(i.getSpecies());
     		System.out.println(i.getPlantx());

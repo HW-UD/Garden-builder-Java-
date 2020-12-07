@@ -5,12 +5,18 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
 
+import controller.DragController;
 import controller.Main;
 import controller.PworkController;
 import controller.WelcomeController;
@@ -22,71 +28,158 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import model.Plants;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 
 public class ViewPwork extends ViewBase {
+	FlowPane flowpane = new FlowPane();
+	BorderPane root = new BorderPane();
 
 
+	@SuppressWarnings("unchecked")
+	public void loadButtons(String path) {
+		File file = new File(path); // get file list where the path has
+		File[] array = file.listFiles(); // get the folder list
+		System.out.println(array.toString());
+
+		for (int i = 0; i < array.length; i++) {
+			if (array[i].isFile()) {
+				// only take file name
+				if (array[i].getName().endsWith(".ser")) {
+					String temp = "../Saved/" + array[i].getName();
+					
+					String fileName = array[i].getName();
+					System.out.println(fileName);
+					String GName = fileName.substring(0, fileName.indexOf("."));
+					
+					
+//					Image im1 = new Image(getClass().getResourceAsStream(temp));
+//					ImageView view1 = new ImageView(im1);
+//					view1.setFitHeight(imgheight);
+//					view1.setFitWidth(imgwidth);
+
+					ToggleButton button1 = new ToggleButton(GName/*, new ImageView(im1)*/);
+
+					final int ButtonLength = 300;
+					final int ButtonWidth = 500;
+					button1.setPrefSize(ButtonWidth, ButtonLength);
+
+//					button1.setGraphic(view1);
+
+			    	button1.setOnAction(e -> {
+			
+			    		System.out.println("qqqq");
+			    		
+			    		try
+				        {
+							///Users/wanghuawei/eclipse-workspace/project-team-14/src/main/Saved     path1 + fileName
+				    		String path1= "/Users/wanghuawei/eclipse-workspace/project-team-14/src/main/Saved/";
+				            FileInputStream fis = new FileInputStream(path1 + fileName);
+				            ObjectInputStream ois = new ObjectInputStream(fis);
+				            System.out.println("OISOISOISOIS@@@@@@@@@@@@@@@@@@@@@");
+
+				            System.out.println((HashSet<Plants>) ois.readObject());
+
+
+				            HashSet<Plants> newp =	 (HashSet<Plants>) ois.readObject();
+				            System.out.println("@@@@@@@@@@@@@@@@@@@@@");
+
+
+				            System.out.println(newp);
+
+				            
+//				            Iterator<Object> di = newp.iterator();
+//				            for (Object d1 = di.next(); di.hasNext(); d1 = di.next()) {
+//				            	Plants tmp = (Plants) di;
+//				            	
+//				            	Main.getModel().getGarden().addPlant(tmp.getSpecies(), tmp.getPlantx(), tmp.getPlanty());
+//				            }
+//       
+				            ois.close();
+
+
+				            // Clean up the file
+				         //   new File("tempdata.ser").delete();
+				        }
+				        catch (Exception ex){}
+						
+			    		 
+			    		
+			        	});
+
+
+
+
+					
+					
+					
+					button1.selectedProperty().addListener((observable, oldValue, newValue) -> {
+						// If selected, color the background blue
+						if (newValue) {
+							button1.setStyle("-fx-background-color: blue;");
+							newValue = false;
+						} else {
+							button1.setStyle(null);
+						}
+					});
+
+					flowpane.getChildren().add(button1);
+
+				}
+
+			} else if (array[i].isDirectory()) {
+				loadButtons(array[i].getPath());
+			}
+		}
+	}
+	
+	
+	
 	public ViewPwork(Stage stage) {
 		super(stage, e -> new PworkController(stage).handleMousePress1(e), e -> new PworkController(stage).handleMousePress2(e));
 	}
 	
 	public Scene getScene() {
 
-		BorderPane root = new BorderPane();
-        Label label = new Label("Choose a recent work");
-        label.setFont(Font.font("Times New Roman", FontWeight.BOLD, 30));
-		root.setTop(label);
-		BorderPane.setMargin(label, new Insets(5,0,0,350));
-        root.setPadding(new Insets(10));
+
+			flowpane.setPrefWidth(1000);
+
+			ScrollPane scrollPane = new ScrollPane(flowpane);
+			scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+			root.setCenter(scrollPane);
+
+			root.setPadding(new Insets(10));
+			Label label = new Label("Choose PLants");
+			label.setFont(new Font("Arial", 32));// set the font and the size of the title
+			root.setTop(label);
+
+			label.setTextFill(Color.web("#0076a3"));// set the Color of the label
+
+			// Create next and back button
+			Button backButton = new Button("Back");
+			backButton.setOnMousePressed(handlerP);
+			Button nextButton = new Button("Next");
+			nextButton.setOnMousePressed(handlerN);
+
+			ButtonBar bbar = new ButtonBar();
+			bbar.setPadding(new Insets(10, 0, 0, 10));
+			bbar.getButtons().addAll(backButton, nextButton);
+			root.setBottom(bbar);
+
+
+
+			loadButtons("/Users/wanghuawei/eclipse-workspace/project-team-14/src/main/Saved");
+
+			return new Scene(root, WIDTH, HEIGHT);
         
-        FlowPane flow = new FlowPane();
-        flow.setPadding(new Insets(5, 0, 5, 0));
-        flow.setVgap(4);
-        flow.setHgap(4);
-        root.setCenter(flow);
-        
-        //Deserializing planted.ser
-        Button loadButton =  new Button("load");
-        loadButton.setOnAction( new EventHandler<ActionEvent>() {
-        	public void handle(ActionEvent e) {
-        		try{
-                    FileInputStream fis = new FileInputStream("planted.ser");
-                    ObjectInputStream ois = new ObjectInputStream(fis);
-                    Main.getModel().garden.setGarden_Plants((ArrayList)ois.readObject());               
-                    ois.close();
-                }
-                catch (Exception ex)
-        		{}
-        	}	
-        });
-     
-        
-         
-        ButtonBar works = new ButtonBar();
-        works.setPadding(new Insets(10, 0, 0, 10));
-        works.getButtons().addAll(loadButton);
-        flow.getChildren().add(works);
-        
-		Button backButton = new Button("Back");
-		backButton.setOnMousePressed(handlerP);
-		Button nextButton = new Button("Next");
-		nextButton.setOnMousePressed(handlerN);
-		
-		ButtonBar bbar = new ButtonBar();
-		bbar.setPadding(new Insets(10, 0, 0, 10));
-		bbar.getButtons().addAll(backButton, nextButton);
-		root.setBottom(bbar);
-        
-        
-        
-        
-        return new Scene(root, WIDTH, HEIGHT);
     }    
 }

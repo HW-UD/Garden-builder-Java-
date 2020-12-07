@@ -1,6 +1,7 @@
 package controller;
 
 import javafx.event.Event;
+import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 //import net.snortum.javafx.multiscene.Main;
@@ -31,5 +32,8 @@ public class PworkController {
 	
 	public void handleMousePress2(Event event) {
 		stage.setScene(Main.getScenes().get(SceneName.ViewDrag));
+		System.out.println(Main.getModel().getGarden().getGarden_Plants());
+		Main.getDrag().getMiddle().getChildren().clear();
+		Main.getDrag().loadImg("../img/spring/");//FIXME 
 	}
 }
