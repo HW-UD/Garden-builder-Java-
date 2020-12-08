@@ -1,6 +1,7 @@
 package model;
 
 public enum LeafE {
+	All("All"),
 	Oval("Oval"),
 	Ovate("Ovate"),
 	Linear("Linear"),

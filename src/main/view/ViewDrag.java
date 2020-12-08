@@ -169,13 +169,13 @@ public class ViewDrag extends ViewBase {
 						paneimg( fpath, i, Plantbox);
 
 					}else if (t1.compareTo("All")==0) {
-						System.out.println("ppppppppppppppppppppp");
-//						try {
-//							String path="../img/flowers/";
-//							String fpath = path + i.getSpecies() +".png";
-//							paneimg( fpath, i, Plantbox);
-//
-//						}catch(Exception e) {};
+					//	System.out.println("ppppppppppppppppppppp");
+						try {
+							String path="../img/flowers/";
+							String fpath = path + i.getSpecies() +".png";
+							paneimg( fpath, i, Plantbox);
+
+						}catch(Exception e) {};
 					}
 				}
 			}
@@ -201,12 +201,21 @@ public class ViewDrag extends ViewBase {
 
 						}catch(Exception e) {};
 
-					}else if (t1.equals("All")) {
-						
-					}
-				}
+					}else if (t1.equals("All")) {try {
+						String path="../img/flowers/";
+						String fpath = path + i.getSpecies() +".png";
+						paneimg( fpath, i, Plantbox);
+
+					}catch(Exception e) {};
+					
+					try {
+						String path="../img/trees/";
+						String fpath = path + i.getSpecies() +".png";
+						paneimg( fpath, i, Plantbox);
+
+					}catch(Exception e) {};
 			}
-		});
+		}}});
         
 		Label WaterN = new Label("WaterNeed: ");
 		WaterN.setFont(Font.font ("Verdana",FontWeight.BOLD, 10));

@@ -1,6 +1,7 @@
 package model;
 
 public enum waterE {
+	All("All"),
 	High("High"),
 	Medium("Medium"),
 	Low("Low");

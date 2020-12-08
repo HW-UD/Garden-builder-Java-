@@ -1,6 +1,7 @@
 package model;
 
 public enum colorE {
+	All("All"),
 	White("White"),
 	Purple("Purple"),
 	Blue("Blue"),
