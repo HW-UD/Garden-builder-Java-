@@ -18,6 +18,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
@@ -38,9 +39,12 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
-
-
+import model.Plants;
+import model.colorE;
+import model.soilE;
+import model.waterE;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -55,35 +59,39 @@ import javax.imageio.ImageIO;
 
 
 public class ViewDrag extends ViewBase {
+    String WorkPath = System.getProperty("user.dir");
 
+    private void paneimg(String fpath,Plants i,VBox Plantbox) {
+        GardenImage img =  new GardenImage(getClass().getResourceAsStream(fpath));
+        img.setID(i.getSpecies());
+
+        GardenImgView iv1 = new GardenImgView();
+		iv1.setID(img.getID());
+    	iv1.setImage(img);
+    	Plantbox.getChildren().add(iv1);
+    	iv1.setPreserveRatio(true);
+    	iv1.setFitHeight(imgheight);
+    	iv1.setFitWidth(imgwidth);
+    	DragController.drag (iv1);
+    }
+    
 	@Override
 	public Scene getScene() {
 		BorderPane root = new BorderPane();
+        middle = new Pane();
 		GraphicsContext gc;
 	    Canvas canvas = new Canvas(WIDTH, HEIGHT);
 		root.getChildren().add(canvas);
 		gc = canvas.getGraphicsContext2D();
 		
-    	TilePane tilepane = new TilePane();
-        middle = new Pane();
-        tilepane.setStyle("-fx-background-color : #7CFC00;");
-        //flowpane.setStyle("-fx-background-color : #8B4513;");
+    	FlowPane flowpane = new FlowPane();
+//        tilepane.setStyle("-fx-background-color : #7CFC00;");
+      
+		
+		
+		//flowpane.setStyle("-fx-background-color : #8B4513;");
         
-        Button circleButton = new Button("Circle");
-        circleButton.setOnAction( new EventHandler<ActionEvent>() {
-        	public void handle(ActionEvent e) {
-        		Image background = new Image(getClass().getResourceAsStream("../img/default/tudicircle.png"));
-                gc.drawImage(background, 0, 0, WIDTH, HEIGHT);
-        	}	
-        });
-        
-        Button squareButton = new Button("Square");
-        squareButton.setOnAction( new EventHandler<ActionEvent>() {
-        	public void handle(ActionEvent e) {
-        		Image background = new Image(getClass().getResourceAsStream("../img/default/tudi.jpg"));
-                gc.drawImage(background, 0, 0, WIDTH, HEIGHT);
-        	}	
-        });
+
         
 //        Image background = new Image("file:src/main/img/default/tudi.jpg");
 //        Polygon p2 = new Polygon();
@@ -100,74 +108,145 @@ public class ViewDrag extends ViewBase {
 //        p2.setFill(new ImagePattern(background, 0, 0, 500, 1000, false));
 //        
 //        flowpane.getChildren().add(p2);
+		
+    	flowpane.setPrefWidth(imgwidth+30);
+    	flowpane.setPrefHeight(imgheight+600);
+        
 
-       	
-        tilepane.setPrefWidth(imgwidth+30);
-        tilepane.setPrefHeight(imgheight+600);
-        tilepane.setPrefColumns(1);
-        
-        
-        Button sbutton = new Button("Submit");
-        
-        ChoiceBox<String> light = new ChoiceBox<String>();
-        light.getItems().addAll("light glare","light medium","light weak");
-        tilepane.getChildren().addAll(light);
-        ChoiceBox<String> water = new ChoiceBox<String>();
-        water.getItems().addAll("water large","water medium","water little");
-        tilepane.getChildren().add(water);
-        
-//        ArrayList<Image> glareplants = new ArrayList<Image>();
-//    	glareplants.add(new Image("file:src/main/img/default/tudi.jpg"));
-//    	glareplants.add(new Image("file:src/main/img/default/tudi.jpg"));
-//    	
-    	sbutton.setOnAction(e -> {
-
-	        String WorkPath = System.getProperty("user.dir");
-    		
-    		loadFile(WorkPath+"/src/main/img/spring");
-        	for (GardenImage i: plants_img) {
-        		GardenImgView iv1 = new GardenImgView();
-        		iv1.setID(i.getID());
-            	iv1.setImage(i);
-            	tilepane.getChildren().add(iv1);
-            	iv1.setPreserveRatio(true);
-            	iv1.setFitHeight(imgheight);
-            	iv1.setFitWidth(imgwidth);
-            	DragController.drag (iv1);
-        	}
-        	});
-        
-//        sbutton.setOnAction(e -> {
-//    		loadFile("src/main/img/spring");
-//        	for (Image iv: plants_img) {
-//        		GardenImgView iv2 = new GardenImgView();
-//            	iv2.setImage(iv);
-//            	tilepane.getChildren().add(iv2);
-//            	iv2.setPreserveRatio(true);
-//            	iv2.setFitHeight(imgheight);
-//            	iv2.setFitWidth(imgwidth);
-//            	DragController.drag (iv2);
-//        	}
-//		});
-        
-        
-        ScrollPane scrollPane = new ScrollPane(tilepane);
+        ScrollPane scrollPane = new ScrollPane(flowpane);
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-        root.setLeft(scrollPane);
+       	VBox vbox= new VBox();
+       	VBox Plantbox= new VBox();
 
+
+        
+       
+        ChoiceBox<String> soil = new ChoiceBox<String>();
+        soil.getItems().addAll("All","Wet","Moist","Dry");
+        
+        ChoiceBox<String> waterNeed = new ChoiceBox<String>();
+        waterNeed.getItems().addAll("All","High","Medium","Large");
+        
+        ChoiceBox<String> color = new ChoiceBox<String>();
+        color.getItems().addAll("All","White","Purple","Blue","Orange","Yellow","Pink");
+       	
+        soil.valueProperty().addListener(new ChangeListener<String>() {
+			@Override 
+			public void changed(ObservableValue ov, String t, String t1) {
+				Plantbox.getChildren().clear();
+				for(Plants i:Main.getModel().getPlantBank()) {
+					if (i.getSoil()==soilE.valueOf(t1)) {
+						String path="../img/trees/";
+						
+						String fpath = path + i.getSpecies() +".png";
+
+						paneimg( fpath, i, Plantbox);
+
+					}else if (t1.equals("All")) {
+						try {
+							String path="../img/trees/";
+							String fpath = path + i.getSpecies() +".png";
+							paneimg( fpath, i, Plantbox);
+
+						}catch(Exception e) {};
+					}
+				}
+			}
+		});
+        
+        color.valueProperty().addListener(new ChangeListener<String>() {
+			@Override 
+			public void changed(ObservableValue ov, String t, String t1) {
+				Plantbox.getChildren().clear();
+				for(Plants i:Main.getModel().getPlantBank()) {
+					if (i.getColor()==colorE.valueOf(t1)) {
+						String path="../img/flowers/";
+						
+						String fpath = path + i.getSpecies() +".png";
+
+						paneimg( fpath, i, Plantbox);
+
+					}else if (t1.equals("All")) {
+						try {
+							String path="../img/flowers/";
+							String fpath = path + i.getSpecies() +".png";
+							paneimg( fpath, i, Plantbox);
+
+						}catch(Exception e) {};
+					}
+				}
+			}
+		});
+        
+        waterNeed.valueProperty().addListener(new ChangeListener<String>() {
+			@Override 
+			public void changed(ObservableValue ov, String t, String t1) {
+				Plantbox.getChildren().clear();
+				for(Plants i:Main.getModel().getPlantBank()) {
+					if (i.getWater()==waterE.valueOf(t1)) {
+						try {
+							String path="../img/flowers/";
+							String fpath = path + i.getSpecies() +".png";
+							paneimg( fpath, i, Plantbox);
+
+						}catch(Exception e) {};
+						
+						try {
+							String path="../img/trees/";
+							String fpath = path + i.getSpecies() +".png";
+							paneimg( fpath, i, Plantbox);
+
+						}catch(Exception e) {};
+
+					}else if (t1.equals("All")) {
+						
+					}
+				}
+			}
+		});
+        
+		Label WaterN = new Label("WaterNeed: ");
+		WaterN.setFont(Font.font ("Verdana",FontWeight.BOLD, 10));
+		Label SoilW = new Label("Tree Soil wetness: ");
+		SoilW.setFont(Font.font ("Verdana",FontWeight.BOLD, 10));
+		Label Fcolor = new Label("Flower color: ");
+		Fcolor.setFont(Font.font ("Verdana",FontWeight.BOLD, 10));
+
+		vbox.getChildren().add(WaterN);
+        vbox.getChildren().add(waterNeed);
+
+		vbox.getChildren().add(SoilW);
+        vbox.getChildren().add(soil);
+
+		vbox.getChildren().add(Fcolor);
+        vbox.getChildren().add(color);
+        
+        
+       
+        flowpane.getChildren().add(vbox);
+        flowpane.getChildren().add(Plantbox);
+        
+       
+        root.setLeft(scrollPane);
     	root.setCenter(middle);
+        
+
+
   
-//    	loadFile("src/main/img/spring");
-//    	for (Image i: plants_img) {
-//
-//    		ImageView iv1 = new ImageView();
-//        	iv1.setImage(i);
-//        	tilepane.getChildren().add(iv1);
-//        	iv1.setPreserveRatio(true);
-//        	iv1.setFitHeight(imgheight);
-//        	iv1.setFitWidth(imgwidth);
-//        	DragController.drag (iv1);
-//    	}
+    	loadFile(WorkPath+"/src/main/img/flowers");
+    	loadFile(WorkPath+"/src/main/img/trees");
+
+    	for (GardenImage i: plants_img) {
+
+            GardenImgView iv1 = new GardenImgView();
+    		iv1.setID(i.getID());
+        	iv1.setImage(i);
+        	Plantbox.getChildren().add(iv1);
+        	iv1.setPreserveRatio(true);
+        	iv1.setFitHeight(imgheight);
+        	iv1.setFitWidth(imgwidth);
+        	DragController.drag (iv1);
+    	}
     	
     	DragController.drop (middle) ;
     	DragController.DragOver (middle) ;
@@ -178,6 +257,21 @@ public class ViewDrag extends ViewBase {
 		Button nextButton = new Button("Next");
 		nextButton.setOnMousePressed(handlerN);
 		
+        Button circleButton = new Button("Circle");
+        circleButton.setOnAction( new EventHandler<ActionEvent>() {
+        	public void handle(ActionEvent e) {
+        		Image background = new Image(getClass().getResourceAsStream("../img/default/tudicircle.png"));
+                gc.drawImage(background, 0, 0, WIDTH, HEIGHT);
+        	}	
+        });
+        
+        Button squareButton = new Button("Square");
+        squareButton.setOnAction( new EventHandler<ActionEvent>() {
+        	public void handle(ActionEvent e) {
+        		Image background = new Image(getClass().getResourceAsStream("../img/default/tudi.jpg"));
+                gc.drawImage(background, 0, 0, WIDTH, HEIGHT);
+        	}	
+        });
 
 		Button saveButton = new Button("Save");  
 		  saveButton.setOnAction(e -> new SaveViewbox().display("title", "message"));
@@ -195,7 +289,7 @@ public class ViewDrag extends ViewBase {
 		
 		ButtonBar bbar = new ButtonBar();
 		bbar.setPadding(new Insets(10, 0, 0, 10));
-		bbar.getButtons().addAll(clear,sbutton,squareButton,circleButton,saveButton,backButton, nextButton);
+		bbar.getButtons().addAll(clear,squareButton,circleButton,saveButton,backButton, nextButton);
 		root.setBottom(bbar);
 
 		

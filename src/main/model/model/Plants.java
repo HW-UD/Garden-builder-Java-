@@ -7,7 +7,26 @@ public class Plants implements Serializable{
 	 double plantX;
 	 double plantY; 
 	 String species;
+	 soilE soil;
+	 colorE color;
+	 String type;
 	 
+	 public colorE getColor() {
+		return color;
+	 }
+
+	 public void setColor(colorE color) {
+		this.color = color;
+	 }
+		
+   	 public soilE getSoil() {
+		return soil;
+	}
+
+	 public void setSoil(soilE soil) {
+		 this.soil = soil;
+	 }
+		
 	public waterE getWater() {
 		return water;
 	}

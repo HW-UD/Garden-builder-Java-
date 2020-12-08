@@ -89,31 +89,31 @@ public class ViewWelcome implements ViewMaker {
 		Scene scene = new Scene(root, 1000, 600);
 
 		
-//		Label length = new Label("Length: ");
-//		TextField lengthtf = new TextField ();
-//		length.setFont(Font.font ("Verdana",FontWeight.BOLD, 20));
-//		lengthtf.textProperty().addListener(new ChangeListener<String>() {
-//		       @Override
-//		       public void changed(ObservableValue<? extends String> observable, String oldValue, 
-//		           String newValue) {
-//		           if (!newValue.matches("\\d*")) {
-//		        	   lengthtf.setText(newValue.replaceAll("[^\\d]", ""));
-//		           }
-//		       }
-//		});
-//	       
-//		Label width = new Label("Width: ");
-//		TextField widthtf = new TextField ();
-//		width.setFont(Font.font ("Verdana",FontWeight.BOLD, 20));
-//		widthtf.textProperty().addListener(new ChangeListener<String>() {
-//		       @Override
-//		       public void changed(ObservableValue<? extends String> observable, String oldValue, 
-//		           String newValue) {
-//		           if (!newValue.matches("\\d*")) {
-//		        	   widthtf.setText(newValue.replaceAll("[^\\d]", ""));
-//		           }
-//		       }
-//		});
+		Label length = new Label("Length in meter: ");
+		TextField lengthtf = new TextField ();
+		length.setFont(Font.font ("Verdana",FontWeight.BOLD, 20));
+		lengthtf.textProperty().addListener(new ChangeListener<String>() {
+		       @Override
+		       public void changed(ObservableValue<? extends String> observable, String oldValue, 
+		           String newValue) {
+		           if (!newValue.matches("\\d*")) {
+		        	   lengthtf.setText(newValue.replaceAll("[^\\d]", ""));
+		           }
+		       }
+		});
+	       
+		Label width = new Label("Width in meter: ");
+		TextField widthtf = new TextField ();
+		width.setFont(Font.font ("Verdana",FontWeight.BOLD, 20));
+		widthtf.textProperty().addListener(new ChangeListener<String>() {
+		       @Override
+		       public void changed(ObservableValue<? extends String> observable, String oldValue, 
+		           String newValue) {
+		           if (!newValue.matches("\\d*")) {
+		        	   widthtf.setText(newValue.replaceAll("[^\\d]", ""));
+		           }
+		       }
+		});
 //		
 //		Label name = new Label("Garden name: ");
 //		TextField nametf = new TextField ();

@@ -71,9 +71,6 @@ public class Main extends Application {
 		return scenes;
 	}
 	
-	
-	
-	
 	public static ViewDrag getDrag() {
 		return drag;
 	}

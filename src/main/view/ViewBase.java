@@ -89,8 +89,15 @@ public class ViewBase implements ViewMaker {
                 // only take file name   
             	if (array[i].getName().endsWith(".png")) {
             		System.out.println("^^^^^" + array[i].getName());   
-            		
-                    String temp= "../img/spring/" + array[i].getName();
+            		String type;
+            		if (path.endsWith("flowers")) {
+            			type="flowers";
+            		}else if (path.endsWith("trees")) {
+            			type="trees";
+            		}else {
+            			type="";
+            		}
+                    String temp= "../img/"+type+"/" + array[i].getName();
                     System.out.println("000000" + temp);
                     
                     GardenImage img =  new GardenImage(getClass().getResourceAsStream(temp));
