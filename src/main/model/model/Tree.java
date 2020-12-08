@@ -6,7 +6,7 @@ public class Tree extends Plants {
 
 	
 	public String toString(){
-		return "species : \"" + species + "\" located on X: " + plantX + " Y: " + plantY+water+" soil: "+soil;
+		return "species : \"" + species + "\" located on X: " + plantX + " Y: " + plantY+water+" soil: "+Leaf;
 	}
 	
 }

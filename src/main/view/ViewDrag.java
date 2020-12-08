@@ -44,7 +44,7 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import model.Plants;
 import model.colorE;
-import model.soilE;
+import model.LeafE;
 import model.waterE;
 
 import java.awt.image.BufferedImage;
@@ -122,8 +122,8 @@ public class ViewDrag extends ViewBase {
 
         
        
-        ChoiceBox<String> soil = new ChoiceBox<String>();
-        soil.getItems().addAll("All","Wet","Moist","Dry");
+        ChoiceBox<String> Leaf = new ChoiceBox<String>();
+        Leaf.getItems().addAll("All","Oval","Ovate","Linear","Oblong","Ovate","Needle","Maple","Scale","Spear","Paddle");
         
         ChoiceBox<String> waterNeed = new ChoiceBox<String>();
         waterNeed.getItems().addAll("All","High","Medium","Large");
@@ -131,12 +131,12 @@ public class ViewDrag extends ViewBase {
         ChoiceBox<String> color = new ChoiceBox<String>();
         color.getItems().addAll("All","White","Purple","Blue","Orange","Yellow","Pink");
        	
-        soil.valueProperty().addListener(new ChangeListener<String>() {
+        Leaf.valueProperty().addListener(new ChangeListener<String>() {
 			@Override 
 			public void changed(ObservableValue ov, String t, String t1) {
 				Plantbox.getChildren().clear();
 				for(Plants i:Main.getModel().getPlantBank()) {
-					if (i.getSoil()==soilE.valueOf(t1)) {
+					if (i.getLeaf()==LeafE.valueOf(t1)) {
 						String path="../img/trees/";
 						
 						String fpath = path + i.getSpecies() +".png";
@@ -208,16 +208,16 @@ public class ViewDrag extends ViewBase {
         
 		Label WaterN = new Label("WaterNeed: ");
 		WaterN.setFont(Font.font ("Verdana",FontWeight.BOLD, 10));
-		Label SoilW = new Label("Tree Soil wetness: ");
-		SoilW.setFont(Font.font ("Verdana",FontWeight.BOLD, 10));
+		Label LeafW = new Label("Tree Leaf Shape: ");
+		LeafW.setFont(Font.font ("Verdana",FontWeight.BOLD, 10));
 		Label Fcolor = new Label("Flower color: ");
 		Fcolor.setFont(Font.font ("Verdana",FontWeight.BOLD, 10));
 
 		vbox.getChildren().add(WaterN);
         vbox.getChildren().add(waterNeed);
 
-		vbox.getChildren().add(SoilW);
-        vbox.getChildren().add(soil);
+		vbox.getChildren().add(LeafW);
+        vbox.getChildren().add(Leaf);
 
 		vbox.getChildren().add(Fcolor);
         vbox.getChildren().add(color);

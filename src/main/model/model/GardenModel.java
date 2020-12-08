@@ -52,7 +52,8 @@ public class GardenModel {
 						tmp.setSpecies(str);
 						break;
 					case 1:
-						tmp.setSoil(soilE.valueOf(str));
+						System.out.println(str);
+						tmp.setLeaf(LeafE.valueOf(str));
 						break;
 					case 2:
 						tmp.setWater(waterE.valueOf(str));

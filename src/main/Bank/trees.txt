@@ -6,7 +6,7 @@ AcerSaccharum,Maple,Medium
 CatalpaBignonioides,Heart,Low
 CercisCanadensis,Heart,Low
 ChamaecyparisThyoides,Scale,Low
-ChionanthusVirginicus,spear,High
+ChionanthusVirginicus,Spear,High
 EhretiaAnacua,Oval,Low
 ForestieraAngustifolia,Oval,Low
 FraxinusAmericana,Paddle,High

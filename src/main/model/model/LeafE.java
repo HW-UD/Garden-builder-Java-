@@ -5,7 +5,7 @@ public enum LeafE {
 	Ovate("Ovate"),
 	Linear("Linear"),
 	Oblong("Oblong"),
-	Heart("Ovate"),
+	Heart("Heart"),
 	Needle("Needle"),
 	Maple("Maple"),
 	Scale("Scale"),
