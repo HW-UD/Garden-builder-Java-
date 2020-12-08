@@ -31,6 +31,7 @@ import javafx.scene.layout.Pane;
 public class DragController {
 	
 	private Stage stage;
+	private static Node n;
 	static private String name;
 	/** Must inject a stage @param*/
 	public DragController(Stage stage) {
@@ -114,15 +115,15 @@ public static String getName() {
 				
 				iv1copy.setTranslateX(event.getX());
 				iv1copy.setTranslateY(event.getY());
-				delect ( pane, iv1copy);
+			//	delete (pane, iv1copy);
 				iv1copy.setOnMouseDragged(new EventHandler<MouseEvent>() {
 					@Override
 					public void handle(MouseEvent event) {
-						System.out.println("setonmouseDrag");
-						Node n = (Node) event.getSource(); 
+					//	System.out.println("setonmouseDrag");
+						n = (Node) event.getSource(); 
+						delete (pane, n);
 					    n.setTranslateX(n.getTranslateX() + event.getX()); 
 					    n.setTranslateY(n.getTranslateY() + event.getY());		
-
 					}
 					
 				});
@@ -133,33 +134,25 @@ public static String getName() {
 	}
 	
 	
-	/*
-	 * public static void move(MouseEvent event) { //System.out.println("ic mouse");
-	 * Node n = (Node) event.getSource(); n.setTranslateX(n.getTranslateX() +
-	 * event.getX()); n.setTranslateY(n.getTranslateY() + event.getY()); }
-	 */
+
 	
 	/*
-	 * public static void move(MouseEvent event) { iv1copy.setOnMouseDragged(new
-	 * EventHandler<MouseEvent>() {
+	 * public static void delete (Pane pane,Node n) { pane.setOnMouseClicked(new
+	 * EventHandler<MouseEvent>(){
 	 * 
-	 * @Override public void handle(MouseEvent event) {
-	 * System.out.println("setonmouseDrag"); Node n = (Node) event.getSource();
-	 * n.setTranslateX(n.getTranslateX() + event.getX());
-	 * n.setTranslateY(n.getTranslateY() + event.getY());
+	 * @Override public void handle(MouseEvent event) { if(event.getButton() ==
+	 * MouseButton.PRIMARY && event.getClickCount() == 2 && event.getX() >
+	 * n.getTranslateX()&& event.getX() < (n.getTranslateX()+100)) {
 	 * 
-	 * }
-	 * 
-	 * }); }
+	 * pane.getChildren().remove(n); } } }); }
 	 */
 	
-	
-	public static void delect (Pane pane,Node n) {
+	public static void delete (Pane pane,Node n) {
 		pane.setOnMouseClicked(new EventHandler<MouseEvent>(){
 			@Override
-			public void handle(MouseEvent event) {
+			public void handle(MouseEvent event) {				
+				if(event.getButton() == MouseButton.PRIMARY && event.getClickCount() == 2 && event.getX() > n.getTranslateX()&& event.getX() < (n.getTranslateX()+100)) {
 				
-				if(event.getButton() == MouseButton.SECONDARY && event.getClickCount() == 2) {
 					pane.getChildren().remove(n);
 				}	
 			}
