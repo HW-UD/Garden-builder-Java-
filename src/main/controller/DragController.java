@@ -32,7 +32,7 @@ public class DragController {
 	
 	private Stage stage;
 	static private String name;
-	/** Must inject a stage */
+	/** Must inject a stage @param*/
 	public DragController(Stage stage) {
 		if (stage == null) {
 			throw new IllegalArgumentException("Stage cannot be null");
@@ -41,7 +41,7 @@ public class DragController {
 		this.stage = stage;
 	}
 	
-	/** Display ViewFences scene when the "back" button is clicked */
+	/** Display ViewFences scene when the "back" button is clicked @param*/
 	public void handleMousePress(Event event) {
 		stage.setScene(Main.getScenes().get(SceneName.ViewFences));
 	}
@@ -115,27 +115,52 @@ public static String getName() {
 				iv1copy.setTranslateX(event.getX());
 				iv1copy.setTranslateY(event.getY());
 				delect ( pane, iv1copy);
-				iv1copy.setOnMouseDragged(e -> move(e));
+				iv1copy.setOnMouseDragged(new EventHandler<MouseEvent>() {
+					@Override
+					public void handle(MouseEvent event) {
+						System.out.println("setonmouseDrag");
+						Node n = (Node) event.getSource(); 
+					    n.setTranslateX(n.getTranslateX() + event.getX()); 
+					    n.setTranslateY(n.getTranslateY() + event.getY());		
+
+					}
+					
+				});
 				Main.model.getGarden().addPlant(iv1copy.getID(), event.getX(), event.getY());
 				System.out.println(Main.model.getGarden().getGarden_Plants());
 			}
 		});
 	}
 	
-	public static void move(MouseEvent event) {
-		  //System.out.println("ic mouse");
-		  Node n = (Node) event.getSource();
-		  n.setTranslateX(n.getTranslateX() + event.getX());
-		  n.setTranslateY(n.getTranslateY() + event.getY());
-		 }
 	
-	public static void delect (Pane pane,GardenImgView iv1copy) {
+	/*
+	 * public static void move(MouseEvent event) { //System.out.println("ic mouse");
+	 * Node n = (Node) event.getSource(); n.setTranslateX(n.getTranslateX() +
+	 * event.getX()); n.setTranslateY(n.getTranslateY() + event.getY()); }
+	 */
+	
+	/*
+	 * public static void move(MouseEvent event) { iv1copy.setOnMouseDragged(new
+	 * EventHandler<MouseEvent>() {
+	 * 
+	 * @Override public void handle(MouseEvent event) {
+	 * System.out.println("setonmouseDrag"); Node n = (Node) event.getSource();
+	 * n.setTranslateX(n.getTranslateX() + event.getX());
+	 * n.setTranslateY(n.getTranslateY() + event.getY());
+	 * 
+	 * }
+	 * 
+	 * }); }
+	 */
+	
+	
+	public static void delect (Pane pane,Node n) {
 		pane.setOnMouseClicked(new EventHandler<MouseEvent>(){
 			@Override
 			public void handle(MouseEvent event) {
 				
-				if(event.getButton() == MouseButton.SECONDARY) {
-					pane.getChildren().remove(iv1copy);
+				if(event.getButton() == MouseButton.SECONDARY && event.getClickCount() == 2) {
+					pane.getChildren().remove(n);
 				}	
 			}
 		});
