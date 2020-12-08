@@ -35,6 +35,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
@@ -112,8 +113,8 @@ public class ViewDrag extends ViewBase {
     	flowpane.setPrefWidth(imgwidth+30);
     	flowpane.setPrefHeight(imgheight+600);
         
-
         ScrollPane scrollPane = new ScrollPane(flowpane);
+
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
        	VBox vbox= new VBox();
        	VBox Plantbox= new VBox();
@@ -232,7 +233,6 @@ public class ViewDrag extends ViewBase {
         
 
 
-  
     	loadFile(WorkPath+"/src/main/img/flowers");
     	loadFile(WorkPath+"/src/main/img/trees");
 
@@ -248,6 +248,7 @@ public class ViewDrag extends ViewBase {
         	DragController.drag (iv1);
     	}
     	
+
     	DragController.drop (middle) ;
     	DragController.DragOver (middle) ;
     	
@@ -291,6 +292,58 @@ public class ViewDrag extends ViewBase {
 		bbar.setPadding(new Insets(10, 0, 0, 10));
 		bbar.getButtons().addAll(clear,squareButton,circleButton,saveButton,backButton, nextButton);
 		root.setBottom(bbar);
+		
+		
+		middle.addEventHandler(MouseEvent.MOUSE_PRESSED, 
+                new EventHandler<MouseEvent>(){
+
+            @Override
+            public void handle(MouseEvent event) {
+                gc.beginPath();
+                gc.moveTo(event.getX(), event.getY());
+                gc.stroke();
+            }
+        });
+
+        middle.addEventHandler(MouseEvent.MOUSE_DRAGGED, 
+                new EventHandler<MouseEvent>(){
+
+            @Override
+            public void handle(MouseEvent event) {
+                gc.lineTo(event.getX(), event.getY());
+                gc.stroke();
+            }
+        });
+
+        middle.addEventHandler(MouseEvent.MOUSE_RELEASED, 
+                new EventHandler<MouseEvent>(){
+
+            @Override
+            public void handle(MouseEvent event) {
+
+            }
+        });
+       
+//        private void initDraw (GraphicsContext gc){
+//            double canvasWidth = gc.getCanvas().getWidth();
+//            double canvasHeight = gc.getCanvas().getHeight();
+//
+//            gc.setFill(Color.LIGHTGRAY);
+//            gc.setStroke(Color.BLACK);
+//            gc.setLineWidth(5);
+//
+//            gc.fill();
+//            gc.strokeRect(
+//                    0,              //x of the upper left corner
+//                    0,              //y of the upper left corner
+//                    canvasWidth,    //width of the rectangle
+//                    canvasHeight);  //height of the rectangle
+//
+//            gc.setFill(Color.RED);
+//            gc.setStroke(Color.BLUE);
+//            gc.setLineWidth(1);
+//
+//        }
 
 		
 		
