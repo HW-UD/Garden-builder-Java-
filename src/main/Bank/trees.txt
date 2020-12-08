@@ -11,6 +11,3 @@ EhretiaAnacua,Dry,Low
 ForestieraAngustifolia,Dry,Low
 FraxinusAmericana,Dry,High
 MimosaTexana,Dry,Low
-
-
-

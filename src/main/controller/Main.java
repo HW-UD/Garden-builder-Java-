@@ -8,15 +8,13 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model.GardenModel;
+import model.Plants;
 import model.SceneName;
 import view.ViewDrag;
-import view.ViewFences;
-import view.ViewFlowers;
 import view.ViewPwork;
 import view.ViewRating;
 import view.ViewSeason;
 import view.ViewSurround;
-import view.ViewTrees;
 import view.ViewWelcome;
 
 //import net.snortum.javafx.multiscene.model.SceneName;
@@ -31,25 +29,32 @@ public class Main extends Application {
 	/** Holds the various scenes to switch between */
 	private static Map<SceneName, Scene> scenes = new HashMap<>();
 	static GardenModel model;
-	
+    String WorkPath = System.getProperty("user.dir");
 	static ViewSurround surron;
 	static ViewSeason season;
 	static ViewDrag drag;
 	
 	@Override
 	public void start(Stage stage) {
-		 model= new GardenModel();
-		 surron = new ViewSurround(stage);
-		 season = new ViewSeason(stage);
-		 drag = new ViewDrag(stage);
+		model= new GardenModel();
+		surron = new ViewSurround(stage);
+		season = new ViewSeason(stage);
+		drag = new ViewDrag(stage);
+		 
+		model.UpdatePlant(WorkPath+"/src/main/Bank/flowers.txt",model.getFlowerdata());
+		model.UpdatePlant(WorkPath+"/src/main/Bank/trees.txt",model.getTreedata());
+		model.UpdatePlant(WorkPath+"/src/main/Bank/shurbs.txt",model.getTreedata());
+		model.loadFlower();
+		model.loadTree() ;
+		
+//		model.loadPlants();
+		for (Plants p: model.getPlantBank()) {
+			System.out.println(p);
+		}
+//		System.out.println("Model Garden"+model.getGarden());
 		// Create and store all scenes up front
 		scenes.put(SceneName.ViewWelcome, new ViewWelcome(stage).getScene());
-		//scenes.put(SceneName.ViewExample, new ViewExample(stage).getScene());
 		scenes.put(SceneName.ViewPwork, new ViewPwork(stage).getScene());
-		//scenes.put(SceneName.ViewCharacteristics, new ViewCharacteristics(stage).getScene());
-		//scenes.put(SceneName.ViewTrees, new ViewTrees(stage).getScene());
-		scenes.put(SceneName.ViewFlowers, new ViewFlowers(stage).getScene());
-		scenes.put(SceneName.ViewFences, new ViewFences(stage).getScene());
 		scenes.put(SceneName.ViewDrag, drag.getScene());
 		scenes.put(SceneName.ViewSurround, surron.getScene());
 		scenes.put(SceneName.ViewSeason, season.getScene());

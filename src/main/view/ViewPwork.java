@@ -54,7 +54,6 @@ public class ViewPwork extends ViewBase {
 	public void loadButtons(String path) {
 		File file = new File(path); // get file list where the path has
 		File[] array = file.listFiles(); // get the folder list
-		System.out.println(array.toString());
 
 		for (int i = 0; i < array.length; i++) {
 			if (array[i].isFile()) {
@@ -74,11 +73,13 @@ public class ViewPwork extends ViewBase {
 					button1.setPrefSize(ButtonWidth, ButtonLength);
 					button1.setGraphic(view1);
 //					button1.setOnMousePressed(handlerN);
+					
 			    	button1.setOnAction(e -> {
 			    	try{
 			    		System.out.println(path + "/"+fileName);
 				    	ObjectInputStream ois = new ObjectInputStream(new FileInputStream(path+"/"+fileName));
 				        HashSet readObject = (HashSet) ois.readObject();
+				        
 		            	Main.getModel().getGarden().setGarden_Plants(readObject);
 				        ois.close();
 				         //   new File("tempdata.ser").delete();
