@@ -158,6 +158,7 @@ public class ViewDrag extends ViewBase {
         color.valueProperty().addListener(new ChangeListener<String>() {
 			@Override 
 			public void changed(ObservableValue ov, String t, String t1) {
+				System.out.println(t1);
 				Plantbox.getChildren().clear();
 				for(Plants i:Main.getModel().getPlantBank()) {
 					if (i.getColor()==colorE.valueOf(t1)) {
@@ -167,13 +168,14 @@ public class ViewDrag extends ViewBase {
 
 						paneimg( fpath, i, Plantbox);
 
-					}else if (t1.equals("All")) {
-						try {
-							String path="../img/flowers/";
-							String fpath = path + i.getSpecies() +".png";
-							paneimg( fpath, i, Plantbox);
-
-						}catch(Exception e) {};
+					}else if (t1.compareTo("All")==0) {
+						System.out.println("ppppppppppppppppppppp");
+//						try {
+//							String path="../img/flowers/";
+//							String fpath = path + i.getSpecies() +".png";
+//							paneimg( fpath, i, Plantbox);
+//
+//						}catch(Exception e) {};
 					}
 				}
 			}
