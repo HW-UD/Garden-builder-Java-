@@ -34,6 +34,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
@@ -107,7 +108,6 @@ public class ViewDrag extends ViewBase {
         tilepane.setPrefColumns(1);
         
         
-        Button sbutton = new Button("Submit");
         
         ChoiceBox<String> light = new ChoiceBox<String>();
         light.getItems().addAll("light glare","light medium","light weak");
@@ -116,11 +116,8 @@ public class ViewDrag extends ViewBase {
         water.getItems().addAll("water large","water medium","water little");
         tilepane.getChildren().add(water);
         
-//        ArrayList<Image> glareplants = new ArrayList<Image>();
-//    	glareplants.add(new Image("file:src/main/img/default/tudi.jpg"));
-//    	glareplants.add(new Image("file:src/main/img/default/tudi.jpg"));
-//    	
-    	sbutton.setOnAction(e -> {
+	
+    	
 
 	        String WorkPath = System.getProperty("user.dir");
     		
@@ -135,21 +132,9 @@ public class ViewDrag extends ViewBase {
             	iv1.setFitWidth(imgwidth);
             	DragController.drag (iv1);
         	}
-        	});
+   
         
-//        sbutton.setOnAction(e -> {
-//    		loadFile("src/main/img/spring");
-//        	for (Image iv: plants_img) {
-//        		GardenImgView iv2 = new GardenImgView();
-//            	iv2.setImage(iv);
-//            	tilepane.getChildren().add(iv2);
-//            	iv2.setPreserveRatio(true);
-//            	iv2.setFitHeight(imgheight);
-//            	iv2.setFitWidth(imgwidth);
-//            	DragController.drag (iv2);
-//        	}
-//		});
-        
+
         
         ScrollPane scrollPane = new ScrollPane(tilepane);
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
@@ -157,18 +142,7 @@ public class ViewDrag extends ViewBase {
 
     	root.setCenter(middle);
   
-//    	loadFile("src/main/img/spring");
-//    	for (Image i: plants_img) {
-//
-//    		ImageView iv1 = new ImageView();
-//        	iv1.setImage(i);
-//        	tilepane.getChildren().add(iv1);
-//        	iv1.setPreserveRatio(true);
-//        	iv1.setFitHeight(imgheight);
-//        	iv1.setFitWidth(imgwidth);
-//        	DragController.drag (iv1);
-//    	}
-    	
+
     	DragController.drop (middle) ;
     	DragController.DragOver (middle) ;
     	
@@ -195,8 +169,60 @@ public class ViewDrag extends ViewBase {
 		
 		ButtonBar bbar = new ButtonBar();
 		bbar.setPadding(new Insets(10, 0, 0, 10));
-		bbar.getButtons().addAll(clear,sbutton,squareButton,circleButton,saveButton,backButton, nextButton);
+		bbar.getButtons().addAll(clear,squareButton,circleButton,saveButton,backButton, nextButton);
 		root.setBottom(bbar);
+		
+		
+		middle.addEventHandler(MouseEvent.MOUSE_PRESSED, 
+                new EventHandler<MouseEvent>(){
+
+            @Override
+            public void handle(MouseEvent event) {
+                gc.beginPath();
+                gc.moveTo(event.getX(), event.getY());
+                gc.stroke();
+            }
+        });
+
+        middle.addEventHandler(MouseEvent.MOUSE_DRAGGED, 
+                new EventHandler<MouseEvent>(){
+
+            @Override
+            public void handle(MouseEvent event) {
+                gc.lineTo(event.getX(), event.getY());
+                gc.stroke();
+            }
+        });
+
+        middle.addEventHandler(MouseEvent.MOUSE_RELEASED, 
+                new EventHandler<MouseEvent>(){
+
+            @Override
+            public void handle(MouseEvent event) {
+
+            }
+        });
+       
+//        private void initDraw (GraphicsContext gc){
+//            double canvasWidth = gc.getCanvas().getWidth();
+//            double canvasHeight = gc.getCanvas().getHeight();
+//
+//            gc.setFill(Color.LIGHTGRAY);
+//            gc.setStroke(Color.BLACK);
+//            gc.setLineWidth(5);
+//
+//            gc.fill();
+//            gc.strokeRect(
+//                    0,              //x of the upper left corner
+//                    0,              //y of the upper left corner
+//                    canvasWidth,    //width of the rectangle
+//                    canvasHeight);  //height of the rectangle
+//
+//            gc.setFill(Color.RED);
+//            gc.setStroke(Color.BLUE);
+//            gc.setLineWidth(1);
+//
+//        }
 
 		
 		
