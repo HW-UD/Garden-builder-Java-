@@ -126,7 +126,7 @@ public class ViewDrag extends ViewBase {
         Leaf.getItems().addAll("All","Oval","Ovate","Linear","Oblong","Ovate","Needle","Maple","Scale","Spear","Paddle");
         
         ChoiceBox<String> waterNeed = new ChoiceBox<String>();
-        waterNeed.getItems().addAll("All","High","Medium","Large");
+        waterNeed.getItems().addAll("All","High","Medium","Low");
         
         ChoiceBox<String> color = new ChoiceBox<String>();
         color.getItems().addAll("All","White","Purple","Blue","Orange","Yellow","Pink");
