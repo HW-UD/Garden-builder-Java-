@@ -220,93 +220,7 @@
 ////	}
 ////}
 //
-//private double leftx,lefty;
-//private Ellipse currentEllipse = new Ellipse();
-//@Override
-//public void press(MouseEvent e, Board pane)
-//{
-//    currentEllipse=new Ellipse(e.getX()-pane.getWidth()/2,e.getY()-pane.getHeight()/2,0,0);
-//    currentEllipse.setStrokeWidth(pane.fa.getMyLeft().getNowStrokeWidth());
-//    currentEllipse.setFill(pane.fa.getMyLeft().getColor());
-//    currentEllipse.setStroke(pane.fa.getMyLeft().getColor());
-//    leftx=e.getX();lefty=e.getY();
-//    pane.add(currentEllipse);
-//}
-//@Override
-//public void drag(MouseEvent e, Board pane)
-//{
-//    if(e.isShiftDown())
-//    {
-//        currentEllipse.setRadiusX(Math.max(Math.abs(e.getX()-leftx)/2,Math.abs(e.getY()-lefty)/2));
-//        currentEllipse.setRadiusY(Math.max(Math.abs(e.getX()-leftx)/2,Math.abs(e.getY()-lefty)/2));
-//    }
-//    else
-//    {
-//        currentEllipse.setRadiusX(Math.abs(e.getX()-leftx)/2);
-//        currentEllipse.setRadiusY(Math.abs(e.getY()-lefty)/2);
-//    }
-//    currentEllipse.setCenterX((e.getX()+leftx)/2-pane.getWidth()/2);
-//    currentEllipse.setCenterY((e.getY()+lefty)/2-pane.getHeight()/2);
-//}
-//@Override
-//public void release(MouseEvent e, Board pane)
-//{
-//    if(currentEllipse.getRadiusX()<1&&currentEllipse.getRadiusY()<1)
-//    {
-//        pane.delete(currentEllipse);
-//    }
-//    else if(currentEllipse.getRadiusX()<20||currentEllipse.getRadiusY()<20)
-//    {
-//        AlertBox alertBox = new AlertBox("The object you draw is small, Do you still want to add it?", "Too Small", "yes", "no");
-//        if (alertBox.getMode() != 1)pane.delete(currentEllipse);
-//    }
-//}
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//public class MyEraser implements Tool
-//{
-//    @Override
-//    public void press(MouseEvent e, Board pane)
-//    {
-//        Main.getScene().setCursor(new ImageCursor(new Image("image/rectangle.png"),100, 100));
-//        delete(e.getX()-12.8-pane.getWidth()/2,e.getY()-12.8-pane.getHeight()/2,e.getX()+12.8-pane.getWidth()/2,e.getY()+12.8-pane.getHeight()/2,pane.getObject(), pane);
-//    }
-//
-//    @Override
-//    public void drag(MouseEvent e, Board pane)
-//    {
-////      pane.addEventFilter(MouseEvent.DRAG_DETECTED, event -> pane.startFullDrag());
-//        delete(e.getX()-12.8-pane.getWidth()/2,e.getY()-12.8-pane.getHeight()/2,e.getX()+12.8-pane.getWidth()/2,e.getY()+12.8-pane.getHeight()/2,pane.getObject(), pane);
-//    }
-//
-//    @Override
-//    public void release(MouseEvent e, Board pane)
-//    {
-//        Main.getScene().setCursor(Cursor.DEFAULT);
-//    }
-//
-//    private void delete(double x1, double y1, double x2, double y2, Group object, Board pane)
-//    {
-//        ArrayList<Shape> deleteBuffer = new ArrayList<>();
-//        for(Node node:object.getChildren())
-//            if(Geometry.inRange(x1,y1,x2,y2,node))
-//            {
-//                deleteBuffer.add((Shape)node);
-//            }
-//        for(Shape shape:deleteBuffer)
-//        {
-//            pane.fa.getMyRight().deleteSelected(shape);
-//            pane.delete(shape);
-//        }
-//    }
-//}
+
 //
 //
 //
@@ -324,107 +238,249 @@
 //
 //
 //
-//
-//public class MyLine extends Line implements Tool
-//{
-//    private Line currentLine = new Line();
-//    @Override
-//    public void press(MouseEvent e,Board pane)
-//    {
-//        currentLine=new Line(e.getX()-pane.getWidth()/2,e.getY()-pane.getHeight()/2,e.getX()-pane.getWidth()/2,e.getY()-pane.getHeight()/2);
-//        currentLine.setStrokeWidth(pane.fa.getMyLeft().getNowStrokeWidth());
-//        currentLine.setStroke(pane.fa.getMyLeft().getColor());
-//        pane.add(currentLine);
-//    }
-//    @Override
-//    public void drag(MouseEvent e,Board pane)
-//    {
-//        currentLine.setEndX(e.getX()-pane.getWidth()/2);
-//        currentLine.setEndY(e.getY()-pane.getHeight()/2);
-//    }
-//    @Override
-//    public void release(MouseEvent e, Board pane)
-//    {
-//        double lengthSquare = (currentLine.getStartX()-currentLine.getEndX())*(currentLine.getStartX()-currentLine.getEndX())+(currentLine.getStartY()-currentLine.getEndY())*(currentLine.getStartY()-currentLine.getEndY());
-//        if(lengthSquare<4)
-//        {
-//            pane.delete(currentLine);
-//        }
-//        else if(lengthSquare<100)
-//        {
-//            AlertBox alertBox = new AlertBox("The object you draw is small, Do you still want to add it?", "Too Small", "yes", "no");
-//            if (alertBox.getMode() != 1)pane.delete(currentLine);
-//        }
-//    }
-//}
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//public class MyPolyline implements Tool
-//{
-//    private Polyline currentPolyline =new Polyline();
-//    @Override
-//    public void press(MouseEvent e, Board pane)
-//    {
-//        if(!pane.getObject().getChildren().contains(currentPolyline))
-//        {
-//            currentPolyline =new Polyline();
-//            currentPolyline.setStrokeWidth(pane.fa.getMyLeft().getNowStrokeWidth());
-//            currentPolyline.setFill(pane.fa.getMyLeft().getColor());
-//            currentPolyline.setStroke(pane.fa.getMyLeft().getColor());
-//            if(currentPolyline.getPoints().isEmpty())
-//            {
-//                pane.add(currentPolyline);
-//                currentPolyline.getPoints().addAll(e.getX()-pane.getWidth()/2, e.getY()-pane.getHeight()/2);
-//            }
-//            currentPolyline.getPoints().addAll(e.getX()-pane.getWidth()/2, e.getY()-pane.getHeight()/2);
-//            return;
-//        }
-//        if(e.getButton().equals(MouseButton.SECONDARY))
-//        {
-//            if(currentPolyline.getPoints().isEmpty()) return;
-//
-//            currentPolyline.getPoints().addAll(currentPolyline.getPoints().get(0), currentPolyline.getPoints().get(1));
-//            currentPolyline.setStrokeWidth(pane.fa.getMyLeft().getNowStrokeWidth());
-//            currentPolyline.setStroke(pane.fa.getMyLeft().getColor());
-//            currentPolyline.setFill(pane.fa.getMyLeft().getColor());
-//            pane.fa.getMyRight().update(currentPolyline);
-//            currentPolyline =new Polyline();
-//            return;
-//        }
-//        currentPolyline.setStrokeWidth(pane.fa.getMyLeft().getNowStrokeWidth());
-//        currentPolyline.setFill(pane.fa.getMyLeft().getColor());
-//        currentPolyline.setStroke(pane.fa.getMyLeft().getColor());
-//        if(currentPolyline.getPoints().isEmpty())
-//        {
-//            pane.add(currentPolyline);
-//            currentPolyline.getPoints().addAll(e.getX()-pane.getWidth()/2, e.getY()-pane.getHeight()/2);
-//        }
-//        currentPolyline.getPoints().addAll(e.getX()-pane.getWidth()/2, e.getY()-pane.getHeight()/2);
-//    }
-//
-//    @Override
-//    public void drag(MouseEvent e, Board pane)
-//    {
-//        if(e.getButton().equals(MouseButton.SECONDARY)) return;
-//        currentPolyline.getPoints().remove(currentPolyline.getPoints().size()-1);
-//        currentPolyline.getPoints().remove(currentPolyline.getPoints().size()-1);
-//        currentPolyline.getPoints().addAll(e.getX()-pane.getWidth()/2, e.getY()-pane.getHeight()/2);
-//    }
-//
-//    @Override
-//    public void release(MouseEvent e, Board pane)
-//    {
-//
-//    }
-//}
+
+/*
+package drawingBoard;
+
+import javafx.beans.property.Property;
+import javafx.scene.Group;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.effect.Bloom;
+import javafx.scene.input.KeyCode;
+import javafx.scene.layout.HBox;
+import javafx.scene.shape.*;
+
+import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class Cue extends HBox
+{
+    private MainPane fa;
+    private Label x = new Label("x: "), y = new Label("y: "), serial = new Label("serial number: "), lCommandBar = new Label("Command Bar");
+    private TextField commandBar = new TextField();
+    public void setSerial(String serial)
+    {
+        this.serial.setText("serial number: "+serial);
+    }
+    public Cue(MainPane fa)
+    {
+        super(50);
+        this.fa = fa;
+        x.textProperty().bind(fa.getMyCenter().getGetPos().x);
+        y.textProperty().bind(fa.getMyCenter().getGetPos().y);
+        
+        
+        
+        lCommandBar.setPrefWidth(120);
+        commandBar.setLayoutX(lCommandBar.getPrefWidth());
+        commandBar.setFocusTraversable(false);
+        commandBar.setOnKeyPressed(event ->
+        {
+            if(event.getCode().equals(KeyCode.TAB))
+            {
+                fa.getMyRight().getName().requestFocus();
+            }
+        });
+        
+        
+        
+        
+        
+        
+        commandBar.setOnAction(event ->
+        {
+            Matcher matcher = Pattern.compile("([a-zA-Z]+)[ a-zA-Z0-9]*").matcher(commandBar.getText());
+            if(matcher.matches())
+            {
+                try
+                {
+                    if(matcher.group(1).equalsIgnoreCase("find"))
+                    {
+                        matcher.usePattern(Pattern.compile("([0-9]{1,5})"));
+                        matcher.reset();
+                        if(matcher.find())
+                        {
+                            int number = Integer.parseInt(matcher.group());
+                            if(number<fa.getMyCenter().getObject().getChildren().size())
+                            {
+                                fa.getMyRight().getSelected().clear();
+                                Shape shape = (Shape) fa.getMyCenter().getObject().getChildren().get(number);
+                                fa.getMyRight().addSelected((Shape) fa.getMyCenter().getObject().getChildren().get(number));
+                                fa.getMyRight().change();
+                                fa.getMyRight().changeItem(shape);
+                                Thread thread = new Thread(()-> {
+                                    try
+                                    {
+                                        shape.setStyle("-fx-fill: INDIANRED; -fx-stroke:INDIANRED");
+                                        shape.setEffect(new Bloom(0.3));
+                                        Thread.sleep(1000);
+                                    }catch (InterruptedException e1)
+                                    {
+                                    }
+                                    shape.setStyle(null);
+                                    shape.setEffect(null);
+                                });
+                                thread.start();
+                            }
+                            else
+                                new AlertBox("Cannot find.", "Error","I know", "Cancel");
+
+                        }
+                        else
+                            new AlertBox("Invalid Parameter.", "Error","I know", "Cancel");
+                    }
+                    
+                    
+                    
+                    
+                    
+                    
+                    else if(matcher.group(1).equalsIgnoreCase("change"))
+                    {
+                        matcher.usePattern(Pattern.compile("([0-9]{1,5})[ ]+([0-9]{1,5})[ ]*"));
+                        matcher.reset();
+                        if(matcher.find())
+                        {
+                            int number1 = Integer.parseInt(matcher.group(1)), number2 = Integer.parseInt(matcher.group(2));
+                            if(number1<fa.getMyCenter().getObject().getChildren().size()&&number2<fa.getMyCenter().getObject().getChildren().size())
+                            {
+                                Shape shape = (Shape) fa.getMyCenter().getObject().getChildren().get(number1);
+                                ArrayList<Property> properties = fa.getMyRight().getObjectProperty().get(number1);
+                                fa.getMyCenter().delete(shape);
+                                fa.getMyCenter().getObject().getChildren().add(number2,shape);
+                                fa.getMyRight().getObjectProperty().add(number2,properties);
+                            }
+                            else
+                                new AlertBox("Cannot change.", "Error","I know", "Cancel");
+                        }
+                        else
+                            new AlertBox("Invalid Parameters.", "Error","I know", "Cancel");
+
+                    }
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    else if(matcher.group(1).equalsIgnoreCase("create"))
+                    {
+                        matcher.usePattern(Pattern.compile("([a-zA-Z]+)"));
+                        matcher.reset(commandBar.getText().split("[ ]+")[1]);
+                        if(matcher.find())
+                        {
+                            switch (matcher.group(1).toLowerCase())
+                            {
+                                case "line":
+                                    fa.getMyCenter().add(new Line());
+                                    break;
+                                case "ellipse":
+                                    fa.getMyCenter().add(new Ellipse());
+                                    break;
+                                case "rectangle":
+                                    fa.getMyCenter().add(new Rectangle());
+                                    break;
+                                case "polyline":
+                                    fa.getMyCenter().add(new Polyline());
+                                    break;
+                            }
+                        }
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        else
+                            new AlertBox("Invalid Type.", "Error","I know", "Cancel");
+                    }
+                    
+                    
+                    
+                    
+                    
+                    else if(matcher.group(1).equalsIgnoreCase("delete"))
+                    {
+                        matcher.usePattern(Pattern.compile("([0-9]{1,5})"));
+                        matcher.reset();
+                        if(matcher.find())
+                        {
+                            int index = Integer.parseInt(matcher.group());
+                            fa.getMyCenter().delete((Shape) fa.getMyCenter().getObject().getChildren().get(index));
+                        }
+                        else
+                        {
+                            matcher.usePattern(Pattern.compile("delete[ ]*"));
+                            matcher.reset();
+                            if (matcher.matches())
+                            {
+                                for (Shape shape : fa.getMyRight().getSelected())
+                                    fa.getMyCenter().delete(shape);
+                                fa.getMyRight().getSelected().clear();
+                                fa.getMyRight().getLayout().getChildren().remove(1,fa.getMyRight().getLayout().getChildren().size());
+                            }
+                            else
+                                new AlertBox("Invalid Input.", "Error","I know", "Cancel");
+                        }
+                    }
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    else
+                    {
+                        new AlertBox("Please input a valid command format.", "Error","I know", "Cancel");
+                    }
+                }catch (Exception e)
+                {
+                    new AlertBox("Please input a valid number.", "Error","I know", "Cancel");
+                }
+             
+                commandBar.setText("");
+            }
+            
+            
+            
+            
+            
+            
+            else if(!commandBar.getText().equals(""))
+            {
+                new AlertBox("Please input a valid command format.", "Error","I know", "Cancel");
+            }
+        });
+        
+        
+        
+        commandBar.setStyle("-fx-base: #99c6ff");
+        getChildren().addAll(x, y, serial, new Group(lCommandBar,commandBar));
+    }
+}
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+// Another way to build up a scence
