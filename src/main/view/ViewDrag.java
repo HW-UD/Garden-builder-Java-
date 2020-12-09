@@ -1,4 +1,5 @@
 package view;
+
 import java.awt.MouseInfo;
 import java.awt.Point;
 import controller.DragController;
@@ -26,6 +27,7 @@ import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.BorderPane;
@@ -58,172 +60,167 @@ import java.util.HashSet;
 
 import javax.imageio.ImageIO;
 
-
 public class ViewDrag extends ViewBase {
-    String WorkPath = System.getProperty("user.dir");
+	String WorkPath = System.getProperty("user.dir");
+	boolean flag = false;
 
-    private void paneimg(Plants i,VBox Plantbox) {
- 
-        GardenImgView iv1 = new GardenImgView();
+	private void paneimg(Plants i, VBox Plantbox) {
+
+		GardenImgView iv1 = new GardenImgView();
 		iv1.setID(i.getImgSpring().getID());
-    	iv1.setImage(i.getImgSpring());
-    	Plantbox.getChildren().add(iv1);
-    	iv1.setPreserveRatio(true);
-    	iv1.setFitHeight(imgheight);
-    	iv1.setFitWidth(imgwidth);
-    	DragController.drag (iv1);
-    }
-    
+		iv1.setImage(i.getImgSpring());
+		Plantbox.getChildren().add(iv1);
+		iv1.setPreserveRatio(true);
+		iv1.setFitHeight(imgheight);
+		iv1.setFitWidth(imgwidth);
+		DragController.drag(iv1);
+	}
+
 	@Override
 	public Scene getScene() {
 		BorderPane root = new BorderPane();
-        middle = new Pane();
+		middle = new Pane();
 		GraphicsContext gc;
-	    Canvas canvas = new Canvas(WIDTH, HEIGHT);
+		Canvas canvas = new Canvas(WIDTH, HEIGHT);
 		root.getChildren().add(canvas);
 		gc = canvas.getGraphicsContext2D();
-		
-    	FlowPane flowpane = new FlowPane();
 
-		
-    	flowpane.setPrefWidth(imgwidth+30);
-    	flowpane.setPrefHeight(imgheight+600);
-        
-        ScrollPane scrollPane = new ScrollPane(flowpane);
+		FlowPane flowpane = new FlowPane();
 
-        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-       	VBox vbox= new VBox();
-       	VBox Plantbox= new VBox();
+		flowpane.setPrefWidth(imgwidth + 30);
+		flowpane.setPrefHeight(imgheight + 600);
 
+		ScrollPane scrollPane = new ScrollPane(flowpane);
 
-        
-       
-        ChoiceBox<String> Leaf = new ChoiceBox<String>();
-        Leaf.getItems().addAll("All","Oval","Ovate","Linear","Oblong","Ovate","Needle","Maple","Scale","Spear","Paddle");
-        
-        ChoiceBox<String> waterNeed = new ChoiceBox<String>();
-        waterNeed.getItems().addAll("All","High","Medium","Low");
-        
-        ChoiceBox<String> color = new ChoiceBox<String>();
-        color.getItems().addAll("All","White","Purple","Blue","Orange","Yellow","Pink");
-       	
-        Leaf.valueProperty().addListener(new ChangeListener<String>() {
-			@Override 
+		scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+		VBox vbox = new VBox();
+		VBox Plantbox = new VBox();
+
+		ChoiceBox<String> Leaf = new ChoiceBox<String>();
+		Leaf.getItems().addAll("All", "Oval", "Ovate", "Linear", "Oblong", "Ovate", "Needle", "Maple", "Scale", "Spear",
+				"Paddle");
+
+		ChoiceBox<String> waterNeed = new ChoiceBox<String>();
+		waterNeed.getItems().addAll("All", "High", "Medium", "Low");
+
+		ChoiceBox<String> color = new ChoiceBox<String>();
+		color.getItems().addAll("All", "White", "Purple", "Blue", "Orange", "Yellow", "Pink");
+
+		Leaf.valueProperty().addListener(new ChangeListener<String>() {
+			@Override
 			public void changed(ObservableValue ov, String t, String t1) {
 				Plantbox.getChildren().clear();
-				for(Plants i:Main.getModel().getPlantBank()) {
-					if (i.getLeaf()==LeafE.valueOf(t1)) {
-						String path="../img/trees/";
-						
-						String fpath = path + i.getSpecies() +".png";
+				for (Plants i : Main.getModel().getPlantBank()) {
+					if (i.getLeaf() == LeafE.valueOf(t1)) {
+						String path = "../img/trees/";
+
+						String fpath = path + i.getSpecies() + ".png";
 
 						paneimg(i, Plantbox);
 
-					}else if (t1.equals("All")) {
+					} else if (t1.equals("All")) {
 						try {
-							String path="../img/trees/";
-							String fpath = path + i.getSpecies() +".png";
-							paneimg( i, Plantbox);
+							String path = "../img/trees/";
+							String fpath = path + i.getSpecies() + ".png";
+							paneimg(i, Plantbox);
 
-						}catch(Exception e) {};
+						} catch (Exception e) {
+						}
+						;
 					}
 				}
 			}
 		});
-        
-        color.valueProperty().addListener(new ChangeListener<String>() {
-			@Override 
+
+		color.valueProperty().addListener(new ChangeListener<String>() {
+			@Override
 			public void changed(ObservableValue ov, String t, String t1) {
 				System.out.println(t1);
 				Plantbox.getChildren().clear();
-				for(Plants i:Main.getModel().getPlantBank()) {
-					if (i.getColor()==colorE.valueOf(t1)) {
-						String path="../img/flowers/";
-						
-						String fpath = path + i.getSpecies() +".png";
+				for (Plants i : Main.getModel().getPlantBank()) {
+					if (i.getColor() == colorE.valueOf(t1)) {
+						String path = "../img/flowers/";
 
-						paneimg( i, Plantbox);
+						String fpath = path + i.getSpecies() + ".png";
 
-					}else if (t1.compareTo("All")==0) {
-					//	System.out.println("ppppppppppppppppppppp");
+						paneimg(i, Plantbox);
+
+					} else if (t1.compareTo("All") == 0) {
+						// System.out.println("ppppppppppppppppppppp");
 						try {
-							String path="../img/flowers/";
-							String fpath = path + i.getSpecies() +".png";
-							paneimg( i, Plantbox);
+							String path = "../img/flowers/";
+							String fpath = path + i.getSpecies() + ".png";
+							paneimg(i, Plantbox);
 
-						}catch(Exception e) {};
+						} catch (Exception e) {
+						}
+						;
 					}
 				}
 			}
 		});
-        
-        waterNeed.valueProperty().addListener(new ChangeListener<String>() {
-			@Override 
+
+		waterNeed.valueProperty().addListener(new ChangeListener<String>() {
+			@Override
 			public void changed(ObservableValue ov, String t, String t1) {
 				Plantbox.getChildren().clear();
-				for(Plants i:Main.getModel().getPlantBank()) {
-					if (i.getWater()==waterE.valueOf(t1)) {
-						paneimg( i, Plantbox);
+				for (Plants i : Main.getModel().getPlantBank()) {
+					if (i.getWater() == waterE.valueOf(t1)) {
+						paneimg(i, Plantbox);
 
+					} else if (t1.equals("All")) {
+						paneimg(i, Plantbox);
 
-					}else if (t1.equals("All")) {
-						paneimg( i, Plantbox);
-
+					}
+				}
 			}
-		}}});
-        
+		});
+
 		Label WaterN = new Label("WaterNeed: ");
-		WaterN.setFont(Font.font ("Verdana",FontWeight.BOLD, 10));
+		WaterN.setFont(Font.font("Verdana", FontWeight.BOLD, 10));
 		Label LeafW = new Label("Tree Leaf Shape: ");
-		LeafW.setFont(Font.font ("Verdana",FontWeight.BOLD, 10));
+		LeafW.setFont(Font.font("Verdana", FontWeight.BOLD, 10));
 		Label Fcolor = new Label("Flower color: ");
-		Fcolor.setFont(Font.font ("Verdana",FontWeight.BOLD, 10));
+		Fcolor.setFont(Font.font("Verdana", FontWeight.BOLD, 10));
 
 		vbox.getChildren().add(WaterN);
-        vbox.getChildren().add(waterNeed);
+		vbox.getChildren().add(waterNeed);
 
 		vbox.getChildren().add(LeafW);
-        vbox.getChildren().add(Leaf);
+		vbox.getChildren().add(Leaf);
 
 		vbox.getChildren().add(Fcolor);
-        vbox.getChildren().add(color);
-        
-        
-       
-        flowpane.getChildren().add(vbox);
-        flowpane.getChildren().add(Plantbox);
-        
-       
-        root.setLeft(scrollPane);
-    	root.setCenter(middle);
-        
+		vbox.getChildren().add(color);
 
+		flowpane.getChildren().add(vbox);
+		flowpane.getChildren().add(Plantbox);
+
+		root.setLeft(scrollPane);
+		root.setCenter(middle);
 
 //    	loadFile(WorkPath+"/src/main/img/flowers");
 //    	loadFile(WorkPath+"/src/main/img/trees");
 
-    	for (Plants p: Main.getModel().getPlantBank()) {
-    		GardenImage i = p.getImgSpring();
-            GardenImgView iv1 = new GardenImgView();
-    		iv1.setID(i.getID());
-        	iv1.setImage(i);
-        	Plantbox.getChildren().add(iv1);
-        	iv1.setPreserveRatio(true);
-        	iv1.setFitHeight(imgheight);
-        	iv1.setFitWidth(imgwidth);
-        	DragController.drag (iv1);
-    	}
-    	
+		for (Plants p : Main.getModel().getPlantBank()) {
+			GardenImage i = p.getImgSpring();
+			GardenImgView iv1 = new GardenImgView();
+			iv1.setID(i.getID());
+			iv1.setImage(i);
+			Plantbox.getChildren().add(iv1);
+			iv1.setPreserveRatio(true);
+			iv1.setFitHeight(imgheight);
+			iv1.setFitWidth(imgwidth);
+			DragController.drag(iv1);
+		}
 
-    	DragController.drop (middle) ;
-    	DragController.DragOver (middle) ;
-    	
-		
+		DragController.drop(middle);
+		DragController.DragOver(middle);
+
 		Button backButton = new Button("Back");
 		backButton.setOnMousePressed(handlerP);
 		Button nextButton = new Button("Next");
 		nextButton.setOnMousePressed(handlerN);
-		
+
 //        Button circleButton = new Button("Circle");
 //        circleButton.setOnAction( new EventHandler<ActionEvent>() {
 //        	public void handle(ActionEvent e) {
@@ -240,77 +237,82 @@ public class ViewDrag extends ViewBase {
 //        	}	
 //        });
 
-		Button saveButton = new Button("Save");  
-		  saveButton.setOnAction(e -> new SaveViewbox().display("title", "message"));
-		  
-		Button clear = new Button("Clear");
-			EventHandler<ActionEvent> Clearevent = new EventHandler<ActionEvent>() {
-				   public void handle(ActionEvent e) {
-				    middle.getChildren().clear();
-				    Image background = new Image(getClass().getResourceAsStream("../img/default/clear.png"));
-	                gc.drawImage(background, 0, 0, WIDTH, HEIGHT);
-				   }
-				  };
+		Button saveButton = new Button("Save");
+		saveButton.setOnAction(e -> new SaveViewbox().display("title", "message"));
 
-				  clear.setOnAction(Clearevent);
-		  
-		  
-		
+		Button clear = new Button("Clear");
+		EventHandler<ActionEvent> Clearevent = new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent e) {
+				middle.getChildren().clear();
+				Image background = new Image(getClass().getResourceAsStream("../img/default/clear.png"));
+				gc.drawImage(background, 0, 0, WIDTH, HEIGHT);
+			}
+		};
+
+		clear.setOnAction(Clearevent);
+
+		EventHandler event_press = new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				gc.beginPath();
+				gc.moveTo(event.getX() + 130, event.getY());
+				gc.stroke();
+			}
+		};
+
+		EventHandler event_drag = new EventHandler<MouseEvent>() {
+
+			@Override
+			public void handle(MouseEvent event) {
+				gc.lineTo(event.getX() + 130, event.getY());
+				gc.stroke();
+			}
+		};
+
+		Button draw = new Button("Draw");
+		draw.setOnMouseClicked(new EventHandler<MouseEvent>() {// click by using mouse left key to start drawing, once you release the mouse,it stops drawing.
+			//Double click draw button won't start drawing. If you want to draw more things, you need to click the draw button again. 
+			@Override
+			public void handle(MouseEvent event) {
+
+				if (event.getButton() == MouseButton.PRIMARY) {
+					if (flag == false) {
+						middle.addEventHandler(MouseEvent.MOUSE_PRESSED, event_press);
+						middle.addEventHandler(MouseEvent.MOUSE_DRAGGED, event_drag);
+						middle.addEventHandler(MouseEvent.MOUSE_RELEASED, new EventHandler<MouseEvent>() {
+							@Override
+							public void handle(MouseEvent event) {
+								middle.removeEventHandler(MouseEvent.MOUSE_PRESSED, event_press);
+								middle.removeEventHandler(MouseEvent.MOUSE_DRAGGED, event_drag);
+								flag = false;
+							}
+						});
+						flag = true;
+					} else {
+						middle.removeEventHandler(MouseEvent.MOUSE_PRESSED, event_press);
+						middle.removeEventHandler(MouseEvent.MOUSE_DRAGGED, event_drag);
+						flag = false;
+					}
+				}
+			}
+		});
+
 		ButtonBar bbar = new ButtonBar();
 		bbar.setPadding(new Insets(10, 0, 0, 10));
-		bbar.getButtons().addAll(clear,saveButton,backButton, nextButton);
+		bbar.getButtons().addAll(draw, clear, saveButton, backButton, nextButton);
 		root.setBottom(bbar);
-		
-		
-		middle.addEventHandler(MouseEvent.MOUSE_PRESSED, 
-                new EventHandler<MouseEvent>(){
 
-            @Override
-            public void handle(MouseEvent event) {
-                gc.beginPath();
-                gc.moveTo(event.getX()+130, event.getY());
-                gc.stroke();
-                gc.setFill(Color.LIGHTGRAY);
-                gc.setStroke(Color.BLACK);
-                gc.setLineWidth(3);
-            }
-        });
-
-        middle.addEventHandler(MouseEvent.MOUSE_DRAGGED, 
-                new EventHandler<MouseEvent>(){
-
-            @Override
-            public void handle(MouseEvent event) {
-                gc.lineTo(event.getX()+130, event.getY());
-                gc.stroke();
-            }
-        });
-
-        middle.addEventHandler(MouseEvent.MOUSE_RELEASED, 
-                new EventHandler<MouseEvent>(){
-
-            @Override
-            public void handle(MouseEvent event) {
-
-            }
-        });
-       
-
-
-		
-		
-		
 		return new Scene(root, WIDTH, HEIGHT);
 	}
-	
+
 	public FlowPane getFlower() {
 		return null;
 	}
-	
-	
+
 	/** Must inject a stage */
 	public ViewDrag(Stage stage) {
-		super(stage, e -> new DragController(stage).handleMousePress(e), e -> new DragController(stage).handleMousePress2(e));
+		super(stage, e -> new DragController(stage).handleMousePress(e),
+				e -> new DragController(stage).handleMousePress2(e));
 	}
 
 }

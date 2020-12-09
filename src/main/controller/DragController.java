@@ -44,7 +44,7 @@ public class DragController {
 	
 	/** Display ViewFences scene when the "back" button is clicked @param*/
 	public void handleMousePress(Event event) {
-		stage.setScene(Main.getScenes().get(SceneName.ViewFences));
+		stage.setScene(Main.getScenes().get(SceneName.ViewWelcome));
 	}
 	
 	public void handleMousePress2(Event event) {
