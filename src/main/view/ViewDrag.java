@@ -64,17 +64,7 @@ public class ViewDrag extends ViewBase {
 	String WorkPath = System.getProperty("user.dir");
 	boolean flag = false;
 
-	private void paneimg(Plants i, VBox Plantbox) {
 
-		GardenImgView iv1 = new GardenImgView();
-		iv1.setID(i.getImgSpring().getID());
-		iv1.setImage(i.getImgSpring());
-		Plantbox.getChildren().add(iv1);
-		iv1.setPreserveRatio(true);
-		iv1.setFitHeight(imgheight);
-		iv1.setFitWidth(imgwidth);
-		DragController.drag(iv1);
-	}
 
 	@Override
 	public Scene getScene() {

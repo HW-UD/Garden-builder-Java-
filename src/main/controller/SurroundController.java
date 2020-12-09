@@ -30,6 +30,6 @@ public class SurroundController {
 	public void handleMousePress2(Event event) {
 		stage.setScene(Main.getScenes().get(SceneName.ViewSeason));
 		Main.getseason().getMiddle().getChildren().clear();
-		Main.getseason().loadImg("../img/spring/");//FIXME 
+//		Main.getseason().loadImg("../img/spring/");//FIXME 
 	}
 }

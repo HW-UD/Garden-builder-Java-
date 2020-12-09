@@ -5,6 +5,7 @@ package view;
 import java.io.File;
 import java.util.HashSet;
 
+import controller.DragController;
 import controller.Main;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -17,6 +18,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import model.Plants;
@@ -48,76 +50,98 @@ public class ViewBase implements ViewMaker {
 	public void setMiddle(Pane middle) {
 		this.middle = middle;
 	}
+	public void paneimg(Plants i, VBox Plantbox) {
 
+		GardenImgView iv1 = new GardenImgView();
+		iv1.setID(i.getImgSpring().getID());
+		iv1.setImage(i.getImgSpring());
+		Plantbox.getChildren().add(iv1);
+		iv1.setPreserveRatio(true);
+		iv1.setFitHeight(imgheight);
+		iv1.setFitWidth(imgwidth);
+		DragController.drag(iv1);
+	}
+	public void paneimg(Plants i, Pane Plantbox) {
 
-
-	public void loadImg(String path) {
-		
-        for (Plants i : Main.getModel().getGarden().getGarden_Plants()) {
-    		System.out.println(i.getSpecies());
-    		System.out.println(i.getSpecies());
-    		System.out.println(i.getPlantx());
-    		System.out.println(i.getPlanty());
-    		
-    		
-    		String fpath = path + i.getSpecies() +".png";//need to be change to i.getspecies;
-    		System.out.println(fpath);
-    		Image commonMilkweed = new Image(getClass().getResourceAsStream(fpath));
-        	/////
-    		ImageView iv1 = new ImageView();
-        	iv1.setImage(commonMilkweed);
-        	middle.getChildren().add(iv1);
-        	iv1.setPreserveRatio(true);
-        	iv1.setFitHeight(imgheight);
-        	iv1.setFitWidth(imgwidth);
-        	iv1.setTranslateX(i.getPlantx());
-        	iv1.setTranslateY(i.getPlanty());
-
-        	/////
-        }
+		GardenImgView iv1 = new GardenImgView();
+		iv1.setID(i.getImgSpring().getID());
+		iv1.setImage(i.getImgSpring());
+		Plantbox.getChildren().add(iv1);
+		iv1.setPreserveRatio(true);
+		iv1.setFitHeight(imgheight);
+		iv1.setFitWidth(imgwidth);
+		DragController.drag(iv1);
 	}
 	
-	
-	
-	public void loadFile(String path){        
-        File file = new File(path);   // get file list where the path has           
-        File[] array = file.listFiles();  // get the folder list   
-        System.out.println (array.toString());
-        
-        for(int i=0;i<array.length;i++){   
-            if(array[i].isFile()){   
-                // only take file name   
-            	if (array[i].getName().endsWith(".png")) {
-            		System.out.println("^^^^^" + array[i].getName());   
-            		String type;
-            		if (path.endsWith("flowers")) {
-            			type="flowers";
-            		}else if (path.endsWith("trees")) {
-            			type="trees";
-            		}else {
-            			type="";
-            		}
-                    String temp= "../img/"+type+"/" + array[i].getName();
-                    System.out.println("000000" + temp);
-                    
-                    GardenImage img =  new GardenImage(getClass().getResourceAsStream(temp));
-                    String pictureName = array[i].getName();
-                    String flowerName = pictureName.substring(0, pictureName.indexOf("."));
-                    
-                    img.setID(flowerName);
-                    plants_img.add(img);
-            	}
-
-                     	
-            	
-                
-            }else if(array[i].isDirectory()){   
-                loadFile(array[i].getPath());   
-            }   
-        }   
-    }   
-	
-	
+//
+//
+//	public void loadImg(String path) {
+//		
+//        for (Plants i : Main.getModel().getGarden().getGarden_Plants()) {
+//    		System.out.println(i.getSpecies());
+//    		System.out.println(i.getSpecies());
+//    		System.out.println(i.getPlantx());
+//    		System.out.println(i.getPlanty());
+//    		
+//    		
+//    		String fpath = path + i.getSpecies() +".png";//need to be change to i.getspecies;
+//    		System.out.println(fpath);
+//    		Image commonMilkweed = new Image(getClass().getResourceAsStream(fpath));
+//        	/////
+//    		ImageView iv1 = new ImageView();
+//        	iv1.setImage(commonMilkweed);
+//        	middle.getChildren().add(iv1);
+//        	iv1.setPreserveRatio(true);
+//        	iv1.setFitHeight(imgheight);
+//        	iv1.setFitWidth(imgwidth);
+//        	iv1.setTranslateX(i.getPlantx());
+//        	iv1.setTranslateY(i.getPlanty());
+//
+//        	/////
+//        }
+//	}
+//	
+//	
+//	
+//	public void loadFile(String path){        
+//        File file = new File(path);   // get file list where the path has           
+//        File[] array = file.listFiles();  // get the folder list   
+//        System.out.println (array.toString());
+//        
+//        for(int i=0;i<array.length;i++){   
+//            if(array[i].isFile()){   
+//                // only take file name   
+//            	if (array[i].getName().endsWith(".png")) {
+//            		System.out.println("^^^^^" + array[i].getName());   
+//            		String type;
+//            		if (path.endsWith("flowers")) {
+//            			type="flowers";
+//            		}else if (path.endsWith("trees")) {
+//            			type="trees";
+//            		}else {
+//            			type="";
+//            		}
+//                    String temp= "../img/"+type+"/" + array[i].getName();
+//                    System.out.println("000000" + temp);
+//                    
+//                    GardenImage img =  new GardenImage(getClass().getResourceAsStream(temp));
+//                    String pictureName = array[i].getName();
+//                    String flowerName = pictureName.substring(0, pictureName.indexOf("."));
+//                    
+//                    img.setID(flowerName);
+//                    plants_img.add(img);
+//            	}
+//
+//                     	
+//            	
+//                
+//            }else if(array[i].isDirectory()){   
+//                loadFile(array[i].getPath());   
+//            }   
+//        }   
+//    }   
+//	
+//	
 
 	public ViewBase(Stage stage, EventHandler<? super MouseEvent> handlerP,EventHandler<? super MouseEvent> handlerN) {
 		if (stage == null) {

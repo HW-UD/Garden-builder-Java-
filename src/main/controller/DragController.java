@@ -50,7 +50,7 @@ public class DragController {
 	public void handleMousePress2(Event event) {
 		stage.setScene(Main.getScenes().get(SceneName.ViewSurround));
 		Main.getSurron().getMiddle().getChildren().clear();
-		Main.getSurron().loadImg("../img/spring/");//FIXME 
+//		Main.getSurron().loadImg("../img/spring/");//FIXME 
 	}
 	
 	

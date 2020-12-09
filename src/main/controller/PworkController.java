@@ -34,6 +34,6 @@ public class PworkController {
 		stage.setScene(Main.getScenes().get(SceneName.ViewDrag));
 		System.out.println(Main.getModel().getGarden().getGarden_Plants());
 		Main.getDrag().getMiddle().getChildren().clear();
-		Main.getDrag().loadImg("../img/spring/");//FIXME 
+//		Main.getDrag().loadImg("../img/spring/");//FIXME 
 	}
 }

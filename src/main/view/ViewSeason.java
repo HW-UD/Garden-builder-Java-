@@ -1,5 +1,6 @@
 package view;
 
+import controller.Main;
 import controller.SeasonController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -12,7 +13,9 @@ import javafx.scene.control.ButtonBar;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import model.Plants;
 
 public class ViewSeason extends ViewBase {
 	
@@ -64,30 +67,31 @@ public class ViewSeason extends ViewBase {
 		SpringButton.setOnAction( new EventHandler<ActionEvent>() {
         	public void handle(ActionEvent e) {
         		middle.getChildren().clear();
-        		loadImg("../img/spring/");
-        	}	
+        		for (Plants i: Main.getModel().getGarden().getGarden_Plants()) {
+            		paneimg( i,  middle) ;}        	}	
         });
 		
 		SummerButton.setOnAction( new EventHandler<ActionEvent>() {
         	public void handle(ActionEvent e) {
         		middle.getChildren().clear();
-        		loadImg("../img/summer/");
-        	}	
+        		for (Plants i: Main.getModel().getGarden().getGarden_Plants()) {
+            		paneimg( i,  middle) ;}
+        		}
         });
 		
 		FallButton.setOnAction( new EventHandler<ActionEvent>() {
         	public void handle(ActionEvent e) {
         		middle.getChildren().clear();
-
-        		loadImg("../img/fall/");
+        		for (Plants i: Main.getModel().getGarden().getGarden_Plants()) {
+            		paneimg( i,  middle) ;}
         	}	
         });
 		
 		WinterButton.setOnAction( new EventHandler<ActionEvent>() {
         	public void handle(ActionEvent e) {
         		middle.getChildren().clear();
-        		loadImg("../img/winter/");
-        	}	
+        		for (Plants i: Main.getModel().getGarden().getGarden_Plants()) {
+            		paneimg( i,  middle) ;}        	}	//FIXME: 改季节
         });
 		
 		
