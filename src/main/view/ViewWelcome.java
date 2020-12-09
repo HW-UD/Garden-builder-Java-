@@ -115,21 +115,21 @@ public class ViewWelcome implements ViewMaker {
 		       }
 		});
 //		
-//		Label name = new Label("Garden name: ");
-//		TextField nametf = new TextField ();
-//		name.setFont(Font.font ("Verdana", FontWeight.BOLD, 20));
-//		GridPane grid = new GridPane();
-//		grid.setVgap(20);
-//		grid.setHgap(35);
-//		grid.setPadding((new Insets(12,6,6,12)));
-//		grid.add(name, 1, 0);
-//		grid.add(nametf, 1, 1);
-//		grid.add(length, 3, 0);
-//		grid.add(lengthtf, 3, 1);
-//		grid.add(width, 4, 0);
-//		grid.add(widthtf, 4, 1);
-//		root.setCenter(grid);
-//		root.setMargin(grid, new Insets(100,0,0,200));
+		Label name = new Label("Garden name: ");
+		TextField nametf = new TextField ();
+		name.setFont(Font.font ("Verdana", FontWeight.BOLD, 20));
+		GridPane grid = new GridPane();
+		grid.setVgap(20);
+		grid.setHgap(35);
+		grid.setPadding((new Insets(12,6,6,12)));
+		grid.add(name, 1, 0);
+		grid.add(nametf, 1, 1);
+		grid.add(length, 3, 0);
+		grid.add(lengthtf, 3, 1);
+		grid.add(width, 4, 0);
+		grid.add(widthtf, 4, 1);
+		root.setCenter(grid);
+		root.setMargin(grid, new Insets(100,0,0,200));
 
 		
 		

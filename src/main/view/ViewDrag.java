@@ -224,21 +224,21 @@ public class ViewDrag extends ViewBase {
 		Button nextButton = new Button("Next");
 		nextButton.setOnMousePressed(handlerN);
 		
-        Button circleButton = new Button("Circle");
-        circleButton.setOnAction( new EventHandler<ActionEvent>() {
-        	public void handle(ActionEvent e) {
-        		Image background = new Image(getClass().getResourceAsStream("../img/default/tudicircle.png"));
-                gc.drawImage(background, 0, 0, WIDTH, HEIGHT);
-        	}	
-        });
-        
-        Button squareButton = new Button("Square");
-        squareButton.setOnAction( new EventHandler<ActionEvent>() {
-        	public void handle(ActionEvent e) {
-        		Image background = new Image(getClass().getResourceAsStream("../img/default/tudi.jpg"));
-                gc.drawImage(background, 0, 0, WIDTH, HEIGHT);
-        	}	
-        });
+//        Button circleButton = new Button("Circle");
+//        circleButton.setOnAction( new EventHandler<ActionEvent>() {
+//        	public void handle(ActionEvent e) {
+//        		Image background = new Image(getClass().getResourceAsStream("../img/default/tudicircle.png"));
+//                gc.drawImage(background, 0, 0, WIDTH, HEIGHT);
+//        	}	
+//        });
+//        
+//        Button squareButton = new Button("Square");
+//        squareButton.setOnAction( new EventHandler<ActionEvent>() {
+//        	public void handle(ActionEvent e) {
+//        		Image background = new Image(getClass().getResourceAsStream("../img/default/tudi.jpg"));
+//                gc.drawImage(background, 0, 0, WIDTH, HEIGHT);
+//        	}	
+//        });
 
 		Button saveButton = new Button("Save");  
 		  saveButton.setOnAction(e -> new SaveViewbox().display("title", "message"));
@@ -247,6 +247,8 @@ public class ViewDrag extends ViewBase {
 			EventHandler<ActionEvent> Clearevent = new EventHandler<ActionEvent>() {
 				   public void handle(ActionEvent e) {
 				    middle.getChildren().clear();
+				    Image background = new Image(getClass().getResourceAsStream("../img/default/clear.png"));
+	                gc.drawImage(background, 0, 0, WIDTH, HEIGHT);
 				   }
 				  };
 
@@ -256,7 +258,7 @@ public class ViewDrag extends ViewBase {
 		
 		ButtonBar bbar = new ButtonBar();
 		bbar.setPadding(new Insets(10, 0, 0, 10));
-		bbar.getButtons().addAll(clear,squareButton,circleButton,saveButton,backButton, nextButton);
+		bbar.getButtons().addAll(clear,saveButton,backButton, nextButton);
 		root.setBottom(bbar);
 		
 		
@@ -266,8 +268,11 @@ public class ViewDrag extends ViewBase {
             @Override
             public void handle(MouseEvent event) {
                 gc.beginPath();
-                gc.moveTo(event.getX(), event.getY());
+                gc.moveTo(event.getX()+130, event.getY());
                 gc.stroke();
+                gc.setFill(Color.LIGHTGRAY);
+                gc.setStroke(Color.BLACK);
+                gc.setLineWidth(3);
             }
         });
 
@@ -276,7 +281,7 @@ public class ViewDrag extends ViewBase {
 
             @Override
             public void handle(MouseEvent event) {
-                gc.lineTo(event.getX(), event.getY());
+                gc.lineTo(event.getX()+130, event.getY());
                 gc.stroke();
             }
         });
@@ -290,26 +295,7 @@ public class ViewDrag extends ViewBase {
             }
         });
        
-//        private void initDraw (GraphicsContext gc){
-//            double canvasWidth = gc.getCanvas().getWidth();
-//            double canvasHeight = gc.getCanvas().getHeight();
-//
-//            gc.setFill(Color.LIGHTGRAY);
-//            gc.setStroke(Color.BLACK);
-//            gc.setLineWidth(5);
-//
-//            gc.fill();
-//            gc.strokeRect(
-//                    0,              //x of the upper left corner
-//                    0,              //y of the upper left corner
-//                    canvasWidth,    //width of the rectangle
-//                    canvasHeight);  //height of the rectangle
-//
-//            gc.setFill(Color.RED);
-//            gc.setStroke(Color.BLUE);
-//            gc.setLineWidth(1);
-//
-//        }
+
 
 		
 		
