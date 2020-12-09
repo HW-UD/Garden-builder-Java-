@@ -1,12 +1,15 @@
 package model;
 
 public class Tree extends Plants {
-	String type="Trees";
 
+	public Tree() {
+		type="Trees";
+
+	}
 
 	
 	public String toString(){
-		return "species : \"" + species + "\" located on X: " + plantX + " Y: " + plantY+water+" soil: "+Leaf;
+		return "species : \"" + species + "\" located on X: " + plantX + " Y: " + plantY+water+" soil: "+Leaf + "+++"+size;
 	}
 	
 }

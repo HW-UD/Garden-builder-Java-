@@ -62,13 +62,11 @@ import javax.imageio.ImageIO;
 public class ViewDrag extends ViewBase {
     String WorkPath = System.getProperty("user.dir");
 
-    private void paneimg(String fpath,Plants i,VBox Plantbox) {
-        GardenImage img =  new GardenImage(getClass().getResourceAsStream(fpath));
-        img.setID(i.getSpecies());
-
+    private void paneimg(Plants i,VBox Plantbox) {
+ 
         GardenImgView iv1 = new GardenImgView();
-		iv1.setID(img.getID());
-    	iv1.setImage(img);
+		iv1.setID(i.getImgSpring().getID());
+    	iv1.setImage(i.getImgSpring());
     	Plantbox.getChildren().add(iv1);
     	iv1.setPreserveRatio(true);
     	iv1.setFitHeight(imgheight);
@@ -86,29 +84,7 @@ public class ViewDrag extends ViewBase {
 		gc = canvas.getGraphicsContext2D();
 		
     	FlowPane flowpane = new FlowPane();
-//        tilepane.setStyle("-fx-background-color : #7CFC00;");
-      
-		
-		
-		//flowpane.setStyle("-fx-background-color : #8B4513;");
-        
 
-        
-//        Image background = new Image("file:src/main/img/default/tudi.jpg");
-//        Polygon p2 = new Polygon();
-//        
-//        p2.setLayoutX(100);
-//        p2.setLayoutY(120);
-//        p2.getPoints().add(50.0);
-//        p2.getPoints().add(0.0);
-//        p2.getPoints().add(100.0);
-//        p2.getPoints().add(100.0);
-//        p2.getPoints().add(0.0);
-//        p2.getPoints().add(100.0);
-//        
-//        p2.setFill(new ImagePattern(background, 0, 0, 500, 1000, false));
-//        
-//        flowpane.getChildren().add(p2);
 		
     	flowpane.setPrefWidth(imgwidth+30);
     	flowpane.setPrefHeight(imgheight+600);
@@ -141,13 +117,13 @@ public class ViewDrag extends ViewBase {
 						
 						String fpath = path + i.getSpecies() +".png";
 
-						paneimg( fpath, i, Plantbox);
+						paneimg(i, Plantbox);
 
 					}else if (t1.equals("All")) {
 						try {
 							String path="../img/trees/";
 							String fpath = path + i.getSpecies() +".png";
-							paneimg( fpath, i, Plantbox);
+							paneimg( i, Plantbox);
 
 						}catch(Exception e) {};
 					}
@@ -166,14 +142,14 @@ public class ViewDrag extends ViewBase {
 						
 						String fpath = path + i.getSpecies() +".png";
 
-						paneimg( fpath, i, Plantbox);
+						paneimg( i, Plantbox);
 
 					}else if (t1.compareTo("All")==0) {
 					//	System.out.println("ppppppppppppppppppppp");
 						try {
 							String path="../img/flowers/";
 							String fpath = path + i.getSpecies() +".png";
-							paneimg( fpath, i, Plantbox);
+							paneimg( i, Plantbox);
 
 						}catch(Exception e) {};
 					}
@@ -187,33 +163,12 @@ public class ViewDrag extends ViewBase {
 				Plantbox.getChildren().clear();
 				for(Plants i:Main.getModel().getPlantBank()) {
 					if (i.getWater()==waterE.valueOf(t1)) {
-						try {
-							String path="../img/flowers/";
-							String fpath = path + i.getSpecies() +".png";
-							paneimg( fpath, i, Plantbox);
+						paneimg( i, Plantbox);
 
-						}catch(Exception e) {};
-						
-						try {
-							String path="../img/trees/";
-							String fpath = path + i.getSpecies() +".png";
-							paneimg( fpath, i, Plantbox);
 
-						}catch(Exception e) {};
+					}else if (t1.equals("All")) {
+						paneimg( i, Plantbox);
 
-					}else if (t1.equals("All")) {try {
-						String path="../img/flowers/";
-						String fpath = path + i.getSpecies() +".png";
-						paneimg( fpath, i, Plantbox);
-
-					}catch(Exception e) {};
-					
-					try {
-						String path="../img/trees/";
-						String fpath = path + i.getSpecies() +".png";
-						paneimg( fpath, i, Plantbox);
-
-					}catch(Exception e) {};
 			}
 		}}});
         
@@ -244,11 +199,11 @@ public class ViewDrag extends ViewBase {
         
 
 
-    	loadFile(WorkPath+"/src/main/img/flowers");
-    	loadFile(WorkPath+"/src/main/img/trees");
+//    	loadFile(WorkPath+"/src/main/img/flowers");
+//    	loadFile(WorkPath+"/src/main/img/trees");
 
-    	for (GardenImage i: plants_img) {
-
+    	for (Plants p: Main.getModel().getPlantBank()) {
+    		GardenImage i = p.getImgSpring();
             GardenImgView iv1 = new GardenImgView();
     		iv1.setID(i.getID());
         	iv1.setImage(i);

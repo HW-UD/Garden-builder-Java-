@@ -7,65 +7,104 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
+import controller.DragController;
+import javafx.scene.layout.VBox;
+import view.GardenImage;
+import view.GardenImgView;
+
 
 public class GardenModel {
 	 static Garden garden;
 	 static ArrayList<Plants> plantBank;
-	 static List<List<String>> flowerdata = new LinkedList<List<String>>();
-	 static List<List<String>> Treedata = new LinkedList<List<String>>();
-
+	 static List<List<String>> flowerdata;
+	 static List<List<String>> Treedata;
+	 
+	 static ArrayList<String> season;
 	 
 	public GardenModel() {
 		  garden = new Garden();
 		  plantBank = new ArrayList();	
+		  flowerdata = new LinkedList<List<String>>();
+		  Treedata = new LinkedList<List<String>>();
+		  season = new ArrayList<String>() { 
+	            { 	add("spring"); 
+	                add("winter"); 
+	                add("fall"); 
+	                add("summer"); 
+	            } 
+	        }; 
 		  }
+	private void loadSeasonImg(Plants tmp) {
+		
+		for (String i :season) {
+			String Path="../img/"+tmp.getType()+"/"+i+"/";
+			String spath = Path + tmp.getSpecies() +".png";
+			if (i.equals("winter") && tmp.getType().equals("flowers")) {
+				spath = Path + "RudbeckiaFulgida" +".png";
+				
+			}
+			System.out.println(spath);
+			GardenImage img =  new GardenImage(getClass().getResourceAsStream(spath));
+			img.setID(tmp.getSpecies());
+	        tmp.setImgSpring(img);
+		}
+	}
 	
-	 public static void loadFlower() {
+	 public void loadFlower() {
 		for(List<String> p : flowerdata) {
-			Flowers tmp= new Flowers();
+			Plants tmp= new Flowers();
 			int i=0;
 			for (String str:p){
-				switch(i%3){
+				switch(i%4){
 					case 0:
 						tmp.setSpecies(str);
 						break;
 					case 1:
+						tmp.setSize(Double.parseDouble(str));
+						break;	
+					case 2:
 						tmp.setColor(colorE.valueOf(str));
 						break;
-					case 2:
+					case 3:
 						tmp.setWater(waterE.valueOf(str));
 						break;
 				}
+				
+				loadSeasonImg(tmp);
 				i++;
 			}
 			plantBank.add(tmp);
 		}
 	 }
 	 
-	 public static void loadTree() {
+	 public void loadTree() {
 		for(List<String> p : Treedata) {
 			Tree tmp= new Tree();
 			int i=0;
 			for (String str:p){
-				switch(i%3){
+				switch(i%4){
 					case 0:
 						tmp.setSpecies(str);
 						break;
 					case 1:
+						tmp.setSize(Double.parseDouble(str));
+						break;	
+					case 2:
 						System.out.println(str);
 						tmp.setLeaf(LeafE.valueOf(str));
 						break;
-					case 2:
+					case 3:
 						tmp.setWater(waterE.valueOf(str));
 						break;
 				}
+				loadSeasonImg(tmp);
 				i++;
 			}
 			plantBank.add(tmp);
 		}
 	 }
 	 
-	 public static void UpdatePlant(String path,List<List<String>> pdata) {
+	 public void UpdatePlant(String path,List<List<String>> pdata) {
 	   try {
 		   File myObj = new File(path);
 		   Scanner scanner = new Scanner(myObj);

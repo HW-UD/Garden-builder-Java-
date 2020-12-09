@@ -1,11 +1,13 @@
 package model;
 
-public class Flowers extends Plants {
-	String type="flowers";
+public class Flowers extends Plants { 
 
+	public Flowers() {
+		type="flowers";
+	}
 
 	
 	public String toString(){
-		return "species : \"" + species + "\" located on X: " + plantX + " Y: " + plantY+water+color;
+		return "species : \"" + species + "\" located on X: " + plantX + " Y: " + plantY+water+color+ "+++"+size;
 	}
 }

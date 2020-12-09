@@ -2,16 +2,74 @@ package model;
 
 import java.io.Serializable;
 
+import view.GardenImage;
+
 public class Plants implements Serializable{
-	 waterE water;
+	 String species;
 	 double plantX;
 	 double plantY; 
-	 String species;
+	 double size;
+	 waterE water;
 	 LeafE Leaf;
 	 colorE color;
 	 String type;
+	 GardenImage imgSpring;
+	 GardenImage imgFall;
+	 GardenImage imgSummer;
+	 GardenImage imgWinter;
+
 	 
-	 public colorE getColor() {
+	
+	 
+	 public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public double getSize() {
+		return size;
+	}
+
+	public void setSize(double size) {
+		this.size = size;
+	}
+
+	public GardenImage getImgSpring() {
+		return imgSpring;
+	}
+
+	public void setImgSpring(GardenImage imgSpring) {
+		this.imgSpring = imgSpring;
+	}
+
+	public GardenImage getImgFall() {
+		return imgFall;
+	}
+
+	public void setImgFall(GardenImage imgFall) {
+		this.imgFall = imgFall;
+	}
+
+	public GardenImage getImgSummer() {
+		return imgSummer;
+	}
+
+	public void setImgSummer(GardenImage imgSummer) {
+		this.imgSummer = imgSummer;
+	}
+
+	public GardenImage getImgWinter() {
+		return imgWinter;
+	}
+
+	public void setImgWinter(GardenImage imgWinter) {
+		this.imgWinter = imgWinter;
+	}
+
+	public colorE getColor() {
 		return color;
 	 }
 
