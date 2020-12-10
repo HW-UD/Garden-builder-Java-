@@ -33,7 +33,7 @@ public class WelcomeController {
 //		double imgwidth=100;
 //		stage.setWidth(Double.parseDouble(ViewWelcome.getWidthtf().getText())*30+imgwidth + 30);
 //		stage.setHeight(Double.parseDouble(ViewWelcome.getLengthtf().getText())*30);
-		stage.setScene(Main.getScenes().get(SceneName.ViewDrag));
+		stage.setScene(Main.getScenes().get(SceneName.Viewplants));
 	}
 	
 //	/** Display the second scene */

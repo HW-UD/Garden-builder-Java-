@@ -16,6 +16,7 @@ import view.ViewRating;
 import view.ViewSeason;
 import view.ViewSurround;
 import view.ViewWelcome;
+import view.Viewplants;
 
 //import net.snortum.javafx.multiscene.model.SceneName;
 //import net.snortum.javafx.multiscene.view.MainView;
@@ -53,6 +54,7 @@ public class Main extends Application {
 		// Create and store all scenes up front
 		scenes.put(SceneName.ViewWelcome, new ViewWelcome(stage).getScene());
 		scenes.put(SceneName.ViewPwork, new ViewPwork(stage).getScene());
+		scenes.put(SceneName.Viewplants, new Viewplants(stage).getScene());
 		scenes.put(SceneName.ViewDrag, drag.getScene());
 		scenes.put(SceneName.ViewSurround, surron.getScene());
 		scenes.put(SceneName.ViewSeason, season.getScene());
