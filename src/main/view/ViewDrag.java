@@ -286,10 +286,13 @@ public class ViewDrag extends ViewBase {
 				}
 			}
 		});
-
+		
+		Button instruc = new Button("Instruction");
+		instruc.setOnAction(e -> new ViewAlertbox().display("title", "message"));
+     
 		ButtonBar bbar = new ButtonBar();
 		bbar.setPadding(new Insets(10, 0, 0, 10));
-		bbar.getButtons().addAll(draw, clear, saveButton, backButton, nextButton);
+		bbar.getButtons().addAll(instruc, draw, clear, saveButton, backButton, nextButton);
 		root.setBottom(bbar);
 
 		return new Scene(root, WIDTH, HEIGHT);
