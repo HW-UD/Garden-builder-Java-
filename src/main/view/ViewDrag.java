@@ -74,7 +74,7 @@ public class ViewDrag extends ViewBase {
 		Canvas canvas = new Canvas(WIDTH, HEIGHT);
 		root.getChildren().add(canvas);
 		gc = canvas.getGraphicsContext2D();
-
+		
 		FlowPane flowpane = new FlowPane();
 
 		flowpane.setPrefWidth(imgwidth + 30);
