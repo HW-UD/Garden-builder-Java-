@@ -1,6 +1,5 @@
 package controller;
 
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,31 +15,32 @@ import view.ViewRating;
 import view.ViewWelcome;
 import view.Viewplants;
 
-
-
 public class Main extends Application {
-	
-	/** Holds the various scenes to switch between * 
-     * @author Benny Li, Huawei Wang, Ruiheng Xie, Yuzu Wu
- * @version final */
+
+	/**
+	 * Holds the various scenes to switch between *
+	 * 
+	 * @author Benny Li, Huawei Wang, Ruiheng Xie, Yuzu Wu
+	 * @version final
+	 */
 
 	private static Map<SceneName, Scene> scenes = new HashMap<>();
 	static GardenModel model;
-    String WorkPath = System.getProperty("user.dir");
+	String WorkPath = System.getProperty("user.dir");
 	static ViewDrag drag;
-	
+
 	@Override
 	public void start(Stage stage) {
-		model= new GardenModel();
+		model = new GardenModel();
 		drag = new ViewDrag(stage);
-		 
-		model.UpdatePlant(WorkPath+"/src/main/Bank/flowers.txt",model.getFlowerdata());
-		model.UpdatePlant(WorkPath+"/src/main/Bank/trees.txt",model.getTreedata());
-		model.UpdatePlant(WorkPath+"/src/main/Bank/shurbs.txt",model.getTreedata());
+
+		model.UpdatePlant(WorkPath + "/src/main/Bank/flowers.txt", model.getFlowerdata());
+		model.UpdatePlant(WorkPath + "/src/main/Bank/trees.txt", model.getTreedata());
+		model.UpdatePlant(WorkPath + "/src/main/Bank/shurbs.txt", model.getTreedata());
 		model.loadFlower();
-		model.loadTree() ;
-		
-		for (Plants p: model.getPlantBank()) {
+		model.loadTree();
+
+		for (Plants p : model.getPlantBank()) {
 			System.out.println(p);
 		}
 		// Create and store all scenes up front
@@ -56,14 +56,17 @@ public class Main extends Application {
 		stage.show();
 	}
 
-	/** Returns a Map of the scenes by {@link SceneName}* 
- * @author Benny Li, Huawei Wang, Ruiheng Xie, Yuzu Wu
- * @version final */
+	/**
+	 * Returns a Map of the scenes by {@link SceneName}*
+	 * 
+	 * @author Benny Li, Huawei Wang, Ruiheng Xie, Yuzu Wu
+	 * @version final
+	 */
 
 	public static Map<SceneName, Scene> getScenes() {
 		return scenes;
 	}
-	
+
 	public static ViewDrag getDrag() {
 		return drag;
 	}
