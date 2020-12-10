@@ -234,6 +234,8 @@ public class ViewDrag extends ViewBase {
 		EventHandler<ActionEvent> Clearevent = new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
 				middle.getChildren().clear();
+				Main.getModel().getGarden().getGarden_Plants().clear();
+				System.out.println(Main.getModel().getGarden().getGarden_Plants());
 				Image background = new Image(getClass().getResourceAsStream("../img/default/clear.png"));
 				gc.drawImage(background, 0, 0, WIDTH, HEIGHT);
 			}

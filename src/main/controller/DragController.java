@@ -30,7 +30,8 @@ import javafx.scene.layout.Pane;
 
 
 public class DragController {
-	
+	static double newx;
+	static double newy;
 	private Stage stage;
 //	private static Node n;
 	static private String name;
@@ -130,18 +131,8 @@ public static String getName() {
 				iv1copy.setTranslateX(event.getX());
 				iv1copy.setTranslateY(event.getY());
 			//	delete (pane, iv1copy);
-				iv1copy.setOnMouseDragged(new EventHandler<MouseEvent>() {
-					@Override
-					public void handle(MouseEvent event) {
-					//	System.out.println("setonmouseDrag");
-						Node n = (Node)event.getSource();
+				move (iv1copy);
 
-						n = (Node) event.getSource(); 
-//						delete (pane, n);
-					    n.setTranslateX(n.getTranslateX() + event.getX()); 
-					    n.setTranslateY(n.getTranslateY() + event.getY());		
-					}
-				});
 				delete (iv1copy,pane);
 				Main.model.getGarden().addPlant(iv1copy.getID(), event.getX(), event.getY());
 				System.out.println(Main.model.getGarden().getGarden_Plants());
@@ -149,27 +140,52 @@ public static String getName() {
 		});
 	}
 	
-	
+	public static void move (GardenImgView iv1copy) {
+		iv1copy.setOnMouseDragged(new EventHandler<MouseEvent>() {
 
-	
-	/*
-	 * public static void delete (Pane pane,Node n) { pane.setOnMouseClicked(new
-	 * EventHandler<MouseEvent>(){
-	 * 
-	 * @Override public void handle(MouseEvent event) { if(event.getButton() ==
-	 * MouseButton.PRIMARY && event.getClickCount() == 2 && event.getX() >
-	 * n.getTranslateX()&& event.getX() < (n.getTranslateX()+100)) {
-	 * 
-	 * pane.getChildren().remove(n); } } }); }
-	 */
+			@Override
+			public void handle(MouseEvent event) {
+			//	System.out.println("setonmouseDrag");
+
+				Node n = (Node)event.getSource();
+
+				n = (Node) event.getSource(); 
+//				delete (pane, n);
+			    n.setTranslateX(n.getTranslateX() + event.getX()); 
+			    n.setTranslateY(n.getTranslateY() + event.getY());	
+//				newx=n.getTranslateX() + event.getX();
+//				newy=n.getTranslateY() + event.getY();
+
+				System.out.println(Main.getModel().getGarden().getGarden_Plants());
+			}
+		});
+		
+//		iv1copy.addEventHandler(MouseEvent.MOUSE_RELEASED, new EventHandler<MouseEvent>() {
+//			@Override
+//			public void handle(MouseEvent event) {
+//				Main.getModel().getGarden().movePlant(iv1copy.getID(), iv1copy.getTranslateX(), iv1copy.getTranslateY(),
+//						newx,newy);
+//				
+//			}
+//		});
+	}
+
+
+
 	
 	public static void delete (GardenImgView iv1copy,Pane pane) {
 		iv1copy.setOnMouseClicked(new EventHandler<MouseEvent>(){
 			@Override
 			public void handle(MouseEvent event) {				
-				if(event.getButton() == MouseButton.PRIMARY && event.getClickCount() == 2 /* && event.getX() > n.getTranslateX()&& event.getX() < (n.getTranslateX()+100)*/) {
-				
+				if(event.getButton() == MouseButton.PRIMARY && event.getClickCount() == 2 ) {
+					
 					pane.getChildren().remove(iv1copy);
+					System.out.println(iv1copy.getID());
+					System.out.println(iv1copy.getTranslateX());
+					System.out.println(iv1copy.getTranslateY());
+
+					Main.getModel().getGarden().removePlant(iv1copy.getID(), iv1copy.getTranslateX(), iv1copy.getTranslateY());
+					System.out.println(Main.getModel().getGarden().getGarden_Plants());
 				}	
 			}
 		});

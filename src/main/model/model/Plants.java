@@ -19,7 +19,22 @@ public class Plants implements Serializable{
 	 GardenImage imgWinter;
 
 	 
-	
+	  @Override
+	  public boolean equals(Object o) {
+	    // if two cats have the same name they should be equal
+	    if (o instanceof Plants){
+	    	Plants plts=(Plants) o;
+	    	return (plts.getSpecies().equals(this.getSpecies()) 
+	    			&& this.getPlantx()==plts.getPlantx() 
+	    			&&this.getPlanty()==plts.getPlanty());
+	    }else return false;  
+	  }
+
+	  @Override
+	  public int hashCode() {
+	      // if two cats have the same hashcode they should be equal
+	        return this.species.hashCode();
+	  }
 	 
 	 public String getType() {
 		return type;

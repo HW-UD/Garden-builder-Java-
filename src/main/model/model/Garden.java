@@ -62,7 +62,7 @@ public class Garden {
 	}
 
 	
-	public void removePlant(String species, int x, int y) {
+	public void removePlant(String species, double x, double y) {
     	Plants newPlant1= new Plants();
     	newPlant1.species = species;
     	newPlant1.plantX = x;
@@ -72,7 +72,7 @@ public class Garden {
          }
 
 		
-	public void changePlant(String species, int oldx, int oldy, int newx, int newy) {// scanner ,check location, 
+	public void movePlant(String species, double oldx, double oldy, double newx, double newy) {// scanner ,check location, 
 		addPlant( species, oldx, oldy);
 		removePlant( species, newx, newy);
 	}
