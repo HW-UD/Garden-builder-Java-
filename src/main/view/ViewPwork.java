@@ -57,6 +57,7 @@ public class ViewPwork extends ViewBase {
 
 		for (int i = 0; i < array.length; i++) {
 			if (array[i].isFile()) {
+				
 				if (array[i].getName().endsWith(".dat")) {
 //					String temp = "../Saved/" + array[i].getName();
 					final int ButtonLength = 300;
@@ -75,6 +76,20 @@ public class ViewPwork extends ViewBase {
 //					button1.setOnMousePressed(handlerN);
 					
 			    	button1.setOnAction(e -> {
+				    	try{
+					    	ObjectInputStream oisW = new ObjectInputStream(new FileInputStream(path+"/"+GName+".ser"));
+					        ArrayList rdObject = (ArrayList) oisW.readObject();
+					        
+					        double Height=(double )rdObject.get(0);
+					        double Width=(double )rdObject.get(1);
+
+					        Main.getModel().getGarden().setGardenHeight(Height);
+					        Main.getModel().getGarden().setGardenLength(Width);
+					        oisW.close();
+					         //   new File("tempdata.ser").delete();
+					        }
+					        catch (Exception ex){}
+//			    		
 			    	try{
 			    		System.out.println(path + "/"+fileName);
 				    	ObjectInputStream ois = new ObjectInputStream(new FileInputStream(path+"/"+fileName));

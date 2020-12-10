@@ -3,6 +3,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
@@ -15,7 +16,7 @@ import view.GardenImgView;
 
 public class GardenModel {
 	 static Garden garden;
-	 static ArrayList<Plants> plantBank;
+	 static HashSet<Plants> plantBank;
 	 static List<List<String>> flowerdata;
 	 static List<List<String>> Treedata;
 	 
@@ -23,7 +24,7 @@ public class GardenModel {
 	 
 	public GardenModel() {
 		  garden = new Garden();
-		  plantBank = new ArrayList();	
+		  plantBank = new HashSet();	
 		  flowerdata = new LinkedList<List<String>>();
 		  Treedata = new LinkedList<List<String>>();
 		  season = new ArrayList<String>() { 
@@ -46,7 +47,15 @@ public class GardenModel {
 			System.out.println(spath);
 			GardenImage img =  new GardenImage(getClass().getResourceAsStream(spath));
 			img.setID(tmp.getSpecies());
-	        tmp.setImgSpring(img);
+			if (i.equals("spring")) {
+		        tmp.setImgSpring(img);
+			}else if (i.equals("winter")) {
+				tmp.setImgWinter(img);
+			}else if (i.equals("summer")) {
+				tmp.setImgSummer(img);
+			}else {
+				tmp.setImgFall(img);
+			}
 		}
 	}
 	
@@ -126,12 +135,12 @@ public class GardenModel {
 	   }
 	 
 	
-	public static ArrayList<Plants> getPlantBank() {
+	public static HashSet<Plants> getPlantBank() {
 		return plantBank;
 	}
 
 
-	public static void setPlantBank(ArrayList<Plants> plantBank) {
+	public static void setPlantBank(HashSet<Plants> plantBank) {
 		GardenModel.plantBank = plantBank;
 	}
 

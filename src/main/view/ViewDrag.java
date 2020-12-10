@@ -87,7 +87,7 @@ public class ViewDrag extends ViewBase {
 		VBox Plantbox = new VBox();
 
 		ChoiceBox<String> Leaf = new ChoiceBox<String>();
-		Leaf.getItems().addAll("All", "Oval", "Ovate", "Linear", "Oblong", "Ovate", "Needle", "Maple", "Scale", "Spear",
+		Leaf.getItems().addAll("All", "Oval", "Linear", "Oblong", "Ovate", "Needle", "Maple", "Scale", "Spear",
 				"Paddle");
 
 		ChoiceBox<String> waterNeed = new ChoiceBox<String>();

@@ -7,8 +7,8 @@ import java.util.Scanner;
 import java.util.Set;
 
 public class Garden {
-	private int gardenLength;
-	private int gardenHeight;
+	private double gardenLength;
+	private double gardenHeight;
 	
 	Set <Plants> Garden_Plants;
 	
@@ -20,19 +20,19 @@ public class Garden {
 		
 	}
 
-	public int getGardenLength() {
+	public double getGardenLength() {
 		return gardenLength;
 	}
 
-	public void setGardenLength(int gardenLength) {
-		this.gardenLength = gardenLength;
+	public void setGardenLength(double d) {
+		this.gardenLength = d;
 	}
 
-	public int getGardenHeight() {
+	public double getGardenHeight() {
 		return gardenHeight;
 	}
 
-	public void setGardenHeight(int gardenHeight) {
+	public void setGardenHeight(double gardenHeight) {
 		this.gardenHeight = gardenHeight;
 	}
 	

@@ -3,7 +3,9 @@ package controller;
 import javafx.event.Event;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import model.Plants;
 //import net.snortum.javafx.multiscene.Main;
 //import net.snortum.javafx.multiscene.model.SceneName;
 //import net.snortum.javafx.multiscene.Main;
@@ -35,5 +37,9 @@ public class PworkController {
 		System.out.println(Main.getModel().getGarden().getGarden_Plants());
 		Main.getDrag().getMiddle().getChildren().clear();
 //		Main.getDrag().loadImg("../img/spring/");//FIXME 
+		for (Plants i: Main.getModel().getGarden().getGarden_Plants()) {
+			Main.getDrag().paneimgLoading( i,  Main.getDrag().getMiddle()) ;}        		//FIXME: 改季节
 	}
+
+
 }

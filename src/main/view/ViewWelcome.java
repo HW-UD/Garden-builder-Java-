@@ -32,6 +32,8 @@ import javafx.stage.Stage;
 public class ViewWelcome implements ViewMaker {
 	
 	private Stage stage;
+	static TextField lengthtf;
+	static TextField widthtf;
 	
 	/** Must inject a stage */
 	public ViewWelcome(Stage stage) {
@@ -90,7 +92,7 @@ public class ViewWelcome implements ViewMaker {
 
 		
 		Label length = new Label("Length in meter: ");
-		TextField lengthtf = new TextField ();
+		lengthtf = new TextField ();
 		length.setFont(Font.font ("Verdana",FontWeight.BOLD, 20));
 		lengthtf.textProperty().addListener(new ChangeListener<String>() {
 		       @Override
@@ -103,7 +105,7 @@ public class ViewWelcome implements ViewMaker {
 		});
 	       
 		Label width = new Label("Width in meter: ");
-		TextField widthtf = new TextField ();
+		widthtf = new TextField ();
 		width.setFont(Font.font ("Verdana",FontWeight.BOLD, 20));
 		widthtf.textProperty().addListener(new ChangeListener<String>() {
 		       @Override
@@ -115,15 +117,15 @@ public class ViewWelcome implements ViewMaker {
 		       }
 		});
 //		
-		Label name = new Label("Garden name: ");
-		TextField nametf = new TextField ();
-		name.setFont(Font.font ("Verdana", FontWeight.BOLD, 20));
+//		Label name = new Label("Garden name: ");
+//		TextField nametf = new TextField ();
+//		name.setFont(Font.font ("Verdana", FontWeight.BOLD, 20));
 		GridPane grid = new GridPane();
 		grid.setVgap(20);
 		grid.setHgap(35);
 		grid.setPadding((new Insets(12,6,6,12)));
-		grid.add(name, 1, 0);
-		grid.add(nametf, 1, 1);
+//		grid.add(name, 1, 0);
+//		grid.add(nametf, 1, 1);
 		grid.add(length, 3, 0);
 		grid.add(lengthtf, 3, 1);
 		grid.add(width, 4, 0);
@@ -134,6 +136,22 @@ public class ViewWelcome implements ViewMaker {
 		
 		
 		return scene;
+	}
+
+	public static TextField getLengthtf() {
+		return lengthtf;
+	}
+
+	public static void setLengthtf(TextField length) {
+		lengthtf = length;
+	}
+
+	public static TextField getWidthtf() {
+		return widthtf;
+	}
+
+	public void setWidthtf(TextField widthtf) {
+		this.widthtf = widthtf;
 	}
 
 }

@@ -11,6 +11,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
@@ -39,12 +40,27 @@ public class SaveViewbox {
     String WorkPath = System.getProperty("user.dir");
     BufferedImage bufferedImage = new BufferedImage(550, 400, BufferedImage.TYPE_INT_ARGB);
 
-	
-    private void saveImage(WritableImage snapshot) {
+	public void saveSize(TextField SaNameInput) {
+		try {
+		String savedName=SaNameInput.getText();
+		String path=WorkPath+ "/src/main/Saved/";
+		
+		
+        FileOutputStream fos = new FileOutputStream(path+savedName+ ".ser");
+        ObjectOutputStream oos = new ObjectOutputStream(fos);
+        
+        ArrayList WidthAdLength=new ArrayList();
+        
+        WidthAdLength.add(Main.getModel().getGarden().getGardenHeight());
+        WidthAdLength.add(Main.getModel().getGarden().getGardenLength());
 
-      }
-     
-    
+        oos.writeObject(WidthAdLength);
+        oos.close();
+		}catch(Exception ex){}
+		
+	}
+	
+	
 	public void saveAsPng(String savedName) {
 
 	       WritableImage snapshot = Main.getDrag().getMiddle().snapshot(new SnapshotParameters(), null);
