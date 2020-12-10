@@ -15,7 +15,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -26,37 +28,55 @@ import java.util.ArrayList;
 public class ViewRating implements ViewMaker {
 	
 	private Stage stage;
-	public VBox v  = new VBox();
+	public VBox v;
+	FlowPane flowpane = new FlowPane();
+
 	
 	/** Must inject a stage */
 	public ViewRating(Stage stage) {
 		this.stage = stage;
+		v = new VBox();
+
 }
 	
+	
+	public VBox getV() {
+		return v;
+	}
+
+
+
+	public void setV(VBox v) {
+		this.v = v;
+	}
+
+
+
 	@Override
 	public Scene getScene() {
-
+		
+		
 		RatingController controller = new RatingController(stage);
 		BorderPane root = new BorderPane();
 		
+		flowpane.setPrefWidth(1000);
+		flowpane.getChildren().add(v);
+		ScrollPane scrollPane = new ScrollPane(flowpane);
+		scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+		root.setCenter(scrollPane);
+		
 		// set the background
-		Image background = new Image("file:src/main/img/rating/background.png");
-		ImageView bk = new ImageView();
-    	bk.setImage(background);
-    	root.getChildren().add(bk);
+//		Image background = new Image("file:src/main/img/rating/background.png");
+//		ImageView bk = new ImageView();
+//    	bk.setImage(background);
+//    	root.getChildren().add(bk);
         
    
 
 		ArrayList<ImageView> arrayList = new ArrayList<>();
-		
 
-		Label pl = new Label("List of Plants in Garden :");
-		pl.setFont(Font.font("Times New Roman", FontWeight.BOLD, 30));
-		v.getChildren().add(pl);
-		root.setTop(v);
+
         GridPane grid = new GridPane();
-       
-      
 		
 		grid.setHgap(100);
 		grid.setPadding((new Insets(1,6,6,1)));
@@ -78,7 +98,7 @@ public class ViewRating implements ViewMaker {
 		// set the  space among plates
 		BorderPane.setMargin(grid, new Insets(100,0,0,200));
 		
-
+//	    System.out.println(ScoreComboBox.getEditor().getText());
 		Scene scene = new Scene(root, 1000, 600);
 		return scene;
 	}

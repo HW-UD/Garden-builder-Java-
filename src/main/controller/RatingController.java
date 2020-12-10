@@ -21,5 +21,6 @@ public class RatingController {
 	/** Display the first scene */
 	public void handleOnPressButton1(MouseEvent event) {
 		stage.setScene(Main.getScenes().get(SceneName.ViewDrag));
+		Main.getViewRating().getV().getChildren().clear();
 	}
 }

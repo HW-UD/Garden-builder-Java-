@@ -30,7 +30,9 @@ public class Main extends Application {
 	private static Map<SceneName, Scene> scenes = new HashMap<>();
 	static GardenModel model;
     String WorkPath = System.getProperty("user.dir");
+
 	static ViewDrag drag;
+	static ViewRating viewRating;
 	
 	@Override
 	public void start(Stage stage) {
@@ -51,13 +53,22 @@ public class Main extends Application {
 		scenes.put(SceneName.ViewPwork, new ViewPwork(stage).getScene());
 		scenes.put(SceneName.Viewplants, new Viewplants(stage).getScene());
 		scenes.put(SceneName.ViewDrag, drag.getScene());
-		scenes.put(SceneName.ViewRating, new ViewRating(stage).getScene());
-		ViewRating viewRating = new ViewRating(stage);
+		viewRating = new ViewRating(stage);
 		MapUtils.getInstance().put("viewRating", viewRating);
+		scenes.put(SceneName.ViewRating, viewRating.getScene());
+
 		// Start with the main scene
 		stage.setScene(scenes.get(SceneName.ViewWelcome));
 		stage.setTitle("G14 Garden Design");
 		stage.show();
+	}
+
+	public static ViewRating getViewRating() {
+		return viewRating;
+	}
+
+	public void setViewRating(ViewRating viewRating) {
+		this.viewRating = viewRating;
 	}
 
 	/** Returns a Map of the scenes by {@link SceneName} */

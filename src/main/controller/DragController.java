@@ -1,4 +1,5 @@
-package controller;
+
+	package controller;
 
 	import javafx.event.Event;
 	import javafx.scene.image.Image;
@@ -76,9 +77,13 @@ package controller;
 			public void handleMousePress2(Event event) {
 				ViewRating viewRating = (ViewRating) MapUtils.getInstance().get("viewRating");
 		        Map<String, Integer> map = PlantsUtils.getInstance().map();
+		        
+				Label pl = new Label("Plants in your garden:");
+				pl.setFont(Font.font("Times New Roman", FontWeight.BOLD, 30));
+				 viewRating.v.getChildren().add(pl);
 		        if (map != null && !map.isEmpty()) {
 		            for (Map.Entry<String, Integer> entry : map.entrySet()) {
-		                Label label = new Label("species:"+ entry.getKey() + " Number:  " + entry.getValue());
+		                Label label = new Label("species:"+ entry.getKey() + " number:  " + entry.getValue());
 		                label.setFont(Font.font("Times New Roman", FontWeight.BOLD, 30));
 		                viewRating.v.getChildren().add(label);
 		            }
@@ -163,6 +168,13 @@ package controller;
 						move (iv1copy);
 						delete (iv1copy,pane);
 						Main.model.getGarden().addPlant(iv1copy.getID(), event.getX(), event.getY());
+						
+						Integer num = PlantsUtils.getInstance().get(iv1copy.getID());
+						if (num == null) {
+							PlantsUtils.getInstance().put(iv1copy.getID(), 1);
+						} else {
+							PlantsUtils.getInstance().put(iv1copy.getID(), num + 1);
+						}
 						System.out.println(Main.model.getGarden().getGarden_Plants());
 					}
 				});
