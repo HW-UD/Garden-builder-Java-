@@ -54,18 +54,7 @@ public class ViewRating implements ViewMaker {
 
 	@Override
 	public Scene getScene() {
-
-
-		int labelsize = 30;//size of label
-		int hgap = 100;//size of Hgap
-		int padding1 = 1;//padding number1
-		int padding2 = 6;//padding number2
-		int padding3 = 10;//padding number3
-		int padding4 = 5;//padding number4
-		int scenel = 1000;//length of scene
-		int scenew = 600;//width of scene
-		int margin1 = 100;//set margin number1
-		int margin2 = 200;//set margin number2
+		
 		
 		RatingController controller = new RatingController(stage);
 		BorderPane root = new BorderPane();
@@ -86,18 +75,11 @@ public class ViewRating implements ViewMaker {
 
 		ArrayList<ImageView> arrayList = new ArrayList<>();
 
-//<<<<<<< HEAD
-//
-//=======
-//		Label pl = new Label("List of Plants in Garden :");
-//		pl.setFont(Font.font("Times New Roman", FontWeight.BOLD, labelsize));
-//		v.getChildren().add(pl);
-//		root.setTop(v);
-//>>>>>>> branch 'main' of https://github.com/CISC275-F2020/project-team-14.git
+
         GridPane grid = new GridPane();
 		
-		grid.setHgap(hgap);
-		grid.setPadding((new Insets(padding1,padding2,padding2,padding1)));
+		grid.setHgap(100);
+		grid.setPadding((new Insets(1,6,6,1)));
 		root.setLeft(grid);
 		
 		// get the buttons
@@ -110,19 +92,14 @@ public class ViewRating implements ViewMaker {
 		root.setBottom(bbar);
 		
 		// set the space between margins and buttons
-		bbar.setPadding(new Insets(padding3, padding4, padding4, padding3));
+		bbar.setPadding(new Insets(10, 5, 5, 10));
 		
 		
 		// set the  space among plates
-		BorderPane.setMargin(grid, new Insets(margin1,0,0,margin2));
+		BorderPane.setMargin(grid, new Insets(100,0,0,200));
 		
-//<<<<<<< HEAD
-////	    System.out.println(ScoreComboBox.getEditor().getText());
-//		Scene scene = new Scene(root, 1000, 600);
-//=======
-
-		Scene scene = new Scene(root, scenel, scenew);
-//>>>>>>> branch 'main' of https://github.com/CISC275-F2020/project-team-14.git
+//	    System.out.println(ScoreComboBox.getEditor().getText());
+		Scene scene = new Scene(root, 1000, 600);
 		return scene;
 	}
 }
