@@ -13,6 +13,8 @@ Note: for Github Actions to compile with gradle you must use the directory struc
      - To start the project
    - Close
      - To close the project
+##### Browse All Plants Page 
+Show all the attributes for the 40 plants.
 ##### Drag Page
    - Instruction
      - Instructions for all the buttons in this page 
