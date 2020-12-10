@@ -138,7 +138,7 @@ public class ViewPwork extends ViewBase {
 			root.setCenter(scrollPane);
 
 			root.setPadding(new Insets(10));
-			Label label = new Label("Choose Previouse Work");
+			Label label = new Label("Choose Previous Work");
 			label.setFont(new Font("Arial", 32));// set the font and the size of the title
 			root.setTop(label);
 
