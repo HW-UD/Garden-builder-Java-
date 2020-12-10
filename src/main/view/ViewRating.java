@@ -16,9 +16,16 @@ import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.ScrollPane.ScrollBarPolicy;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.scene.image.ImageView;
@@ -29,13 +36,13 @@ public class ViewRating implements ViewMaker {
 	
 	private Stage stage;
 	public VBox v;
-	FlowPane flowpane = new FlowPane();
+	Pane flowpane = new Pane();
 
 	
 	/** Must inject a stage */
 	public ViewRating(Stage stage) {
 		this.stage = stage;
-		v = new VBox();
+		 v = new VBox();
 
 }
 	
@@ -59,19 +66,29 @@ public class ViewRating implements ViewMaker {
 		RatingController controller = new RatingController(stage);
 		BorderPane root = new BorderPane();
 		
-		flowpane.setPrefWidth(1000);
-		flowpane.getChildren().add(v);
-		ScrollPane scrollPane = new ScrollPane(flowpane);
-		scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-		root.setCenter(scrollPane);
 		
 		// set the background
-//		Image background = new Image("file:src/main/img/rating/background.png");
-//		ImageView bk = new ImageView();
-//    	bk.setImage(background);
-//    	root.getChildren().add(bk);
-        
-   
+		Image background = new Image("file:src/main/img/rating/background.png");
+		ImageView bk = new ImageView();
+    	bk.setImage(background);
+    	
+		
+		//v.setPrefSize(20, 20);
+		v.setPrefWidth(5000);
+		v.setPrefWidth(5000);
+    	
+  
+		flowpane.getChildren().add(v);
+		ScrollPane scrollPane = new ScrollPane(flowpane);
+		scrollPane.setVbarPolicy(ScrollBarPolicy.ALWAYS);
+		scrollPane.setPrefHeight(1000);
+		
+		root.setBackground(new Background(new BackgroundImage(background,BackgroundRepeat.REPEAT,
+                BackgroundRepeat.REPEAT,
+                BackgroundPosition.DEFAULT,
+                BackgroundSize.DEFAULT)));
+		root.setTop(scrollPane);
+		
 
 		ArrayList<ImageView> arrayList = new ArrayList<>();
 
