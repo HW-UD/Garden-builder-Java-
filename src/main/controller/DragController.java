@@ -33,7 +33,6 @@ public class DragController {
 	static double newx;
 	static double newy;
 	private Stage stage;
-//	private static Node n;
 	static private String name;
 	/** Must inject a stage @param*/
 	public DragController(Stage stage) {
@@ -52,7 +51,6 @@ public class DragController {
 	public void handleMousePress2(Event event) {
 		stage.setScene(Main.getScenes().get(SceneName.ViewSurround));
 		Main.getSurron().getMiddle().getChildren().clear();
-//		Main.getSurron().loadImg("../img/spring/");//FIXME 
 	}
 	
 	
@@ -65,12 +63,6 @@ public static String getName() {
 		DragController.name = name;
 	}
 
-	//	
-//	public void drag(Event event) {
-//		stage.setScene(Main.getScenes().get(SceneName.ViewSurround));
-//	}
-//	
-	
 	
 	public static void drag (GardenImgView iv1) {
 		
@@ -82,7 +74,7 @@ public static String getName() {
 				
 				Dragboard iv2 = iv1.startDragAndDrop(TransferMode.COPY);
 				ClipboardContent content = new ClipboardContent();
-				content.putImage(iv1.getImage());///////
+				content.putImage(iv1.getImage());
 				iv2.setContent(content);
 				WritableImage wi = new WritableImage(100,100);
 				iv1.snapshot(new SnapshotParameters(), wi);
@@ -117,22 +109,11 @@ public static String getName() {
 				
 				iv1copy.setFitHeight(scaled);
 				iv1copy.setFitWidth(100);
-				
-				
-				
-	
 				pane.getChildren().add(iv1copy);
-				
-//				Point p = MouseInfo.getPointerInfo().getLocation();
-//
-//				iv1copy.setTranslateX(p.getX()- 550);
-//				iv1copy.setTranslateY(p.getY());//
 				
 				iv1copy.setTranslateX(event.getX());
 				iv1copy.setTranslateY(event.getY());
-			//	delete (pane, iv1copy);
 				move (iv1copy);
-
 				delete (iv1copy,pane);
 				Main.model.getGarden().addPlant(iv1copy.getID(), event.getX(), event.getY());
 				System.out.println(Main.model.getGarden().getGarden_Plants());
@@ -145,32 +126,29 @@ public static String getName() {
 
 			@Override
 			public void handle(MouseEvent event) {
-			//	System.out.println("setonmouseDrag");
-
 				Node n = (Node)event.getSource();
+				Main.getModel().getGarden().removePlant(iv1copy.getID(), iv1copy.getTranslateX(), iv1copy.getTranslateY());
 
 				n = (Node) event.getSource(); 
-//				delete (pane, n);
 			    n.setTranslateX(n.getTranslateX() + event.getX()); 
-			    n.setTranslateY(n.getTranslateY() + event.getY());	
-//				newx=n.getTranslateX() + event.getX();
-//				newy=n.getTranslateY() + event.getY();
+			    n.setTranslateY(n.getTranslateY() + event.getY());
+			    
+				newx=n.getTranslateX() + event.getX();
+				newy=n.getTranslateY() + event.getY();
 
-				System.out.println(Main.getModel().getGarden().getGarden_Plants());
 			}
 		});
 		
-//		iv1copy.addEventHandler(MouseEvent.MOUSE_RELEASED, new EventHandler<MouseEvent>() {
-//			@Override
-//			public void handle(MouseEvent event) {
-//				Main.getModel().getGarden().movePlant(iv1copy.getID(), iv1copy.getTranslateX(), iv1copy.getTranslateY(),
-//						newx,newy);
-//				
-//			}
-//		});
+
+		iv1copy.addEventHandler(MouseEvent.MOUSE_RELEASED, new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				Main.getModel().getGarden().addPlant(iv1copy.getID(),newx,newy);
+				System.out.println(Main.getModel().getGarden().getGarden_Plants());
+
+			}
+		});
 	}
-
-
 
 	
 	public static void delete (GardenImgView iv1copy,Pane pane) {
