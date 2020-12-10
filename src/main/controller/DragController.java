@@ -240,7 +240,10 @@
 
 							Main.getModel().getGarden().removePlant(iv1copy.getID(), iv1copy.getTranslateX(), iv1copy.getTranslateY());
 							System.out.println(Main.getModel().getGarden().getGarden_Plants());
-						}	
+						
+							Integer num = PlantsUtils.getInstance().get(iv1copy.getID());
+							PlantsUtils.getInstance().put(iv1copy.getID(), num -1);
+							}	
 					}
 				});
 			}

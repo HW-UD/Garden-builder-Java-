@@ -129,17 +129,7 @@ public class ViewBase implements ViewMaker {
 		iv1.setFitWidth(100);
     	iv1.setTranslateX(i.getPlantx());
     	iv1.setTranslateY(i.getPlanty());
-		iv1.setOnMouseDragged(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent event) {
-				Node n = (Node)event.getSource();
-
-				n = (Node) event.getSource(); 
-			    n.setTranslateX(n.getTranslateX() + event.getX()); 
-			    n.setTranslateY(n.getTranslateY() + event.getY());		
-			}
-			
-		});
+    	DragController.move(iv1);
 		DragController.delete (iv1,Plantbox);
 	
 	}
