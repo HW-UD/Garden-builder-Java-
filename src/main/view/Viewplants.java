@@ -56,12 +56,19 @@ public class Viewplants extends ViewBase {
 	 * @version Final
 	 */
 	public Scene getScene() {
+		
+		int fpsize = 20;//flowpane size
+		int MH = 50;//MinHeight
+		int MW = 5;//MinWidth
+		int paddingnum = 10;//padding number
+		int labelsize = 32;//size of label
+		
 		BorderPane root = new BorderPane();
 		Canvas canvas = new Canvas(WIDTH, HEIGHT);
 
-		FlowPane content = new FlowPane(20, 20);
-		content.setMinHeight(Main.getModel().getPlantBank().size() * 50);
-		content.setMinWidth(Main.getModel().getPlantBank().size() * 5);
+		FlowPane content = new FlowPane(fpsize, fpsize);
+		content.setMinHeight(Main.getModel().getPlantBank().size() * MH);
+		content.setMinWidth(Main.getModel().getPlantBank().size() * MW);
 		for (Plants i : Main.getModel().getPlantBank()) {
 			GardenImage img = i.getImgSpring();
 			GardenImgView iv1 = new GardenImgView();
@@ -97,13 +104,13 @@ public class Viewplants extends ViewBase {
 		nextButton.setOnMousePressed(handlerN);
 
 		ButtonBar bbar = new ButtonBar();
-		bbar.setPadding(new Insets(10, 0, 0, 10));
+		bbar.setPadding(new Insets(paddingnum, 0, 0, paddingnum));
 		bbar.getButtons().addAll(backButton, nextButton);
 		root.setBottom(bbar);
 
-		root.setPadding(new Insets(10));
+		root.setPadding(new Insets(paddingnum));
 		Label label = new Label("Browse all plants");
-		label.setFont(new Font("Arial", 32));// set the font and the size of the title
+		label.setFont(new Font("Arial", labelsize));// set the font and the size of the title
 		root.setTop(label);
 
 		return new Scene(root, WIDTH, HEIGHT);
