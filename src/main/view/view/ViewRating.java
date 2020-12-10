@@ -14,8 +14,10 @@ import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.scene.image.ImageView;
 import java.util.ArrayList;
@@ -24,6 +26,7 @@ import java.util.ArrayList;
 public class ViewRating implements ViewMaker {
 	
 	private Stage stage;
+	public VBox v  = new VBox();
 	
 	/** Must inject a stage */
 	public ViewRating(Stage stage) {
@@ -46,41 +49,14 @@ public class ViewRating implements ViewMaker {
 
 		ArrayList<ImageView> arrayList = new ArrayList<>();
 		
-		
-		// get the number which users choose, and show the corresponding image.
-		for(int i = 0;i<6;i++){
-			ImageView imageView = new ImageView(new Image("file:src/main/img/rating/"+i+"_star.png "));
-			imageView.setFitWidth(450);
-			imageView.setFitHeight(100);
-			imageView.setTranslateX(-100);
-			imageView.setTranslateY(-80);
-			arrayList.add(imageView);
-			}
 
-		// set the typeface, size, color of title.
-		Text label = new Text("\nPlease rate your experience below:");
-		label.setFont(Font.font("Times New Roman", FontWeight.BOLD, 50));
-		label.setTranslateX(100);
-		label.setTranslateY(50);
-		
-		//put 5 numbers in the combobox 
-		ComboBox<String>  ScoreComboBox = new ComboBox<String>();
-        ScoreComboBox.getItems().addAll("5","4","3","2","1","0");
-        
-        //get the value in combobox
-		ScoreComboBox.valueProperty().addListener(new ChangeListener<String>() {
-			@Override 
-			public void changed(ObservableValue ov, String t, String t1) {
-				root.setCenter(arrayList.get(Integer.parseInt(t1)));
-			}
-		});
-		root.setTop(label);
-		
-		Text category = new Text("Score:");
-		category.setFont(Font.font("Times New Roman", FontWeight.BOLD, 40));
+		Label pl = new Label("List of Plants in Garden :");
+		pl.setFont(Font.font("Times New Roman", FontWeight.BOLD, 30));
+		v.getChildren().add(pl);
+		root.setTop(v);
         GridPane grid = new GridPane();
-        grid.add(category, 0, 0);
-        grid.add(ScoreComboBox, 0, 1);
+       
+      
 		
 		grid.setHgap(100);
 		grid.setPadding((new Insets(1,6,6,1)));
@@ -102,7 +78,7 @@ public class ViewRating implements ViewMaker {
 		// set the  space among plates
 		BorderPane.setMargin(grid, new Insets(100,0,0,200));
 		
-	    System.out.println(ScoreComboBox.getEditor().getText());
+
 		Scene scene = new Scene(root, 1000, 600);
 		return scene;
 	}

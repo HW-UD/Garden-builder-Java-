@@ -48,6 +48,8 @@ import model.Plants;
 import model.colorE;
 import model.LeafE;
 import model.waterE;
+import util.MapUtils;
+import util.PlantsUtils;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -197,6 +199,12 @@ public class ViewDrag extends ViewBase {
 		Button clear = new Button("Clear");
 		EventHandler<ActionEvent> Clearevent = new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
+				PlantsUtils.getInstance().clear();
+				ViewRating viewRating = (ViewRating) MapUtils.getInstance().get("viewRating");
+				viewRating.v.getChildren().clear();
+				Label pl = new Label("Please rate your experience below:");
+				pl.setFont(Font.font("Times New Roman", FontWeight.BOLD, 30));
+				viewRating.v.getChildren().addAll(pl);
 				middle.getChildren().clear();
 				Main.getModel().getGarden().getGarden_Plants().clear();
 				System.out.println(Main.getModel().getGarden().getGarden_Plants());

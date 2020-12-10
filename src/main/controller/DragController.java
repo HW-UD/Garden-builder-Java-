@@ -10,8 +10,11 @@ import util.MapUtils;
 import util.PlantsUtils;
 import view.GardenImage;
 import view.GardenImgView;
+<<<<<<< HEAD
 import view.ViewRating;
 import view.ViewSurround;
+=======
+>>>>>>> refs/remotes/origin/main
 
 import java.awt.MouseInfo;
 import java.awt.Point;
@@ -57,10 +60,37 @@ import view.ViewRating;
 			this.stage = stage;
 		}
 		
+<<<<<<< HEAD
 		/** Display ViewFences scene when the "back" button is clicked @param*/
 		public void handleMousePress(Event event) {
 			stage.setScene(Main.getScenes().get(SceneName.Viewplants));
 		}
+=======
+		this.stage = stage;
+	}
+	
+	/** Display ViewFences scene when the "back" button is clicked @param*/
+	public void handleMousePress(Event event) {
+		stage.setScene(Main.getScenes().get(SceneName.Viewplants));
+	}
+	
+	public void handleMousePress2(Event event) {
+		stage.setScene(Main.getScenes().get(SceneName.ViewRating));
+	}
+	
+	
+	
+public static String getName() {
+		return name;
+	}
+
+	public static void setName(String name) {
+		DragController.name = name;
+	}
+
+	
+	public static void drag (GardenImgView iv1) {
+>>>>>>> refs/remotes/origin/main
 		
 
 		public void handleMousePress2(Event event) {
