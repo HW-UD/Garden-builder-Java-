@@ -27,7 +27,13 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-
+/** The view of welcome page
+ * 
+ * @author Ruiheng Xie
+ * @version Final
+ * @return scene
+ *
+ */
 public class ViewWelcome implements ViewMaker {
 	
 	private Stage stage;

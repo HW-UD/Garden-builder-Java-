@@ -13,7 +13,11 @@ import javafx.scene.layout.VBox;
 import view.GardenImage;
 import view.GardenImgView;
 
-
+/** The model for Gardenmodel
+ * 
+ *  @author Benny Li, Huawei Wang, Ruiheng Xie, Yuzu Wu 
+ *  @version Final
+ **/
 public class GardenModel {
 	 static Garden garden;
 	 static HashSet<Plants> plantBank;
@@ -35,6 +39,13 @@ public class GardenModel {
 	            } 
 	        }; 
 		  }
+	
+	/** 
+	* load different season image
+	*  @author Benny Li, Huawei Wang, Ruiheng Xie, Yuzu Wu 
+	*  @param string path: the type of image's path
+	*  @return images' name and appropriate images
+	* **/	
 	private void loadSeasonImg(Plants tmp) {
 		
 		for (String i :season) {
@@ -58,6 +69,13 @@ public class GardenModel {
 			}
 		}
 	}
+	
+	/**
+	* load flower and switch case
+	*  @author Benny Li, Huawei Wang, Ruiheng Xie, Yuzu Wu 
+	*  @param tmp
+	*  @return flower images and appropriate attribute
+	* **/	
 	
 	 public void loadFlower() {
 		for(List<String> p : flowerdata) {
@@ -86,6 +104,12 @@ public class GardenModel {
 		}
 	 }
 	 
+	 /** 
+	  	* load treedata and switch case
+		*  @author Benny Li, Huawei Wang, Ruiheng Xie, Yuzu Wu 
+		*  @param tmp
+		*  @return tree images and appropriate attribute
+		* **/	
 	 public void loadTree() {
 		for(List<String> p : Treedata) {
 			Tree tmp= new Tree();
@@ -113,6 +137,12 @@ public class GardenModel {
 		}
 	 }
 	 
+	 /** 
+	    * read data from data file
+		*  @author Benny Li, Huawei Wang, Ruiheng Xie, Yuzu Wu 
+		*  @param path：data file
+		*  @return data 
+		* **/
 	 public void UpdatePlant(String path,List<List<String>> pdata) {
 	   try {
 		   File myObj = new File(path);
@@ -168,10 +198,5 @@ public class GardenModel {
 	public static void setTreedata(List<List<String>> treedata) {
 		Treedata = treedata;
 	}
-	
-	
-
-
-	
 
 }

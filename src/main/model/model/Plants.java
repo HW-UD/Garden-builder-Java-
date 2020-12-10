@@ -4,21 +4,30 @@ import java.io.Serializable;
 
 import view.GardenImage;
 
-public class Plants implements Serializable{
-	 String species;
-	 double plantX;
-	 double plantY; 
-	 double size;
-	 waterE water;
-	 LeafE Leaf;
-	 colorE color;
-	 String type;
-	 GardenImage imgSpring;
-	 GardenImage imgFall;
-	 GardenImage imgSummer;
-	 GardenImage imgWinter;
+/** The model for Plants
+ * 
+ *  @author Benny Li, Huawei Wang, Ruiheng Xie, Yuzu Wu 
+ *  @version Final
+ **/
 
+public class Plants implements Serializable{
+	 String species;//plant name
+	 double plantX;//plant x
+	 double plantY;//plant y
+	 double size;//plant height
+	 waterE water;//water need of plant
+	 LeafE Leaf;//different shape of leaf of plant
+	 colorE color;//plant color
+	 String type;//plant type
+	 GardenImage imgSpring;//spring image of plants
+	 GardenImage imgFall;//fall image of plants
+	 GardenImage imgSummer;//summer image of plants
+	 GardenImage imgWinter;//winter image of plants
 	 
+	/** Test if two names are equal
+	 * @return plants' name
+	 *
+	 */
 	  @Override
 	  public boolean equals(Object o) {
 	    // if two cats have the same name they should be equal

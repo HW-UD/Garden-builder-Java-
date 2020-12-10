@@ -6,16 +6,22 @@ import java.util.Iterator;
 import java.util.Scanner;
 import java.util.Set;
 
+/** The model for Garden
+ * 
+ *  @author Benny Li, Huawei Wang, Ruiheng Xie, Yuzu Wu 
+ *  @version Final
+ **/
+
 public class Garden {
-	private double gardenLength;
-	private double gardenHeight;
+	private double gardenLength;//The length of garden
+	private double gardenHeight;//The height of garden
 	
 	Set <Plants> Garden_Plants;
 	
 	
 	public Garden() {
-		this.gardenLength= 15;
-		this.gardenHeight=15;
+		this.gardenLength= 15;//The length is 15
+		this.gardenHeight=15;//The height is 15
 		Garden_Plants = new HashSet<>();//to conduction
 		
 	}
@@ -47,7 +53,10 @@ public class Garden {
 	
 	
 	
-	
+/** Add new plant to list
+ *  @author Benny Li, Huawei Wang, Ruiheng Xie, Yuzu Wu 
+ *  @param newPlant
+ * **/	
 
 	public void addPlant(String species, double d, double e){
 		Plants newPlant= new Plants();  
@@ -61,6 +70,10 @@ public class Garden {
 //    		}			
 	}
 
+/** Remove plants from list
+ * @author Benny Li, Huawei Wang, Ruiheng Xie, Yuzu Wu 
+ * @param newPlant1
+ * **/
 	
 	public void removePlant(String species, double x, double y) {
     	Plants newPlant1= new Plants();
@@ -71,6 +84,13 @@ public class Garden {
              
          }
 
+/** 
+ * @author Benny Li, Huawei Wang, Ruiheng Xie, Yuzu Wu 
+ * **/
+	public void movePlant(String species, double oldx, double oldy, double newx, double newy) {// scanner ,check location, 
+		addPlant( species, oldx, oldy);
+		removePlant( species, newx, newy);
+	}
 	
 	}
 

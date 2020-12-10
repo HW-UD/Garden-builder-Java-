@@ -1,5 +1,11 @@
 package model;
 
+/** The model for LeafE
+ * 
+ *  @author Benny Li, Huawei Wang, Ruiheng Xie, Yuzu Wu 
+ *  @version Final
+ **/
+
 public enum LeafE {
 	All("All"),
 	Oval("Oval"),
@@ -19,6 +25,11 @@ public enum LeafE {
 	private String name = null;
 	private LeafE(String s){name = s;}
 	
-	public String getName() {return name;} 
+/** Get the attribute name
+ * 
+ * @return name
+ */
+	public String getName() {
+		return name;} 
 }
 
