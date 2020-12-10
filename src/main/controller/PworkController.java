@@ -22,7 +22,6 @@ public class PworkController {
 		if (stage == null) {
 			throw new IllegalArgumentException("Stage cannot be null");
 		}
-		
 		this.stage = stage;
 	}
 	
@@ -36,9 +35,8 @@ public class PworkController {
 		stage.setScene(Main.getScenes().get(SceneName.ViewDrag));
 		System.out.println(Main.getModel().getGarden().getGarden_Plants());
 		Main.getDrag().getMiddle().getChildren().clear();
-//		Main.getDrag().loadImg("../img/spring/");//FIXME 
 		for (Plants i: Main.getModel().getGarden().getGarden_Plants()) {
-			Main.getDrag().paneimgLoading( i,  Main.getDrag().getMiddle()) ;}        		//FIXME: 改季节
+			Main.getDrag().paneimgLoading( i,  Main.getDrag().getMiddle(),1) ;}        		//FIXME: 改季节
 	}
 
 

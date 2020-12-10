@@ -47,11 +47,9 @@ public class Main extends Application {
 		model.loadFlower();
 		model.loadTree() ;
 		
-//		model.loadPlants();
 		for (Plants p: model.getPlantBank()) {
 			System.out.println(p);
 		}
-//		System.out.println("Model Garden"+model.getGarden());
 		// Create and store all scenes up front
 		scenes.put(SceneName.ViewWelcome, new ViewWelcome(stage).getScene());
 		scenes.put(SceneName.ViewPwork, new ViewPwork(stage).getScene());

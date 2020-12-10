@@ -72,7 +72,7 @@ public class ViewBase implements ViewMaker {
 		DragController.drag(iv1);
 	}
 	
-	public void paneimgLoading(Plants i, Pane Plantbox) {
+	public void paneimgLoading(Plants i, Pane Plantbox,int in) {
 
 		GardenImgView iv1 = new GardenImgView();
 		iv1.setID(i.getSpecies());
@@ -83,7 +83,20 @@ public class ViewBase implements ViewMaker {
 		for (Plants pl: Main.getModel().getPlantBank()) {
 			if (pl.getSpecies().equals(i.getSpecies())){
 				H=pl.getSize();
-				iv1.setImage(pl.getImgSpring());
+				switch(in) {
+				case 1:
+					iv1.setImage(pl.getImgSpring());
+					break;
+				case 2:
+					iv1.setImage(pl.getImgSummer());
+					break;
+				case 3:
+					iv1.setImage(pl.getImgFall());
+					break;
+				case 4:
+					iv1.setImage(pl.getImgWinter());
+					break;
+				}
 
 			}
 		}

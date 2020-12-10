@@ -3,7 +3,7 @@ package model;
 public class Tree extends Plants {
 
 	public Tree() {
-		type="Trees";
+		type="trees";
 
 	}
 

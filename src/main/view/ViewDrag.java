@@ -102,24 +102,16 @@ public class ViewDrag extends ViewBase {
 				Plantbox.getChildren().clear();
 				for (Plants i : Main.getModel().getPlantBank()) {
 					if (i.getLeaf() == LeafE.valueOf(t1)) {
-						String path = "../img/trees/";
-
-						String fpath = path + i.getSpecies() + ".png";
-
 						paneimg(i, Plantbox);
 
 					} else if (t1.equals("All")) {
-						try {
-							String path = "../img/trees/";
-							String fpath = path + i.getSpecies() + ".png";
-							paneimg(i, Plantbox);
+							if(i.getType().equals("trees")) {
+								paneimg(i, Plantbox);
+							}
 
-						} catch (Exception e) {
 						}
-						;
 					}
 				}
-			}
 		});
 
 		color.valueProperty().addListener(new ChangeListener<String>() {
@@ -129,22 +121,11 @@ public class ViewDrag extends ViewBase {
 				Plantbox.getChildren().clear();
 				for (Plants i : Main.getModel().getPlantBank()) {
 					if (i.getColor() == colorE.valueOf(t1)) {
-						String path = "../img/flowers/";
-
-						String fpath = path + i.getSpecies() + ".png";
-
 						paneimg(i, Plantbox);
-
 					} else if (t1.compareTo("All") == 0) {
-						// System.out.println("ppppppppppppppppppppp");
-						try {
-							String path = "../img/flowers/";
-							String fpath = path + i.getSpecies() + ".png";
+						if(i.getType().equals("flowers")) {
 							paneimg(i, Plantbox);
-
-						} catch (Exception e) {
 						}
-						;
 					}
 				}
 			}
@@ -188,9 +169,6 @@ public class ViewDrag extends ViewBase {
 		root.setLeft(scrollPane);
 		root.setCenter(middle);
 
-//    	loadFile(WorkPath+"/src/main/img/flowers");
-//    	loadFile(WorkPath+"/src/main/img/trees");
-
 		for (Plants p : Main.getModel().getPlantBank()) {
 			GardenImage i = p.getImgSpring();
 			GardenImgView iv1 = new GardenImgView();
@@ -211,21 +189,7 @@ public class ViewDrag extends ViewBase {
 		Button nextButton = new Button("Next");
 		nextButton.setOnMousePressed(handlerN);
 
-//        Button circleButton = new Button("Circle");
-//        circleButton.setOnAction( new EventHandler<ActionEvent>() {
-//        	public void handle(ActionEvent e) {
-//        		Image background = new Image(getClass().getResourceAsStream("../img/default/tudicircle.png"));
-//                gc.drawImage(background, 0, 0, WIDTH, HEIGHT);
-//        	}	
-//        });
-//        
-//        Button squareButton = new Button("Square");
-//        squareButton.setOnAction( new EventHandler<ActionEvent>() {
-//        	public void handle(ActionEvent e) {
-//        		Image background = new Image(getClass().getResourceAsStream("../img/default/tudi.jpg"));
-//                gc.drawImage(background, 0, 0, WIDTH, HEIGHT);
-//        	}	
-//        });
+
 
 		Button saveButton = new Button("Save");
 		saveButton.setOnAction(e -> new SaveViewbox().display("title", "message"));
@@ -314,18 +278,18 @@ public class ViewDrag extends ViewBase {
 		topBbar.getButtons().addAll(SpringButton, SummerButton,FallButton,WinterButton);
 		root.setTop(topBbar);
 
-	/*	SpringButton.setOnAction( new EventHandler<ActionEvent>() {
+		SpringButton.setOnAction( new EventHandler<ActionEvent>() {
         	public void handle(ActionEvent e) {
         		middle.getChildren().clear();
         		for (Plants i: Main.getModel().getGarden().getGarden_Plants()) {
-            		paneimg( i,  middle) ;}        	}	
+        			paneimgLoading( i,  middle,1) ;}        	}	
         });
 		
 		SummerButton.setOnAction( new EventHandler<ActionEvent>() {
         	public void handle(ActionEvent e) {
         		middle.getChildren().clear();
         		for (Plants i: Main.getModel().getGarden().getGarden_Plants()) {
-            		paneimg( i,  middle) ;}
+        			paneimgLoading( i,  middle,2) ;}
         		}
         });
 		
@@ -333,7 +297,7 @@ public class ViewDrag extends ViewBase {
         	public void handle(ActionEvent e) {
         		middle.getChildren().clear();
         		for (Plants i: Main.getModel().getGarden().getGarden_Plants()) {
-            		paneimg( i,  middle) ;}
+        			paneimgLoading( i,  middle,3) ;}
         	}	
         });
 		
@@ -341,8 +305,8 @@ public class ViewDrag extends ViewBase {
         	public void handle(ActionEvent e) {
         		middle.getChildren().clear();
         		for (Plants i: Main.getModel().getGarden().getGarden_Plants()) {
-            		paneimg( i,  middle) ;}        	}	//FIXME:
-        });*/  //need to fix
+        			paneimgLoading( i,  middle,4) ;}        	}	//FIXME:
+        }); 
 		
 		
 

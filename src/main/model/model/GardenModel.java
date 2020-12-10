@@ -171,10 +171,6 @@ public class GardenModel {
 	
 	
 
-//	public String toString(){
-//		return "species : \"" + species + "\" located on X: " + plantX + " Y: " + plantY;
-//	}
-	
 
 	
 
