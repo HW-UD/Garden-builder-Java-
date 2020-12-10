@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 import model.GardenModel;
 import model.Plants;
 import model.SceneName;
+import util.MapUtils;
 import view.ViewDrag;
 import view.ViewPwork;
 import view.ViewRating;
@@ -51,7 +52,8 @@ public class Main extends Application {
 		scenes.put(SceneName.Viewplants, new Viewplants(stage).getScene());
 		scenes.put(SceneName.ViewDrag, drag.getScene());
 		scenes.put(SceneName.ViewRating, new ViewRating(stage).getScene());
-
+		ViewRating viewRating = new ViewRating(stage);
+		MapUtils.getInstance().put("viewRating", viewRating);
 		// Start with the main scene
 		stage.setScene(scenes.get(SceneName.ViewWelcome));
 		stage.setTitle("G14 Garden Design");
