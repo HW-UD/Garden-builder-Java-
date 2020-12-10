@@ -4,6 +4,13 @@ import java.io.InputStream;
 
 import javafx.scene.image.Image;
 
+/** Customerised the gardenimage
+ * 
+ * @author Huawei Wang
+ * @version Final
+ *
+ */
+
 public class GardenImage extends Image {
 	String ID;
 	public GardenImage(InputStream arg0) {

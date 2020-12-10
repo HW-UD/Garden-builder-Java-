@@ -27,10 +27,16 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-
+/** The view of welcome page
+ * 
+ * @author Ruiheng Xie
+ * @version Final
+ * @return scene
+ *
+ */
 public class ViewWelcome implements ViewMaker {
 	
-	private Stage stage;
+	private Stage stage;//The stage for holding elements
 	static TextField lengthtf;
 	static TextField widthtf;
 	
@@ -41,6 +47,26 @@ public class ViewWelcome implements ViewMaker {
 
 	@Override
 	public Scene getScene() {
+		
+		int xloc = 80;//fit location for x
+		int yloc = 90;//fit location for y
+		int sceneX = 1000;//scene length
+		int sceneY = 600;//scene width
+		int M1A = 120;//margin num1A
+		int M1D = 250;//margin num1D
+		int M2A = 100;//margin num2A
+		int M2D = 200;//margin num2D
+		int labelsize = 20;//labelsize
+		int padding1 = 10;//padding num1
+		int padding2 = 4;//padding num2
+		int padding3 = 12;//padding num3
+		int padding4 = 6;//padding num4
+		int paddingin = 101;//padding insert num
+		int vgap = 20;//vgap num
+		int hgap = 35;//hgap num
+		int glth = 3;
+		int gtf = 1;
+		int hlth = 4;
 		
 		// Inject stage from Main into controller
 		WelcomeController controller = new WelcomeController(stage);
@@ -59,15 +85,15 @@ public class ViewWelcome implements ViewMaker {
         iv1.setImage(img);
         root.getChildren().add(iv1);
         iv1.setPreserveRatio(true);
-        iv1.setTranslateX(iv1.getTranslateX()+80);
-        iv1.setTranslateY(iv1.getTranslateY()+90);
+        iv1.setTranslateX(iv1.getTranslateX()+ xloc);
+        iv1.setTranslateY(iv1.getTranslateY()+ yloc);
         
         
 		Label label = new Label("    ");
-		label.setFont(Font.font ("Verdana", FontWeight.BOLD, 42));
+		label.setFont(Font.font ("Verdana", FontWeight.BOLD, labelsize));
 		//label.setTextFill(Color.web("#0076a3"));
 		root.setTop(label);
-		root.setMargin(label, new Insets(120,0,0,250));
+		root.setMargin(label, new Insets(M1A,0,0,M1D));
 		
 		
 	
@@ -79,18 +105,18 @@ public class ViewWelcome implements ViewMaker {
 		closeButton.setOnMousePressed(e -> stage.close());
 		//nextButton.setOnMousePressed(e -> stage.next());
 		ButtonBar bbar = new ButtonBar();
-		bbar.setPadding(new Insets(101));
+		bbar.setPadding(new Insets(paddingin));
 		bbar.getButtons().addAll(perviousworkButton,startButton, closeButton);
 		root.setBottom(bbar);
-		bbar.setPadding(new Insets(10, 4, 4, 10));
+		bbar.setPadding(new Insets(padding1, padding2, padding2, padding1));
 		
 		
-		Scene scene = new Scene(root, 1000, 600);
+		Scene scene = new Scene(root, sceneX, sceneY);
 
 		
 		Label length = new Label("Length in meter: ");
 		lengthtf = new TextField ();
-		length.setFont(Font.font ("Verdana",FontWeight.BOLD, 20));
+		length.setFont(Font.font ("Verdana",FontWeight.BOLD, labelsize));
 		lengthtf.textProperty().addListener(new ChangeListener<String>() {
 		       @Override
 		       public void changed(ObservableValue<? extends String> observable, String oldValue, 
@@ -103,7 +129,7 @@ public class ViewWelcome implements ViewMaker {
 	       
 		Label width = new Label("Width in meter: ");
 		widthtf = new TextField ();
-		width.setFont(Font.font ("Verdana",FontWeight.BOLD, 20));
+		width.setFont(Font.font ("Verdana",FontWeight.BOLD, labelsize));
 		widthtf.textProperty().addListener(new ChangeListener<String>() {
 		       @Override
 		       public void changed(ObservableValue<? extends String> observable, String oldValue, 
@@ -115,16 +141,16 @@ public class ViewWelcome implements ViewMaker {
 		});
 
 		GridPane grid = new GridPane();
-		grid.setVgap(20);
-		grid.setHgap(35);
-		grid.setPadding((new Insets(12,6,6,12)));
+		grid.setVgap(vgap);
+		grid.setHgap(hgap);
+		grid.setPadding((new Insets(padding3,padding4,padding4,padding3)));
 
-		grid.add(length, 3, 0);
-		grid.add(lengthtf, 3, 1);
-		grid.add(width, 4, 0);
-		grid.add(widthtf, 4, 1);
+		grid.add(length, glth, 0);
+		grid.add(lengthtf, glth, gtf);
+		grid.add(width, hlth, 0);
+		grid.add(widthtf, hlth, gtf);
 		root.setCenter(grid);
-		root.setMargin(grid, new Insets(100,0,0,200));
+		root.setMargin(grid, new Insets(M2A,0,0,M2D));
 
 		
 		

@@ -272,7 +272,7 @@ public class ViewDrag extends ViewBase {
 		});
 		
 		Button instruc = new Button("Instruction");
-		instruc.setOnAction(e -> new ViewAlertbox().display("title", "message"));
+		instruc.setOnAction(e -> new ViewAlertbox().display());
      
 		ButtonBar bbar = new ButtonBar();
 		bbar.setPadding(new Insets(0, 0, 0, 0));

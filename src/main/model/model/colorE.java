@@ -1,5 +1,11 @@
 package model;
 
+/** The model for colorE
+ * 
+ *  @author Benny Li, Huawei Wang, Ruiheng Xie, Yuzu Wu 
+ *  @version Final
+ **/
+
 public enum colorE {
 	All("All"),
 	White("White"),
@@ -13,6 +19,12 @@ public enum colorE {
 	private String name = null;
 	private colorE(String s){name = s;}
 	
-	public String getName() {return name;} 
+	/** Get the attribute name
+	 * 
+	 * @return name
+	 */
+	public String getName() {
+		return name;
+		} 
 
 }

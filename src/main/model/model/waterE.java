@@ -1,5 +1,11 @@
 package model;
 
+/** The model for waterE
+ * 
+ *  @author Benny Li, Huawei Wang, Ruiheng Xie, Yuzu Wu 
+ *  @version Final
+ **/
+
 public enum waterE {
 	All("All"),
 	High("High"),
@@ -10,5 +16,10 @@ public enum waterE {
 	private String name = null;
 	private waterE(String s){name = s;}
 	
-	public String getName() {return name;} 
+	/** Get the attribute name
+	 * 
+	 * @return name
+	 */
+	public String getName() {
+		return name;} 
 }

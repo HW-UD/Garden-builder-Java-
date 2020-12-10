@@ -48,8 +48,8 @@ public class ViewPwork extends ViewBase {
 	FlowPane flowpane = new FlowPane();
 	BorderPane root = new BorderPane();
     String WorkPath = System.getProperty("user.dir");
-	private final double imgwidth = 200;
-	private final double imgheight = 200;
+	private final double imgwidth = 200;//width of image
+	private final double imgheight = 200;//height of image
 
 
 	public ViewPwork(Stage stage) {
@@ -69,6 +69,7 @@ public class ViewPwork extends ViewBase {
 	 */
 	
 	public void loadButtons(String path) {
+		
 		File file = new File(path); // get file list where the path has
 		File[] array = file.listFiles(); // get the folder list
 
@@ -76,8 +77,8 @@ public class ViewPwork extends ViewBase {
 			if (array[i].isFile()) {
 				
 				if (array[i].getName().endsWith(".dat")) {
-					final int ButtonLength = 300;
-					final int ButtonWidth = 500;
+					final int ButtonLength = 300;//length of button
+					final int ButtonWidth = 500;//width of button
 					String fileName = array[i].getName();
 					String GName = fileName.substring(0, fileName.indexOf("."));
 					
@@ -153,17 +154,20 @@ public class ViewPwork extends ViewBase {
 	 * @version Final
 	 */
 	public Scene getScene() {
+			
+			int paddingnum = 10;//number fit for padding
+			int fpwidth = 1000;//the width of flowpane
+			int labelsize = 32;//size of label
 
-
-			flowpane.setPrefWidth(1000);
+			flowpane.setPrefWidth(fpwidth);
 
 			ScrollPane scrollPane = new ScrollPane(flowpane);
 			scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
 			root.setCenter(scrollPane);
 
-			root.setPadding(new Insets(10));
+			root.setPadding(new Insets(paddingnum));
 			Label label = new Label("Choose Previous Work");
-			label.setFont(new Font("Arial", 32));// set the font and the size of the title
+			label.setFont(new Font("Arial", labelsize));// set the font and the size of the title
 			root.setTop(label);
 
 			label.setTextFill(Color.web("#0076a3"));// set the Color of the label
@@ -176,7 +180,7 @@ public class ViewPwork extends ViewBase {
 			nextButton.setOnMousePressed(handlerN);
 
 			ButtonBar bbar = new ButtonBar();
-			bbar.setPadding(new Insets(10, 0, 0, 10));
+			bbar.setPadding(new Insets(paddingnum, 0, 0, paddingnum));
 			bbar.getButtons().addAll(backButton,nextButton);
 			root.setBottom(bbar);
 
