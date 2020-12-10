@@ -39,7 +39,15 @@ public class SaveViewbox {
 	private Stage stage;
     String WorkPath = System.getProperty("user.dir");
     BufferedImage bufferedImage = new BufferedImage(550, 400, BufferedImage.TYPE_INT_ARGB);
-
+	
+    /**
+	  * Save the size of Garden and name it to user's input name
+	  * 
+	  * @param TextField SaNameInput
+	  * @return void
+	  * @author Huawei Wang
+	  * @version Final
+	  */
 	public void saveSize(TextField SaNameInput) {
 		try {
 		String savedName=SaNameInput.getText();
@@ -60,7 +68,14 @@ public class SaveViewbox {
 		
 	}
 	
-	
+	   /**
+		  * Save the image of Garden and name it to user's input name
+		  * 
+		  * @param TextField SaNameInput
+		  * @return void
+		  * @author Huawei Wang
+		  * @version Final
+		  */
 	public void saveAsPng(String savedName) {
 
 	       WritableImage snapshot = Main.getDrag().getMiddle().snapshot(new SnapshotParameters(), null);
@@ -74,7 +89,6 @@ public class SaveViewbox {
                File file=new File(WorkPath+"/src/main/Saved/"+savedName+".png");
                ImageIO.write(image, "png", file);
            } catch (IOException ex) {
-//               Logger.getLogger(TrySnapshot.class.getName()).log(Level.SEVERE, null, ex);
            };
            
 		
@@ -131,19 +145,7 @@ public class SaveViewbox {
 		ButtonBar bbar = new ButtonBar();
 		bbar.setPadding(new Insets(10, 0, 0, 10));
 		bbar.getButtons().addAll(saveButton,button);
-
 	    layout.getChildren().addAll( bbar,Name,SaNameInput);
-//	    layout.setAlignment(Pos.CENTER);
-
-
-
-
-
-
-
-
-//TODO may put button other place.
-
 
 
 	    Scene scene = new Scene(layout);

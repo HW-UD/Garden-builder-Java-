@@ -65,7 +65,15 @@ public class ViewDrag extends ViewBase {
 	boolean flag = false;
 
 
-
+	/**
+	  * Scene of the planting Work page. Able to plant Plants, remove Plants, 
+	  * able to see the Plants version in different season
+	  * 
+	  * @param None
+	  * @return Scene
+	  * @author Huawei Wang,yuzu Wu,Ruiheng Xie,Benny Li 
+	  * @version Final
+	  */
 	@Override
 	public Scene getScene() {
 		BorderPane root = new BorderPane();
@@ -76,9 +84,11 @@ public class ViewDrag extends ViewBase {
 		gc = canvas.getGraphicsContext2D();
 		
 		FlowPane flowpane = new FlowPane();
-
-		flowpane.setPrefWidth(imgwidth + 30);
-		flowpane.setPrefHeight(imgheight + 600);
+		
+		int flowpaneWidth=imgwidth + 30;
+		int flowpaneHeight=imgheight + 600;
+		flowpane.setPrefWidth(flowpaneWidth);
+		flowpane.setPrefHeight(flowpaneHeight);
 
 		ScrollPane scrollPane = new ScrollPane(flowpane);
 
@@ -305,7 +315,7 @@ public class ViewDrag extends ViewBase {
         	public void handle(ActionEvent e) {
         		middle.getChildren().clear();
         		for (Plants i: Main.getModel().getGarden().getGarden_Plants()) {
-        			paneimgLoading( i,  middle,4) ;}        	}	//FIXME:
+        			paneimgLoading( i,  middle,4) ;}        	}	
         }); 
 		
 		

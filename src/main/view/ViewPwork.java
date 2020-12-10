@@ -52,6 +52,22 @@ public class ViewPwork extends ViewBase {
 	private final double imgheight = 200;
 
 
+	public ViewPwork(Stage stage) {
+		super(stage, e -> new PworkController(stage).handleMousePress1(e),
+				e -> new PworkController(stage).handleMousePress2(e));
+	}
+	
+	
+	/**
+	 * Load all pastWorks, and generate buttons of them
+	 * 
+	 * @param
+	 * 		String Path: The Path of where previous work located
+	 * @return void
+	 * @author Huawei Wang
+	 * @version Final
+	 */
+	
 	public void loadButtons(String path) {
 		File file = new File(path); // get file list where the path has
 		File[] array = file.listFiles(); // get the folder list
@@ -102,16 +118,6 @@ public class ViewPwork extends ViewBase {
 						
 			        	});
 					
-//					button1.selectedProperty().addListener((observable, oldValue, newValue) -> {
-//						// If selected, color the background blue
-//						if (newValue) {
-//							button1.setStyle("-fx-background-color: blue;");
-//							newValue = false;
-//						} else {
-//							button1.setStyle(null);
-//						}
-//					});
-
 			    	button1.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
 						@Override
 						public void handle(MouseEvent event) {
@@ -138,11 +144,14 @@ public class ViewPwork extends ViewBase {
 	}
 	
 	
-	
-	public ViewPwork(Stage stage) {
-		super(stage, e -> new PworkController(stage).handleMousePress1(e), e -> new PworkController(stage).handleMousePress2(e));
-	}
-	
+	/**
+	 * Scene of the Previous Work page.
+	 * 
+	 * @param None
+	 * @return Scene
+	 * @author Huawei Wang,yuzu Wu,Ruiheng Xie, Benny Li 
+	 * @version Final
+	 */
 	public Scene getScene() {
 
 

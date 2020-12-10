@@ -42,11 +42,25 @@ public class DragController {
 		this.stage = stage;
 	}
 	
-	/** Display ViewFences scene when the "back" button is clicked @param*/
+	/**
+	  * Event for button to turn to the previous Page.
+	  * 
+	  * @param Event event
+	  * @return void
+	  * @author Huawei Wang,yuzu Wu,Ruiheng Xie,Benny Li 
+	  * @version Final
+	  */
 	public void handleMousePress(Event event) {
 		stage.setScene(Main.getScenes().get(SceneName.Viewplants));
 	}
-	
+	/**
+	  * Event for button to turn to the next Page.
+	  * 
+	  * @param Event event
+	  * @return void
+	  * @author Huawei Wang,yuzu Wu,Ruiheng Xie,Benny Li 
+	  * @version Final
+	  */
 	public void handleMousePress2(Event event) {
 		stage.setScene(Main.getScenes().get(SceneName.ViewRating));
 	}
@@ -61,7 +75,14 @@ public static String getName() {
 		DragController.name = name;
 	}
 
-	
+	/**
+	  *detector for an GardenImgView drag events
+	  * 
+	  * @param GardenImgView iv1
+	  * @return void
+	  * @author Huawei Wang,yuzu Wu,Ruiheng Xie,Benny Li 
+	  * @version Final
+	  */
 	public static void drag (GardenImgView iv1) {
 		
 		iv1.setOnDragDetected(new EventHandler<MouseEvent>(){
@@ -80,7 +101,14 @@ public static String getName() {
 			}
 		});
 	}
-	
+	/**
+	  *detector for an GardenImgView drop events
+	  * 
+	  * @param Pane pane
+	  * @return void
+	  * @author Huawei Wang,yuzu Wu,Ruiheng Xie,Benny Li 
+	  * @version Final
+	  */
 	public static void drop (Pane pane) {
 		
 		pane.setOnDragDropped(new EventHandler<DragEvent>() {
@@ -119,6 +147,14 @@ public static String getName() {
 		});
 	}
 	
+	/**
+	  *detector for an GardenImgView move events
+	  * 
+	  * @param GardenImgView iv1copy
+	  * @return void
+	  * @author Huawei Wang,Ruiheng Xie
+	  * @version Final
+	  */
 	public static void move (GardenImgView iv1copy) {
 		iv1copy.setOnMouseDragged(new EventHandler<MouseEvent>() {
 
@@ -148,7 +184,15 @@ public static String getName() {
 		});
 	}
 
-	
+	/**
+	  *detector for an GardenImgView delete events, 
+	  *able to delete the image from both pane and Model
+	  * 
+	  * @param GardenImgView iv1copy,Pane pane
+	  * @return void
+	  * @author Huawei Wang,Yuzu Wu,Benny Li
+	  * @version Final
+	  */
 	public static void delete (GardenImgView iv1copy,Pane pane) {
 		iv1copy.setOnMouseClicked(new EventHandler<MouseEvent>(){
 			@Override
@@ -168,10 +212,17 @@ public static String getName() {
 	}
 	
 	
+	/**
+	  *detector for an DragOver even from 
+	  * 
+	  * @param Pane pane
+	  * @return void
+	  * @author Huawei Wang,Yuzu Wu,Benny Li
+	  * @version Final
+	  */
+	public static void DragOver (Pane pane) {
 	
-	public static void DragOver (Pane flowpane) {
-	
-	flowpane.setOnDragOver(new EventHandler<DragEvent>() {
+		pane.setOnDragOver(new EventHandler<DragEvent>() {
 		@Override
 		public void handle(DragEvent event) {
 			event.acceptTransferModes(TransferMode.COPY);
