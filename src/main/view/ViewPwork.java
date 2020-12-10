@@ -43,7 +43,12 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
-
+/**
+ *  Shows all plants user saved
+ * 
+ * @author Benny Li, Ruiheng Xie
+ * @version final
+ */
 public class ViewPwork extends ViewBase {
 	FlowPane flowpane = new FlowPane();
 	BorderPane root = new BorderPane();

@@ -5,7 +5,10 @@ import javafx.stage.Stage;
 import model.SceneName;
 
 
-
+/** The controller for RatingController
+ * 
+ * @author Benny Li, Huawei Wang, Ruiheng Xie, Yuzu Wu
+ * @version final */
 public class RatingController {
 	private Stage stage;
 	

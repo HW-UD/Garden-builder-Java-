@@ -35,6 +35,13 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.SceneName;
 
+
+/**
+ * The window to save the planting data
+ * 
+ * @author Benny Li, Huawei Wang, Ruiheng Xie, Yuzu Wu
+ * @version final
+ */
 public class SaveViewbox {
 	private Stage stage;
     String WorkPath = System.getProperty("user.dir");

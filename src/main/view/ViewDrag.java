@@ -62,6 +62,13 @@ import java.util.HashSet;
 
 import javax.imageio.ImageIO;
 
+
+/**
+ * The class contain dragging plants from the plantbank
+ * 
+ * @author Benny Li, Huawei Wang, Ruiheng Xie, Yuzu Wu
+ * @version final
+ */
 public class ViewDrag extends ViewBase {
 	String WorkPath = System.getProperty("user.dir");
 	boolean flag = false;

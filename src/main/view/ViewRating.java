@@ -31,7 +31,12 @@ import javafx.stage.Stage;
 import javafx.scene.image.ImageView;
 import java.util.ArrayList;
 
-
+/**
+ * Shows the attributes for all plants user input
+ * 
+ * @author Benny Li, Ruiheng Xie
+ * @version final
+ */
 public class ViewRating implements ViewMaker {
 	
 	private Stage stage;
@@ -74,30 +79,22 @@ public class ViewRating implements ViewMaker {
     	
 		
 		//v.setPrefSize(20, 20);
-		v.setPrefWidth(5000);
-		v.setPrefWidth(5000);
-    	
-  
+		v.setPrefWidth(1000);
+ 
 		flowpane.getChildren().add(v);
 		ScrollPane scrollPane = new ScrollPane(flowpane);
 		scrollPane.setVbarPolicy(ScrollBarPolicy.ALWAYS);
-		scrollPane.setPrefHeight(1000);
+		scrollPane.setPrefHeight(200);
 		
-		root.setBackground(new Background(new BackgroundImage(background,BackgroundRepeat.REPEAT,
+		flowpane.setBackground(new Background(new BackgroundImage(background,BackgroundRepeat.REPEAT,
                 BackgroundRepeat.REPEAT,
                 BackgroundPosition.DEFAULT,
                 BackgroundSize.DEFAULT)));
-		root.setTop(scrollPane);
+		
+		root.setCenter(scrollPane);
 		
 
 		ArrayList<ImageView> arrayList = new ArrayList<>();
-
-
-        GridPane grid = new GridPane();
-		
-		grid.setHgap(100);
-		grid.setPadding((new Insets(1,6,6,1)));
-		root.setLeft(grid);
 		
 		// get the buttons
 		Button backButton = new Button("Back");
@@ -110,12 +107,7 @@ public class ViewRating implements ViewMaker {
 		
 		// set the space between margins and buttons
 		bbar.setPadding(new Insets(10, 5, 5, 10));
-		
-		
-		// set the  space among plates
-		BorderPane.setMargin(grid, new Insets(100,0,0,200));
-		
-//	    System.out.println(ScoreComboBox.getEditor().getText());
+
 		Scene scene = new Scene(root, 1000, 600);
 		return scene;
 	}

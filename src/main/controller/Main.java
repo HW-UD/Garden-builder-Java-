@@ -17,6 +17,13 @@ import view.ViewRating;
 import view.ViewWelcome;
 import view.Viewplants;
 
+
+/**
+ * Main function for showing the scence
+ * 
+ * @author Benny Li, Huawei Wang, Ruiheng Xie, Yuzu Wu
+ * @version final
+ */
 public class Main extends Application {
 	
 	/** Holds the various scenes to switch between */
