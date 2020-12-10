@@ -36,7 +36,7 @@ import javafx.stage.Stage;
  */
 public class ViewWelcome implements ViewMaker {
 	
-	private Stage stage;
+	private Stage stage;//The stage for holding elements
 	static TextField lengthtf;
 	static TextField widthtf;
 	

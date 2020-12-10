@@ -10,23 +10,20 @@ import javafx.stage.Stage;
 import model.GardenModel;
 import model.Plants;
 import model.SceneName;
-import util.MapUtils;
 import view.ViewDrag;
 import view.ViewPwork;
 import view.ViewRating;
 import view.ViewWelcome;
 import view.Viewplants;
 
-//import net.snortum.javafx.multiscene.model.SceneName;
-//import net.snortum.javafx.multiscene.view.MainView;
-//import net.snortum.javafx.multiscene.view.ViewOne;
-//import net.snortum.javafx.multiscene.view.ViewThree;
-//import net.snortum.javafx.multiscene.view.ViewTwo;
 
 
 public class Main extends Application {
 	
-	/** Holds the various scenes to switch between */
+	/** Holds the various scenes to switch between * 
+     * @author Benny Li, Huawei Wang, Ruiheng Xie, Yuzu Wu
+ * @version final */
+
 	private static Map<SceneName, Scene> scenes = new HashMap<>();
 	static GardenModel model;
     String WorkPath = System.getProperty("user.dir");
@@ -52,15 +49,17 @@ public class Main extends Application {
 		scenes.put(SceneName.Viewplants, new Viewplants(stage).getScene());
 		scenes.put(SceneName.ViewDrag, drag.getScene());
 		scenes.put(SceneName.ViewRating, new ViewRating(stage).getScene());
-		ViewRating viewRating = new ViewRating(stage);
-		MapUtils.getInstance().put("viewRating", viewRating);
+
 		// Start with the main scene
 		stage.setScene(scenes.get(SceneName.ViewWelcome));
 		stage.setTitle("G14 Garden Design");
 		stage.show();
 	}
 
-	/** Returns a Map of the scenes by {@link SceneName} */
+	/** Returns a Map of the scenes by {@link SceneName}* 
+ * @author Benny Li, Huawei Wang, Ruiheng Xie, Yuzu Wu
+ * @version final */
+
 	public static Map<SceneName, Scene> getScenes() {
 		return scenes;
 	}

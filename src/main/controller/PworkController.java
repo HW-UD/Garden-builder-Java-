@@ -13,11 +13,19 @@ import model.Plants;
 import model.SceneName;
 
 
-
+/** The controller for ViewPwork
+ * 
+ * @author Benny Li, Huawei Wang, Ruiheng Xie, Yuzu Wu
+ * @version final */
 public class PworkController {
 	private Stage stage;
 	
-	/** Must inject a stage */
+	/**
+	 * Inject the stage from {@link Main}
+	 * 
+	 * @author Benny Li, Huawei Wang, Ruiheng Xie, Yuzu Wu
+	 * @version final
+	 */
 	public PworkController(Stage stage) {
 		if (stage == null) {
 			throw new IllegalArgumentException("Stage cannot be null");
@@ -25,18 +33,27 @@ public class PworkController {
 		this.stage = stage;
 	}
 	
-	/** Display ViewFences scene when the "back" button is clicked */
+	/** Display ViewPlants scene when the "next" button is clicked 
+	 * @param event
+	 * 
+	 * @author Benny Li,  Huawei Wang, Ruiheng Xie, Yuzu Wu
+	 * @version final*/
 
 	public void handleMousePress1(Event event) {
 		stage.setScene(Main.getScenes().get(SceneName.ViewWelcome));
 	}
 	
+	/** Display ViewDrag scene when the "next" button is clicked 
+	 * @param event
+	 * 
+	 * @author Benny Li,  Huawei Wang, Ruiheng Xie, Yuzu Wu
+	 * @version final*/
 	public void handleMousePress2(Event event) {
 		stage.setScene(Main.getScenes().get(SceneName.ViewDrag));
 		System.out.println(Main.getModel().getGarden().getGarden_Plants());
 		Main.getDrag().getMiddle().getChildren().clear();
 		for (Plants i: Main.getModel().getGarden().getGarden_Plants()) {
-			Main.getDrag().paneimgLoading( i,  Main.getDrag().getMiddle(),1) ;}        		//FIXME: 改季节
+			Main.getDrag().paneimgLoading( i,  Main.getDrag().getMiddle(),1) ;}     
 	}
 
 
