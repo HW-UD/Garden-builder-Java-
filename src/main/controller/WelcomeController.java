@@ -19,6 +19,12 @@ public class WelcomeController {
 
 	/** Display the first scene */
 	public void handleOnPressButton1(MouseEvent event) {
+//		try {
+//			
+//		}catch(){
+//			
+//		}
+		
 		Main.model.getGarden().setGardenLength(Double.parseDouble(ViewWelcome.getWidthtf().getText()));
 		Main.model.getGarden().setGardenHeight(Double.parseDouble(ViewWelcome.getLengthtf().getText()));
 		

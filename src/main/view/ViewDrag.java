@@ -291,9 +291,59 @@ public class ViewDrag extends ViewBase {
 		instruc.setOnAction(e -> new ViewAlertbox().display("title", "message"));
      
 		ButtonBar bbar = new ButtonBar();
-		bbar.setPadding(new Insets(10, 0, 0, 10));
+		bbar.setPadding(new Insets(0, 0, 0, 0));
 		bbar.getButtons().addAll(instruc, draw, clear, saveButton, backButton, nextButton);
 		root.setBottom(bbar);
+		
+		
+		
+		
+		
+		Button SpringButton = new Button("Spring");
+		SpringButton.setStyle("-fx-background-color:#00FF7F");
+		Button SummerButton = new Button("Summer");
+		SummerButton.setStyle("-fx-background-color:#228B22");
+		Button FallButton = new Button("Fall");
+		FallButton.setStyle("-fx-background-color:#FFB90F");
+		Button WinterButton = new Button("Winter");
+		WinterButton.setStyle("-fx-background-color:#838B83");
+		ButtonBar topBbar = new ButtonBar();
+		topBbar.setPadding(new Insets(0, 0, 0, 0));
+		topBbar.getButtons().addAll(SpringButton, SummerButton,FallButton,WinterButton);
+		root.setTop(topBbar);
+
+	/*	SpringButton.setOnAction( new EventHandler<ActionEvent>() {
+        	public void handle(ActionEvent e) {
+        		middle.getChildren().clear();
+        		for (Plants i: Main.getModel().getGarden().getGarden_Plants()) {
+            		paneimg( i,  middle) ;}        	}	
+        });
+		
+		SummerButton.setOnAction( new EventHandler<ActionEvent>() {
+        	public void handle(ActionEvent e) {
+        		middle.getChildren().clear();
+        		for (Plants i: Main.getModel().getGarden().getGarden_Plants()) {
+            		paneimg( i,  middle) ;}
+        		}
+        });
+		
+		FallButton.setOnAction( new EventHandler<ActionEvent>() {
+        	public void handle(ActionEvent e) {
+        		middle.getChildren().clear();
+        		for (Plants i: Main.getModel().getGarden().getGarden_Plants()) {
+            		paneimg( i,  middle) ;}
+        	}	
+        });
+		
+		WinterButton.setOnAction( new EventHandler<ActionEvent>() {
+        	public void handle(ActionEvent e) {
+        		middle.getChildren().clear();
+        		for (Plants i: Main.getModel().getGarden().getGarden_Plants()) {
+            		paneimg( i,  middle) ;}        	}	//FIXME:
+        });*/  //need to fix
+		
+		
+
 
 		return new Scene(root, WIDTH, HEIGHT);
 	}
