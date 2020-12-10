@@ -41,6 +41,7 @@ import javafx.stage.Stage;
 import model.Plants;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 
 
 public class ViewPwork extends ViewBase {
@@ -59,7 +60,6 @@ public class ViewPwork extends ViewBase {
 			if (array[i].isFile()) {
 				
 				if (array[i].getName().endsWith(".dat")) {
-//					String temp = "../Saved/" + array[i].getName();
 					final int ButtonLength = 300;
 					final int ButtonWidth = 500;
 					String fileName = array[i].getName();
@@ -73,8 +73,7 @@ public class ViewPwork extends ViewBase {
 					ToggleButton button1 = new ToggleButton(GName, new ImageView(im1));
 					button1.setPrefSize(ButtonWidth, ButtonLength);
 					button1.setGraphic(view1);
-//					button1.setOnMousePressed(handlerN);
-					
+					button1.setStyle(null);
 			    	button1.setOnAction(e -> {
 				    	try{
 					    	ObjectInputStream oisW = new ObjectInputStream(new FileInputStream(path+"/"+GName+".ser"));
@@ -103,16 +102,32 @@ public class ViewPwork extends ViewBase {
 						
 			        	});
 					
-					button1.selectedProperty().addListener((observable, oldValue, newValue) -> {
-						// If selected, color the background blue
-						if (newValue) {
+//					button1.selectedProperty().addListener((observable, oldValue, newValue) -> {
+//						// If selected, color the background blue
+//						if (newValue) {
+//							button1.setStyle("-fx-background-color: blue;");
+//							newValue = false;
+//						} else {
+//							button1.setStyle(null);
+//						}
+//					});
+
+			    	button1.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+						@Override
+						public void handle(MouseEvent event) {
 							button1.setStyle("-fx-background-color: blue;");
-							newValue = false;
-						} else {
-							button1.setStyle(null);
+
 						}
 					});
+			    	
+			    	button1.addEventHandler(MouseEvent.MOUSE_RELEASED, new EventHandler<MouseEvent>() {
+						@Override
+						public void handle(MouseEvent event) {
+							button1.setStyle(null);
 
+						}
+					});
+			    	
 					flowpane.getChildren().add(button1);
 				}
 

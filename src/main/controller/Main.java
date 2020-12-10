@@ -13,8 +13,6 @@ import model.SceneName;
 import view.ViewDrag;
 import view.ViewPwork;
 import view.ViewRating;
-import view.ViewSeason;
-import view.ViewSurround;
 import view.ViewWelcome;
 import view.Viewplants;
 
@@ -31,15 +29,11 @@ public class Main extends Application {
 	private static Map<SceneName, Scene> scenes = new HashMap<>();
 	static GardenModel model;
     String WorkPath = System.getProperty("user.dir");
-	static ViewSurround surron;
-	static ViewSeason season;
 	static ViewDrag drag;
 	
 	@Override
 	public void start(Stage stage) {
 		model= new GardenModel();
-		surron = new ViewSurround(stage);
-		season = new ViewSeason(stage);
 		drag = new ViewDrag(stage);
 		 
 		model.UpdatePlant(WorkPath+"/src/main/Bank/flowers.txt",model.getFlowerdata());
@@ -56,8 +50,6 @@ public class Main extends Application {
 		scenes.put(SceneName.ViewPwork, new ViewPwork(stage).getScene());
 		scenes.put(SceneName.Viewplants, new Viewplants(stage).getScene());
 		scenes.put(SceneName.ViewDrag, drag.getScene());
-		scenes.put(SceneName.ViewSurround, surron.getScene());
-		scenes.put(SceneName.ViewSeason, season.getScene());
 		scenes.put(SceneName.ViewRating, new ViewRating(stage).getScene());
 
 		// Start with the main scene
@@ -78,15 +70,6 @@ public class Main extends Application {
 	public static void setDrag(ViewDrag drag) {
 		Main.drag = drag;
 	}
-
-	public static ViewSurround getSurron() {
-		return surron;
-	}
-
-	public static ViewSeason getseason() {
-		return season;
-	}
-
 
 	public static GardenModel getModel() {
 		return model;

@@ -8,7 +8,6 @@ import model.Plants;
 import model.SceneName;
 import view.GardenImage;
 import view.GardenImgView;
-import view.ViewSurround;
 
 import java.awt.MouseInfo;
 import java.awt.Point;
@@ -49,8 +48,7 @@ public class DragController {
 	}
 	
 	public void handleMousePress2(Event event) {
-		stage.setScene(Main.getScenes().get(SceneName.ViewSurround));
-		Main.getSurron().getMiddle().getChildren().clear();
+		stage.setScene(Main.getScenes().get(SceneName.ViewRating));
 	}
 	
 	

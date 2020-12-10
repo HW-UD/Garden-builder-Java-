@@ -6,7 +6,6 @@ import java.awt.EventQueue;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import controller.Main;
-import controller.SurroundController;
 import controller.WelcomeController;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -74,8 +73,6 @@ public class ViewWelcome implements ViewMaker {
 	
 		Button startButton = new Button("Start");
 		startButton.setOnMousePressed(e -> controller.handleOnPressButton1(e));
-//		Button exampleButton = new Button("Example");
-//		exampleButton.setOnMousePressed(e -> controller.handleOnPressButton2(e));
 		Button perviousworkButton = new Button("Pervious_Work");
 		perviousworkButton.setOnMousePressed(e -> controller.handleOnPressButton3(e));
 		Button closeButton = new Button("Close");
@@ -116,16 +113,12 @@ public class ViewWelcome implements ViewMaker {
 		           }
 		       }
 		});
-//		
-//		Label name = new Label("Garden name: ");
-//		TextField nametf = new TextField ();
-//		name.setFont(Font.font ("Verdana", FontWeight.BOLD, 20));
+
 		GridPane grid = new GridPane();
 		grid.setVgap(20);
 		grid.setHgap(35);
 		grid.setPadding((new Insets(12,6,6,12)));
-//		grid.add(name, 1, 0);
-//		grid.add(nametf, 1, 1);
+
 		grid.add(length, 3, 0);
 		grid.add(lengthtf, 3, 1);
 		grid.add(width, 4, 0);

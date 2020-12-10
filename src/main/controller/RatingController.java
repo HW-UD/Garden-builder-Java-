@@ -20,6 +20,6 @@ public class RatingController {
 
 	/** Display the first scene */
 	public void handleOnPressButton1(MouseEvent event) {
-		stage.setScene(Main.getScenes().get(SceneName.ViewSeason));
+		stage.setScene(Main.getScenes().get(SceneName.ViewDrag));
 	}
 }
