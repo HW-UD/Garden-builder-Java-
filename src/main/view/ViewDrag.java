@@ -72,8 +72,10 @@ import javax.imageio.ImageIO;
 public class ViewDrag extends ViewBase {
 	String WorkPath = System.getProperty("user.dir");
 	boolean flag = false;
-
-
+	String water="All";
+	String COrL="All";
+	int typ=0;//if COrL is color{==0} else{==1}
+	
 	/**
 	  * Scene of the planting Work page. Able to plant Plants, remove Plants, 
 	  * able to see the Plants version in different season
@@ -119,16 +121,26 @@ public class ViewDrag extends ViewBase {
 			@Override
 			public void changed(ObservableValue ov, String t, String t1) {
 				Plantbox.getChildren().clear();
+				COrL=t1;
+				typ=1;
 				for (Plants i : Main.getModel().getPlantBank()) {
-					if (i.getLeaf() == LeafE.valueOf(t1)) {
-						paneimg(i, Plantbox);
-
-					} else if (t1.equals("All")) {
+					if(COrL.equals("All") ) {
+						if (water.equals("All")) {
 							if(i.getType().equals("trees")) {
 								paneimg(i, Plantbox);
 							}
-
+						}else {
+							if(i.getType().equals("trees") &&i.getWater()==waterE.valueOf(water)) {
+								paneimg(i, Plantbox);
+							}
 						}
+						
+					}else if(i.getLeaf() == LeafE.valueOf(COrL) && water.equals("All")) {
+							paneimg(i, Plantbox);
+					} else if (i.getLeaf() == LeafE.valueOf(COrL) 
+								&& i.getWater() == waterE.valueOf(water)) {
+						paneimg(i, Plantbox);
+					}	
 					}
 				}
 		});
@@ -138,32 +150,79 @@ public class ViewDrag extends ViewBase {
 			public void changed(ObservableValue ov, String t, String t1) {
 				System.out.println(t1);
 				Plantbox.getChildren().clear();
+				COrL=t1;
+				typ=0;
 				for (Plants i : Main.getModel().getPlantBank()) {
-					if (i.getColor() == colorE.valueOf(t1)) {
-						paneimg(i, Plantbox);
-					} else if (t1.compareTo("All") == 0) {
-						if(i.getType().equals("flowers")) {
-							paneimg(i, Plantbox);
+					if(COrL.equals("All")) {
+						if (water.equals("All")) {
+							if(i.getType().equals("flowers")) {
+								paneimg(i, Plantbox);}
+						}else {
+							if(i.getType().equals("flowers") &&i.getWater()==waterE.valueOf(water)) {
+								paneimg(i, Plantbox);
+							}
 						}
+						
+					}else if(i.getColor() == colorE.valueOf(COrL) && water.equals("All")) {
+						paneimg(i, Plantbox);
+					} else if (i.getColor() == colorE.valueOf(COrL) 
+							&& i.getWater() == waterE.valueOf(water)) {
+						paneimg(i, Plantbox);
+						}
+					
 					}
+				
 				}
-			}
+			
 		});
 
 		waterNeed.valueProperty().addListener(new ChangeListener<String>() {
 			@Override
 			public void changed(ObservableValue ov, String t, String t1) {
+				water=t1;
 				Plantbox.getChildren().clear();
+				
 				for (Plants i : Main.getModel().getPlantBank()) {
-					if (i.getWater() == waterE.valueOf(t1)) {
-						paneimg(i, Plantbox);
-
-					} else if (t1.equals("All")) {
-						paneimg(i, Plantbox);
-
+					if (typ==0) {
+						if(COrL.equals("All")) {
+							if (water.equals("All")) {
+								if(i.getType().equals("flowers")) {
+									paneimg(i, Plantbox);}
+							}else {
+								if(i.getType().equals("flowers") &&i.getWater()==waterE.valueOf(water)) {
+									paneimg(i, Plantbox);
+								}
+							}
+							
+						}else if(i.getColor() == colorE.valueOf(COrL) && water.equals("All")) {
+							paneimg(i, Plantbox);
+						} else if (i.getColor() == colorE.valueOf(COrL) 
+								&& i.getWater() == waterE.valueOf(water)) {
+							paneimg(i, Plantbox);
+							}
+					}else {
+						if(COrL.equals("All") ) {
+							if (water.equals("All")) {
+								if(i.getType().equals("trees")) {
+									paneimg(i, Plantbox);
+								}
+							}else {
+								if(i.getType().equals("trees") &&i.getWater()==waterE.valueOf(water)) {
+									paneimg(i, Plantbox);
+								}
+							}
+							
+						}else if(i.getLeaf() == LeafE.valueOf(COrL) && water.equals("All")) {
+								paneimg(i, Plantbox);
+						} else if (i.getLeaf() == LeafE.valueOf(COrL) 
+									&& i.getWater() == waterE.valueOf(water)) {
+							paneimg(i, Plantbox);
+						}	
+							}
 					}
+						
 				}
-			}
+				
 		});
 
 		Label WaterN = new Label("WaterNeed: ");

@@ -126,7 +126,7 @@ public class ViewBase implements ViewMaker {
 		Double scaled=(WindowH/GHight)*H;
 		System.out.println(WindowH+"/"+GHight+" = "+scaled);	
 		iv1.setFitHeight(scaled);
-		iv1.setFitWidth(100);
+		iv1.setFitWidth(scaled/2);
     	iv1.setTranslateX(i.getPlantx());
     	iv1.setTranslateY(i.getPlanty());
     	DragController.move(iv1);

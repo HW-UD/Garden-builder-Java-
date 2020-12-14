@@ -39,9 +39,9 @@ public class Main extends Application {
 		model= new GardenModel();
 		drag = new ViewDrag(stage);
 		 
-		model.UpdatePlant(WorkPath+"/src/main/Bank/flowers.txt",model.getFlowerdata());
-		model.UpdatePlant(WorkPath+"/src/main/Bank/trees.txt",model.getTreedata());
-		model.UpdatePlant(WorkPath+"/src/main/Bank/shurbs.txt",model.getTreedata());
+		model.UpdatePlant(WorkPath+"/src/main/Bank/flowers.csv",model.getFlowerdata());
+		model.UpdatePlant(WorkPath+"/src/main/Bank/trees.csv",model.getTreedata());
+		model.UpdatePlant(WorkPath+"/src/main/Bank/shurbs.csv",model.getTreedata());
 		model.loadFlower();
 		model.loadTree() ;
 		

@@ -155,12 +155,24 @@
 						}
 						double WindowH=Main.getDrag().getHEIGHT();
 						double GHight=Main.getModel().getGarden().getGardenHeight();
-						Double scaled=(WindowH/GHight)*H;
-						
-						System.out.println(WindowH+"/"+GHight+" = "+scaled);
-						
+						double scaled=(WindowH/GHight)*H;
+												
 						iv1copy.setFitHeight(scaled);
-						iv1copy.setFitWidth(100);
+						
+						double wScaled=scaled/2;
+						
+//						if(H<2) {
+//							wScaled=scaled;
+//						}else if (H<) {
+//							
+//						}}else if (H<) {
+//							
+//						}}else if (H<) {
+//							
+//						}}else if (H<) {
+//							
+//						}
+						iv1copy.setFitWidth(wScaled);
 						pane.getChildren().add(iv1copy);
 						
 						iv1copy.setTranslateX(event.getX());
