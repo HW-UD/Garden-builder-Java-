@@ -1,7 +1,3 @@
-# CISC275-project-template
-
-Note: for Github Actions to compile with gradle you must use the directory structure `src/main/java/` and `src/main/resources/`
-
 # Garden Project
 ## Application Introduction
    This garden project is designed for customers who want to design a garden for themselves. You can design the garden by adding the trees, shurbs and flowers into your garden. You also can view the plants you added in different seasons. Once you finish design your garden, you can save the garden locally.
