@@ -1,6 +1,9 @@
 # Garden Project
+   This Program was produced by University of Delawre Students.
+   Team members: Huawei Wang, Ruiheng Xie, Yuzu Wu, Baqiao Li
+   
 ## Application Introduction
-   This garden project is designed for customers who want to design a garden for themselves. You can design the garden by adding the trees, shurbs and flowers into your garden. You also can view the plants you added in different seasons. Once you finish design your garden, you can save the garden locally.
+   This garden project is designed for customers who want to design a garden for themselves. You can design the garden by adding trees, shrubs, and flowers into your garden. You also can view the plants you added in different seasons. Once you finish designing your garden, you can save the garden locally.
 ## Manual
 ##### Welcome Page
    - PreviousWork
